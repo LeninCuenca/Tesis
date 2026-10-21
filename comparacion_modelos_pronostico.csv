@@ -1,0 +1,4 @@
+modelo,R2_test,RMSE_test,MAE_test
+Regresión Lineal,0.826,101.14,64.33
+Gradient Boosting,0.7145,129.54,58.3
+Random Forest Regressor,0.6591,141.56,56.42

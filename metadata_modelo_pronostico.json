@@ -1,0 +1,56 @@
+{
+  "modelo": "Regresión Lineal",
+  "tipo": "Pronóstico (10 variables: clima futuro + calendario, sin sensores eléctricos)",
+  "target": "Producción fotovoltaica",
+  "unidad_target": "Wh (por intervalo de 5 min)",
+  "columnas_entrada_en_orden": [
+    "Irradiación",
+    "Temperatura ambiente",
+    "Temperatura de módulo",
+    "hora_sin",
+    "hora_cos",
+    "dia_anio_sin",
+    "dia_anio_cos",
+    "mes",
+    "hora",
+    "fin_de_semana"
+  ],
+  "descripcion_columnas": {
+    "Irradiación": "W/m2, debe venir de pronóstico meteorológico (API clima)",
+    "Temperatura ambiente": "°C, pronóstico meteorológico",
+    "Temperatura de módulo": "°C, puede estimarse desde temp. ambiente + irradiación si no hay pronóstico directo",
+    "hora": "0-23",
+    "mes": "1-12",
+    "dia_anio": "1-366",
+    "fin_de_semana": "0/1",
+    "hora_sin": "seno de la hora",
+    "hora_cos": "coseno de la hora",
+    "dia_anio_sin": "seno del día del año",
+    "dia_anio_cos": "coseno del día del año"
+  },
+  "filas_entrenamiento_final": 96927,
+  "rango_fechas_entrenamiento": [
+    "2024-03-01 15:45:00",
+    "2025-06-30 23:55:00"
+  ],
+  "metricas_validacion_80_20": [
+    {
+      "modelo": "Regresión Lineal",
+      "R2_test": 0.826,
+      "RMSE_test": 101.14,
+      "MAE_test": 64.33
+    },
+    {
+      "modelo": "Gradient Boosting",
+      "R2_test": 0.7145,
+      "RMSE_test": 129.54,
+      "MAE_test": 58.3
+    },
+    {
+      "modelo": "Random Forest Regressor",
+      "R2_test": 0.6591,
+      "RMSE_test": 141.56,
+      "MAE_test": 56.42
+    }
+  ]
+}
