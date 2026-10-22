@@ -79,17 +79,21 @@ def main():
     if "Consumo" in df.columns:
         df.loc[df["Consumo"] < 0, "Consumo"] = np.nan
 
-    # Interpolación lineal SOLO para huecos cortos (<=2 pasos = 10 min) en
-    # variables eléctricas continuas. Los huecos largos (cortes reales del
-    # sistema de monitoreo) se dejan como NaN para no inventar datos.
-    ambientales = ["Irradiación", "Temperatura ambiente", "Temperatura de módulo"]
-    elec_cols = [c for c in df.columns if c not in ambientales]
-    df[elec_cols] = df[elec_cols].interpolate(method="linear", limit=2, limit_direction="both")
-
-    # Se reindexa a una grilla continua de 5 minutos para dejar expuestos
-    # los huecos reales (quedan como NaN, no se eliminan filas).
+    # Primero exponer los huecos en la grilla real. No rellenar energía ni
+    # meteorología: no son mediciones eléctricas instantáneas intercambiables.
     full_range = pd.date_range(df.index.min(), df.index.max(), freq="5min")
     df = df.reindex(full_range)
+    continuous_prefixes = ("Corriente", "Tensión", "Potencia", "Factor de potencia")
+    for column in df.columns:
+        if not column.startswith(continuous_prefixes):
+            continue
+        missing = df[column].isna()
+        groups = missing.ne(missing.shift()).cumsum()
+        gap_length = missing.groupby(groups).transform('sum')
+        short_gap = missing & gap_length.le(2)
+        interpolated = df[column].interpolate(method="time", limit_area="inside")
+        df.loc[short_gap, column] = interpolated.loc[short_gap]
+
     df.index.name = "Fecha y hora"
 
     df.to_csv(BASE_DIR / "dataset_limpio.csv")

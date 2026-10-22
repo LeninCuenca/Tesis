@@ -1,95 +1,876 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { Activity, CalendarDays, ChevronDown, CloudSun, Database, Download, Gauge, LayoutDashboard, Leaf, LineChart, Menu, RefreshCw, Settings2, Sparkles, SunMedium, ThermometerSun, Zap } from 'lucide-react'
-import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import './App.css'
-import { fetchDashboardData, fetchMeasurementExport } from './services/energyService'
-import type { DataState, DashboardData, Period } from './types/energy'
-import { downloadCsv } from './utils/exportCsv'
-import { PredictionPanel } from './components/PredictionPanel'
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import {
+  Activity,
+  ArrowUpRight,
+  CalendarDays,
+  ChevronRight,
+  Database,
+  Download,
+  Gauge,
+  LayoutDashboard,
+  Menu,
+  RefreshCw,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  SunMedium,
+  ThermometerSun,
+  X,
+  Zap,
+} from "lucide-react";
+import type { EChartsOption } from "echarts";
+import "./App.css";
+import {
+  fetchDashboardData,
+  fetchMeasurementExport,
+} from "./services/energyService";
+import {
+  emptyDashboard,
+  type DataState,
+  type DashboardData,
+  type Period,
+} from "./types/energy";
+import { downloadCsv } from "./utils/exportCsv";
+import { SolarChart } from "./components/SolarChart";
+import { AnalysisBoundary } from "./components/AnalysisBoundary";
+import { chartBase } from "./lib/chartTheme";
+const PredictionPanel = lazy(() =>
+  import("./components/PredictionPanel").then((module) => ({
+    default: module.PredictionPanel,
+  })),
+);
 
-const periodLabels: Record<Period, string> = { day: 'Último día', week: 'Últimos 7 días', month: 'Últimos 30 días' }
-const emptyData: DashboardData = { points: [], totals: { generationWh: 0, consumptionWh: 0, coverage: 0, dataCoverage: 0, specificYield: null }, latest: { temperature: null, irradiance: null, availability: null }, records: 0 }
+type View =
+  | "Resumen"
+  | "Rendimiento"
+  | "Variables"
+  | "Predicción IA"
+  | "Calidad de datos"
+  | "Configuración";
+const navigation = [
+  { label: "Resumen", icon: LayoutDashboard },
+  { label: "Rendimiento", icon: Gauge },
+  { label: "Variables", icon: Activity },
+  { label: "Predicción IA", icon: Sparkles },
+  { label: "Calidad de datos", icon: ShieldCheck },
+] as const;
+const periodLabels: Record<Period, string> = {
+  day: "Último día disponible",
+  week: "Últimos 7 días disponibles",
+  month: "Últimos 30 días disponibles",
+};
+const headings: Record<View, [string, string]> = {
+  Resumen: [
+    "La energía de tu central, en contexto",
+    "Generación, demanda y calidad del registro para el Edificio Central de la UTPL.",
+  ],
+  Rendimiento: [
+    "Cada día de generación cuenta",
+    "Energía diaria medida y relación entre producción y consumo del edificio.",
+  ],
+  Variables: [
+    "Del sensor a la interpretación",
+    "Magnitudes eléctricas y ambientales identificadas por unidad y lado del sistema.",
+  ],
+  "Predicción IA": [
+    "Anticipar, comparar, comprender",
+    "Escenarios solares y evaluación temporal del modelo con resultados verificables.",
+  ],
+  "Calidad de datos": [
+    "La confianza empieza en la medición",
+    "Cobertura calculada sobre todos los intervalos esperados del periodo.",
+  ],
+  Configuración: [
+    "Conexiones y criterios de cálculo",
+    "Estado de las fuentes y datos necesarios para ampliar el análisis fotovoltaico.",
+  ],
+};
+const format = (value: number | null, digits = 1) =>
+  value === null
+    ? "—"
+    : value.toLocaleString("es-EC", {
+        maximumFractionDigits: digits,
+        minimumFractionDigits: digits,
+      });
+const kwh = (value: number | null) => (value === null ? null : value / 1000);
 
-function App() {
-  const [period, setPeriod] = useState<Period>('week')
-  const [activeView, setActiveView] = useState('Resumen')
-  const [mobileNav, setMobileNav] = useState(false)
-  const [data, setData] = useState<DashboardData>(emptyData)
-  const [state, setState] = useState<DataState>('loading')
-  const [message, setMessage] = useState('')
-  const [isExporting, setIsExporting] = useState(false)
-
-  const loadData = useCallback(async () => {
-    setState('loading')
-    setMessage('')
-    try { setData(await fetchDashboardData(period)); setState('ready') } catch (error) {
-      if (error instanceof Error && error.message === 'SUPABASE_NOT_CONFIGURED') { setState('not-configured'); setMessage('Configura VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en frontend/.env.local.') }
-      else { setState('error'); setMessage('No fue posible consultar Supabase. Revisa la conexión y las políticas RLS.') }
-    }
-  }, [period])
-
-  useEffect(() => { void loadData() }, [loadData])
-
-  const exportMeasurements = async () => {
-    setIsExporting(true)
+export default function App() {
+  const [period, setPeriod] = useState<Period>("week");
+  const [view, setView] = useState<View>("Resumen");
+  const [mobile, setMobile] = useState(false);
+  const [data, setData] = useState<DashboardData>(emptyDashboard);
+  const [state, setState] = useState<DataState>("loading");
+  const [message, setMessage] = useState("");
+  const [exporting, setExporting] = useState(false);
+  const sequence = useRef(0);
+  const load = useCallback(async () => {
+    const request = ++sequence.current;
+    setState("loading");
+    setData(emptyDashboard());
+    setMessage("");
     try {
-      const rows = await fetchMeasurementExport(period)
-      if (!rows.length) {
-        setState('error')
-        setMessage('No hay mediciones en Supabase para el periodo seleccionado. Carga primero dataset_limpio.pkl con cargar_supabase.py.')
-        return
+      const next = await fetchDashboardData(period);
+      if (request === sequence.current) {
+        setData(next);
+        setState("ready");
       }
-      downloadCsv(rows, `mediciones-energeticas-${period}.csv`)
-      setMessage(`${rows.length.toLocaleString('es-EC')} mediciones exportadas correctamente.`)
-    } catch (error) {
-      setMessage(error instanceof Error && error.message === 'SUPABASE_NOT_CONFIGURED' ? 'Configura Supabase antes de exportar.' : 'No se pudieron exportar las mediciones.')
-    } finally { setIsExporting(false) }
-  }
+    } catch (reason) {
+      if (request === sequence.current) {
+        const missing =
+          reason instanceof Error &&
+          reason.message === "SUPABASE_NOT_CONFIGURED";
+        setState(missing ? "not-configured" : "error");
+        setMessage(
+          missing
+            ? "Configura las variables públicas de Supabase en frontend/.env.local para consultar las mediciones."
+            : "No se pudieron consultar las mediciones. Revisa la conexión y los permisos de lectura de Supabase.",
+        );
+      }
+    }
+  }, [period]);
+  const invalidate = useCallback(() => {
+    sequence.current++;
+  }, []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Sincroniza Supabase y su estado de carga al cambiar el periodo.
+    void load();
+    return invalidate;
+  }, [load, invalidate]);
+  const hasData = data.records > 0;
+  const go = (next: View) => {
+    setView(next);
+    setMobile(false);
+  };
+  const status =
+    state === "ready"
+      ? hasData
+        ? "Histórico conectado"
+        : "Sin registros"
+      : state === "loading"
+        ? "Consultando"
+        : "Revisar conexión";
+  const exportData = async () => {
+    setExporting(true);
+    setMessage("");
+    try {
+      const rows = await fetchMeasurementExport(period);
+      if (!rows.length)
+        setMessage("No hay mediciones para exportar en este periodo.");
+      else {
+        downloadCsv(rows, `mediciones-${data.startDate}-${data.endDate}.csv`);
+        setMessage(
+          `${rows.length.toLocaleString("es-EC")} mediciones exportadas.`,
+        );
+      }
+    } catch {
+      setMessage(
+        "No se pudo exportar. Revisa la conexión e inténtalo nuevamente.",
+      );
+    } finally {
+      setExporting(false);
+    }
+  };
+  const balance = useMemo<EChartsOption>(
+    () => ({
+      ...chartBase,
+      xAxis: {
+        ...chartBase.xAxis,
+        data: data.points.map((point) => point.time),
+      },
+      series: [
+        {
+          type: "bar",
+          name: "Generación solar",
+          data: data.points.map((point) => kwh(point.generation)),
+          barMaxWidth: 24,
+          itemStyle: { borderRadius: [3, 3, 0, 0] },
+        },
+        {
+          type: "bar",
+          name: "Consumo del edificio",
+          data: data.points.map((point) => kwh(point.consumption)),
+          barMaxWidth: 24,
+          itemStyle: { borderRadius: [3, 3, 0, 0] },
+        },
+      ],
+    }),
+    [data.points],
+  );
+  const exportSummary = () =>
+    downloadCsv(
+      data.points.map((point) => ({
+        fecha: point.date,
+        generacion_wh: point.generation,
+        consumo_wh: point.consumption,
+        relacion_generacion_consumo_pct: point.solarCoverage,
+        registros_validos: point.records,
+      })),
+      `resumen-${data.startDate}-${data.endDate}.csv`,
+    );
 
-  const exportRows = useMemo(() => data.points.map((point) => ({ fecha: point.date, produccion_wh: point.generation, consumo_wh: point.consumption, cobertura_solar_pct: Number(point.solarCoverage.toFixed(2)) })), [data.points])
-  const hasData = data.points.length > 0
-  const statusLabel = state === 'ready' ? 'Datos conectados' : state === 'loading' ? 'Consultando datos' : state === 'not-configured' ? 'Supabase sin configurar' : 'Error de conexión'
+  return (
+    <div className="app-shell">
+      {mobile && (
+        <button
+          className="nav-backdrop"
+          aria-label="Cerrar navegación"
+          onClick={() => setMobile(false)}
+        />
+      )}
+      <aside className={`sidebar ${mobile ? "sidebar-open" : ""}`}>
+        <a
+          className="brand"
+          href="#"
+          onClick={(event) => {
+            event.preventDefault();
+            go("Resumen");
+          }}
+        >
+          <div className="brand-mark">
+            <SunMedium size={25} />
+          </div>
+          <div>
+            <strong>
+              Solaris<span>UTPL</span>
+            </strong>
+            <small>Observatorio de energía solar</small>
+          </div>
+        </a>
+        <div className="site-switcher">
+          <span>Central monitoreada</span>
+          <strong>
+            <span className="station-dot" />
+            Edificio Central
+          </strong>
+          <small>Loja, Ecuador</small>
+        </div>
+        <nav aria-label="Navegación principal" className="nav-list">
+          {navigation.map(({ label, icon: Icon }) => (
+            <button
+              key={label}
+              className={`nav-item ${view === label ? "active" : ""}`}
+              aria-current={view === label ? "page" : undefined}
+              onClick={() => go(label)}
+            >
+              <Icon size={18} />
+              <span>{label}</span>
+              {label === "Predicción IA" && (
+                <span className="nav-tag">Modelos</span>
+              )}
+            </button>
+          ))}
+        </nav>
+        <div className="sidebar-context">
+          <SunMedium size={36} strokeWidth={1} />
+          <strong>Datos para una mejor energía</strong>
+          <p>Plataforma de análisis fotovoltaico e investigación.</p>
+          <span>Proyecto de tesis · UTPL</span>
+        </div>
+        <div className="sidebar-footer">
+          <button
+            className={`nav-item ${view === "Configuración" ? "active" : ""}`}
+            onClick={() => go("Configuración")}
+          >
+            <Settings2 size={18} />
+            Configuración
+          </button>
+          <div className="profile">
+            <span className="avatar">LC</span>
+            <div>
+              <strong>Lenin Cuenca</strong>
+              <small>Investigación energética</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main className="main-content">
+        <header className="topbar">
+          <div className="breadcrumb">
+            <button
+              className="mobile-menu"
+              aria-label={mobile ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={mobile}
+              onClick={() => setMobile(!mobile)}
+            >
+              {mobile ? <X size={22} /> : <Menu size={22} />}
+            </button>
+            <span>Central UTPL</span>
+            <ChevronRight size={14} />
+            <strong>{view}</strong>
+          </div>
+          <div
+            className={`connection ${state === "ready" && hasData ? "connected" : ""}`}
+          >
+            <i />
+            {status}
+          </div>
+        </header>
+        <div className="page-content">
+          <section className="page-heading">
+            <div>
+              <span className="page-location">
+                <SunMedium size={14} />
+                Edificio Central · Loja
+              </span>
+              <h1>{headings[view][0]}</h1>
+              <p>{headings[view][1]}</p>
+            </div>
+            {view !== "Predicción IA" && (
+              <button
+                className="icon-button"
+                onClick={() => void load()}
+                disabled={state === "loading"}
+                aria-label="Actualizar mediciones"
+              >
+                <RefreshCw
+                  size={19}
+                  className={state === "loading" ? "spin" : ""}
+                />
+              </button>
+            )}
+          </section>
+          {view !== "Predicción IA" && (
+            <div className="period-toolbar">
+              <label>
+                <CalendarDays size={16} />
+                <select
+                  aria-label="Periodo de consulta"
+                  value={period}
+                  onChange={(event) => setPeriod(event.target.value as Period)}
+                >
+                  {Object.entries(periodLabels).map(([key, label]) => (
+                    <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <span>
+                {data.startDate && data.endDate
+                  ? `${data.startDate} — ${data.endDate}`
+                  : "Periodo basado en el último dato disponible"}
+              </span>
+              <button
+                className="outline-button"
+                disabled={!hasData || exporting}
+                onClick={() => void exportData()}
+              >
+                <Download size={15} />
+                {exporting ? "Exportando…" : "Exportar mediciones"}
+              </button>
+            </div>
+          )}
+          {view !== "Predicción IA" && state !== "ready" && (
+            <div className={`data-banner ${state}`} role="status">
+              <Database size={20} />
+              <div>
+                <strong>
+                  {state === "loading"
+                    ? "Consultando el histórico de la central"
+                    : "La fuente de mediciones requiere atención"}
+                </strong>
+                <p>
+                  {state === "loading"
+                    ? "Los indicadores se mostrarán al completar la consulta."
+                    : message}
+                </p>
+              </div>
+              {state !== "loading" && (
+                <button className="outline-button" onClick={() => void load()}>
+                  Reintentar
+                </button>
+              )}
+            </div>
+          )}
+          {message && state === "ready" && view !== "Predicción IA" && (
+            <p className="notice" role="status">
+              {message}
+            </p>
+          )}
+          {view === "Predicción IA" ? (
+            <AnalysisBoundary>
+              <Suspense
+                fallback={
+                  <div className="panel loading-panel">
+                    Cargando análisis predictivo…
+                  </div>
+                }
+              >
+                <PredictionPanel />
+              </Suspense>
+            </AnalysisBoundary>
+          ) : (
+            <>
+              {(view === "Resumen" || view === "Rendimiento") && (
+                <>
+                  <section className="kpi-grid">
+                    <Kpi
+                      label="Generación solar"
+                      value={format(kwh(data.totals.generationWh), 2)}
+                      unit="kWh"
+                      detail="Energía registrada en el periodo"
+                      icon={<SunMedium />}
+                      tone="solar"
+                    />
+                    <Kpi
+                      label="Consumo del edificio"
+                      value={format(kwh(data.totals.consumptionWh), 2)}
+                      unit="kWh"
+                      detail="Energía registrada en el periodo"
+                      icon={<Zap />}
+                      tone="blue"
+                    />
+                    <Kpi
+                      label="Generación / consumo"
+                      value={format(data.totals.coverage)}
+                      unit="%"
+                      detail="No equivale a autoconsumo"
+                      icon={<Gauge />}
+                      tone="green"
+                    />
+                    <Kpi
+                      label="Cobertura de datos"
+                      value={hasData ? format(data.totals.dataCoverage) : "—"}
+                      unit="%"
+                      detail={`${data.records.toLocaleString("es-EC")} de ${data.expectedRecords.toLocaleString("es-EC")} intervalos`}
+                      icon={<ShieldCheck />}
+                      tone="violet"
+                    />
+                  </section>
+                  <section className="overview-grid">
+                    <article className="panel balance-panel">
+                      <div className="panel-heading">
+                        <div>
+                          <p className="panel-kicker">Balance energético</p>
+                          <h2>Generación y demanda diaria</h2>
+                        </div>
+                        <button
+                          className="icon-button"
+                          aria-label="Exportar resumen diario"
+                          disabled={!hasData}
+                          onClick={exportSummary}
+                        >
+                          <Download size={17} />
+                        </button>
+                      </div>
+                      {hasData ? (
+                        <SolarChart
+                          option={balance}
+                          label="Energía diaria de generación solar y consumo en kilovatios hora"
+                        />
+                      ) : (
+                        <Empty state={state} />
+                      )}
+                      <div className="chart-footnote">
+                        <span className="key-dot" />
+                        Energía en kWh. Los días sin mediciones conservan sus
+                        huecos.
+                      </div>
+                    </article>
+                    <article className="panel station-panel">
+                      <p className="panel-kicker">Integridad del periodo</p>
+                      <h2>¿Cuánto del histórico vemos?</h2>
+                      <div
+                        className="coverage-ring"
+                        style={
+                          {
+                            "--coverage": `${data.totals.dataCoverage}%`,
+                          } as React.CSSProperties
+                        }
+                      >
+                        <div>
+                          <strong>
+                            {hasData
+                              ? format(data.totals.dataCoverage, 0)
+                              : "—"}
+                            <small>{hasData ? "%" : ""}</small>
+                          </strong>
+                          <span>intervalos registrados</span>
+                        </div>
+                      </div>
+                      <div className="station-stat">
+                        <span>Grilla de referencia</span>
+                        <strong>5 minutos</strong>
+                      </div>
+                      <div className="station-stat">
+                        <span>Intervalos ausentes</span>
+                        <strong>
+                          {state === "ready"
+                            ? Math.max(
+                                0,
+                                data.expectedRecords - data.records,
+                              ).toLocaleString("es-EC")
+                            : "—"}
+                        </strong>
+                      </div>
+                      <button
+                        className="text-button"
+                        onClick={() => go("Calidad de datos")}
+                      >
+                        Explorar calidad <ArrowUpRight size={15} />
+                      </button>
+                    </article>
+                  </section>
+                  <section className="environment-strip">
+                    <div>
+                      <ThermometerSun size={23} />
+                      <span>
+                        Temperatura ambiente
+                        <strong>
+                          {format(data.latest.temperature)} <small>°C</small>
+                        </strong>
+                      </span>
+                    </div>
+                    <div>
+                      <SunMedium size={23} />
+                      <span>
+                        Irradiancia solar
+                        <strong>
+                          {format(data.latest.irradiance)} <small>W/m²</small>
+                        </strong>
+                      </span>
+                    </div>
+                    <p>
+                      <strong>{data.latest.source}</strong>
+                      <span>
+                        {data.latest.timestamp
+                          ? new Date(data.latest.timestamp).toLocaleString(
+                              "es-EC",
+                              { timeZone: "America/Guayaquil" },
+                            )
+                          : "Sin marca temporal de medición"}
+                      </span>
+                      <small>
+                        Lecturas históricas; no indican el estado en vivo.
+                      </small>
+                    </p>
+                  </section>
+                  {data.warnings.length > 0 && (
+                    <div className="notice">
+                      <ShieldCheck size={17} />
+                      <span>{data.warnings.join(" ")}</span>
+                    </div>
+                  )}
+                  {view === "Rendimiento" && <DailyTable data={data} />}
+                  <section className="prediction-invitation">
+                    <div className="invitation-icon">
+                      <Sparkles size={25} />
+                    </div>
+                    <div>
+                      <span>Análisis predictivo</span>
+                      <h2>Compara lo esperado con lo medido</h2>
+                      <p>
+                        Escenarios de cinco minutos, modelos comparados y
+                        evaluación temporal.
+                      </p>
+                    </div>
+                    <button
+                      className="primary-button"
+                      onClick={() => go("Predicción IA")}
+                    >
+                      Abrir análisis <ArrowUpRight size={16} />
+                    </button>
+                  </section>
+                </>
+              )}
+              {view === "Variables" && <Variables data={data} />}
+              {view === "Calidad de datos" && (
+                <>
+                  <section className="quality-grid">
+                    <Kpi
+                      label="Intervalos registrados"
+                      value={
+                        state === "ready"
+                          ? data.records.toLocaleString("es-EC")
+                          : "—"
+                      }
+                      unit=""
+                      detail="Suma de registros_validos diarios"
+                      icon={<Database />}
+                      tone="blue"
+                    />
+                    <Kpi
+                      label="Intervalos esperados"
+                      value={
+                        state === "ready"
+                          ? data.expectedRecords.toLocaleString("es-EC")
+                          : "—"
+                      }
+                      unit=""
+                      detail="Días seleccionados × 288"
+                      icon={<CalendarDays />}
+                      tone="violet"
+                    />
+                    <Kpi
+                      label="Cobertura temporal"
+                      value={hasData ? format(data.totals.dataCoverage) : "—"}
+                      unit="%"
+                      detail="Incluye días completamente ausentes"
+                      icon={<ShieldCheck />}
+                      tone="green"
+                    />
+                  </section>
+                  <section className="panel">
+                    <h2>Criterios de interpretación</h2>
+                    <ul className="method-list">
+                      <li>
+                        Un valor cero puede ser una medición válida. Un valor
+                        ausente se representa con un guion.
+                      </li>
+                      <li>
+                        Los acumulados parciales no se extrapolan para rellenar
+                        intervalos faltantes.
+                      </li>
+                      <li>
+                        Esta cobertura mide disponibilidad de producción; no
+                        certifica exactitud del sensor ni disponibilidad de la
+                        planta.
+                      </li>
+                      <li>
+                        Los registros legados requieren auditar zona horaria e
+                        interpolaciones contra los archivos originales.
+                      </li>
+                      {data.warnings.map((warning) => (
+                        <li key={warning}>{warning}</li>
+                      ))}
+                    </ul>
+                  </section>
+                  <DailyTable data={data} />
+                </>
+              )}
+              {view === "Configuración" && (
+                <section className="panel config-panel">
+                  <h2>Fuentes y parámetros</h2>
+                  <div className="config-row">
+                    <Database size={22} />
+                    <div>
+                      <strong>Mediciones y resúmenes</strong>
+                      <span>Supabase · central_id = 1</span>
+                    </div>
+                    <span className="provenance-tag">{status}</span>
+                  </div>
+                  <div className="config-row">
+                    <Sparkles size={22} />
+                    <div>
+                      <strong>Motor predictivo</strong>
+                      <span>
+                        API configurable mediante VITE_PREDICTION_API_URL; proxy
+                        /api en desarrollo.
+                      </span>
+                    </div>
+                    <button
+                      className="text-button"
+                      onClick={() => go("Predicción IA")}
+                    >
+                      Consultar <ArrowUpRight size={15} />
+                    </button>
+                  </div>
+                  <div className="engineering-note">
+                    <Gauge size={22} />
+                    <div>
+                      <strong>
+                        PR y rendimiento específico pendientes de datos técnicos
+                      </strong>
+                      <p>
+                        Se requieren potencia nominal STC e irradiación en el
+                        plano del generador para calcular estos indicadores. No
+                        se sustituyen por la relación generación / consumo.
+                      </p>
+                    </div>
+                  </div>
+                  <p className="muted-copy">
+                    Interfaz React + Vite. Análisis en hora de Ecuador
+                    (America/Guayaquil). Las mediciones UTC legadas deben
+                    auditarse antes de migrar su zona horaria.
+                  </p>
+                </section>
+              )}
+            </>
+          )}
+          <footer className="data-footer">
+            <span>
+              <SunMedium size={14} />
+              Solaris / UTPL
+            </span>
+            <span>
+              {view === "Predicción IA"
+                ? "Modelos locales · evaluación reproducible"
+                : "Fuente: Supabase · datos históricos"}
+            </span>
+            <span>Ingeniería con datos</span>
+          </footer>
+        </div>
+      </main>
+    </div>
+  );
+}
 
-  return <div className="app-shell">
-    <aside className={`sidebar ${mobileNav ? 'sidebar-open' : ''}`}>
-      <div className="brand"><div className="brand-mark"><SunMedium size={21} /></div><div><strong>Solaris</strong><span>UTPL · Energía</span></div></div>
-      <div className="site-switcher"><span>Central activa</span><button type="button">Edificio Central <ChevronDown size={15} /></button></div>
-      <nav className="nav-list" aria-label="Navegación principal">{[['Resumen', LayoutDashboard], ['Rendimiento', LineChart], ['Variables', Activity], ['Predicción IA', Sparkles], ['Calidad de datos', Database]].map(([label, Icon]) => <button className={activeView === label ? 'nav-item active' : 'nav-item'} key={label as string} onClick={() => { setActiveView(label as string); setMobileNav(false) }}><Icon size={18} /><span>{label as string}</span>{label === 'Predicción IA' && <i>Nuevo</i>}</button>)}</nav>
-      <div className="sidebar-footer"><button className={activeView === 'Configuración' ? 'nav-item active' : 'nav-item'} type="button" onClick={() => { setActiveView('Configuración'); setMobileNav(false) }}><Settings2 size={18} /><span>Configuración</span></button><div className="profile"><div className="avatar">LC</div><div><strong>Lenin Cuenca</strong><span>Administrador</span></div><ChevronDown size={15} /></div></div>
-    </aside>
-    <main className="main-content">
-      <header className="topbar"><button className="mobile-menu" aria-label="Abrir menú" onClick={() => setMobileNav(!mobileNav)}><Menu size={21} /></button><div className="crumb"><span>Plataforma energética</span><b>/</b><strong>{activeView}</strong></div><div className="top-actions"><span className={`connection ${state === 'error' ? 'connection-error' : ''}`}><span className="pulse"></span>{statusLabel}</span><button className="icon-button" aria-label="Actualizar datos" onClick={() => void loadData()} disabled={state === 'loading'}><RefreshCw size={17} className={state === 'loading' ? 'spin' : ''} /></button><div className="top-avatar">LC</div></div></header>
-      <div className="page-content">
-        <section className="page-heading"><div><p className="eyebrow">MONITOREO OPERATIVO · DATOS DE SUPABASE</p><h1>Resumen energético</h1><p className="subtitle">Consulta la generación solar, la demanda y las condiciones de la central.</p></div><div className="heading-actions"><button className="outline-button" type="button" onClick={() => void loadData()}><CalendarDays size={16} /> {periodLabels[period]} <ChevronDown size={15} /></button><button className="primary-button" type="button" disabled={state !== 'ready' || !hasData || isExporting} onClick={() => void exportMeasurements()}><Download size={16} /> {isExporting ? 'Exportando...' : 'Exportar mediciones'}</button></div></section>
-        {state !== 'ready' && <section className={`data-banner ${state}`}><Database size={18} /><div><strong>{statusLabel}</strong><span>{state === 'loading' ? 'Cargando registros desde Supabase...' : message}</span></div>{state !== 'loading' && <button type="button" onClick={() => void loadData()}>Reintentar</button>}</section>}
-        {activeView !== 'Resumen' ? <SecondaryView activeView={activeView} data={data} state={state} onRefresh={() => void loadData()} /> : <>
-        <section className="kpi-grid"><KpiCard label="Producción solar" value={formatMwh(data.totals.generationWh)} unit="MWh" change={hasData ? 'Periodo consultado' : 'Sin datos'} icon={<SunMedium />} tone="sun" /><KpiCard label="Consumo del edificio" value={formatMwh(data.totals.consumptionWh)} unit="MWh" change={hasData ? 'Periodo consultado' : 'Sin datos'} icon={<Zap />} tone="blue" /><KpiCard label="Cobertura solar" value={hasData ? data.totals.coverage.toFixed(1) : '—'} unit="%" change={hasData ? 'Generación / consumo' : 'Sin datos'} icon={<Leaf />} tone="green" /><KpiCard label="Rendimiento específico" value={data.totals.specificYield ? data.totals.specificYield.toFixed(2) : '—'} unit="kWh/kWp" change="Disponible al integrar potencia instalada" icon={<Gauge />} tone="purple" /></section>
-        <section className="content-grid main-grid"><article className="panel chart-panel"><div className="panel-heading"><div><p className="panel-kicker">BALANCE ENERGÉTICO</p><h2>Generación frente a consumo</h2></div><select value={period} onChange={(event) => setPeriod(event.target.value as Period)} aria-label="Periodo del gráfico">{Object.entries(periodLabels).map(([key, label]) => <option value={key} key={key}>{label}</option>)}</select></div><div className="legend"><span><i className="legend-dot solar"></i>Generación solar</span><span><i className="legend-dot demand"></i>Consumo</span></div><div className="chart-wrap">{hasData ? <ResponsiveContainer width="100%" height="100%"><AreaChart data={data.points} margin={{ top: 16, right: 6, left: -20, bottom: 0 }}><defs><linearGradient id="solarFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#f2b84b" stopOpacity={.32} /><stop offset="100%" stopColor="#f2b84b" stopOpacity={.02} /></linearGradient><linearGradient id="demandFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#3478a8" stopOpacity={.2} /><stop offset="100%" stopColor="#3478a8" stopOpacity={.02} /></linearGradient></defs><CartesianGrid vertical={false} stroke="#e9e5dc" strokeDasharray="3 3" /><XAxis dataKey="time" tickLine={false} axisLine={false} tick={{ fill: '#8d918d', fontSize: 11 }} /><YAxis tickLine={false} axisLine={false} tick={{ fill: '#8d918d', fontSize: 11 }} /><Tooltip content={<ChartTooltip />} /><Area type="monotone" dataKey="generation" name="Generación solar" stroke="#d99b28" strokeWidth={2.5} fill="url(#solarFill)" /><Area type="monotone" dataKey="consumption" name="Consumo" stroke="#3478a8" strokeWidth={2} fill="url(#demandFill)" /></AreaChart></ResponsiveContainer> : <EmptyChart state={state} />}</div><div className="chart-note"><span className="trend-icon">↗</span><strong>{data.records}</strong><span>registros con producción en el periodo</span></div></article>
-          <article className="panel status-panel"><div className="panel-heading"><div><p className="panel-kicker">ESTADO DE LA CENTRAL</p><h2>Calidad de la lectura</h2></div><span className="status-badge"><span></span>{state === 'ready' ? 'Conectada' : 'Pendiente'}</span></div><div className="donut-wrap"><ResponsiveContainer width="100%" height="100%"><PieChart><Pie data={[{ name: 'Con datos', value: hasData ? data.totals.dataCoverage : 0 }, { name: 'Faltantes', value: hasData ? 100 - data.totals.dataCoverage : 100 }]} innerRadius={67} outerRadius={84} paddingAngle={3} dataKey="value" startAngle={90} endAngle={-270} stroke="none"><Cell fill="#2e8b71" /><Cell fill="#ebe6dc" /></Pie></PieChart></ResponsiveContainer><div className="donut-label"><strong>{hasData ? `${data.totals.dataCoverage.toFixed(0)}%` : '—'}</strong><span>cobertura registrada</span></div></div><div className="status-rows"><StatusRow icon={<Activity />} label="Mediciones" value={hasData ? data.records.toLocaleString('es-EC') : '—'} state={hasData ? 'Consultadas' : 'Sin conexión'} /><StatusRow icon={<CloudSun />} label="Irradiación" value={data.latest.irradiance === null ? '—' : `${data.latest.irradiance.toFixed(1)} W/m²`} state={hasData ? 'Última lectura' : 'Sin datos'} warning={data.latest.irradiance === null} /><StatusRow icon={<Database />} label="Temperatura ambiente" value={data.latest.temperature === null ? '—' : `${data.latest.temperature.toFixed(1)} °C`} state={hasData ? 'Última lectura' : 'Sin datos'} /></div></article></section>
-        <section className="content-grid lower-grid"><article className="panel comparison-panel"><div className="panel-heading"><div><p className="panel-kicker">COMPARATIVA DEL PERIODO</p><h2>Producción por día</h2></div><button className="more-button" aria-label="Exportar datos" onClick={() => downloadCsv(exportRows, `produccion-${period}.csv`)}><Download size={16} /></button></div><div className="bar-wrap">{hasData ? <ResponsiveContainer width="100%" height="100%"><BarChart data={data.points} margin={{ top: 12, right: 2, left: -22, bottom: 0 }}><CartesianGrid vertical={false} stroke="#e9e5dc" strokeDasharray="3 3" /><XAxis dataKey="time" tickLine={false} axisLine={false} tick={{ fill: '#8d918d', fontSize: 11 }} /><YAxis tickLine={false} axisLine={false} tick={{ fill: '#8d918d', fontSize: 11 }} /><Tooltip cursor={{ fill: '#f4f0e8' }} /><Bar dataKey="generation" name="Wh" fill="#e6a938" radius={[5, 5, 0, 0]} /></BarChart></ResponsiveContainer> : <EmptyChart state={state} />}</div></article><article className="panel weather-panel"><div className="panel-heading"><div><p className="panel-kicker">CONDICIONES AMBIENTALES</p><h2>Última lectura disponible</h2></div><ThermometerSun className="weather-icon" size={22} /></div><div className="weather-main"><div><span>Temperatura ambiente</span><strong>{data.latest.temperature === null ? '—' : data.latest.temperature.toFixed(1)}<small>{data.latest.temperature === null ? '' : '°C'}</small></strong></div><div className="sun-score"><SunMedium size={25} /><span>Irradiación</span><strong>{data.latest.irradiance === null ? '—' : data.latest.irradiance.toFixed(0)} <small>{data.latest.irradiance === null ? '' : 'W/m²'}</small></strong></div></div><div className="weather-line"><span className="line-key amber"></span><span>Datos obtenidos de mediciones_energeticas</span></div></article></section>
-        <section className="insight-strip"><div className="insight-icon"><Sparkles size={20} /></div><div><p className="panel-kicker">MODELO PREDICTIVO</p><h2>Regresión Lineal</h2><p>El modelo entrenado está disponible en la plataforma cuando se integre el endpoint de predicción.</p></div><button className="text-button" onClick={() => setActiveView('Predicción IA')}>Ver análisis <span>→</span></button></section>
-        </>}
-        <footer className="data-footer"><span><Database size={14} /> Fuente: Supabase · resumen_diario</span><span>{data.points.length} días consultados · {data.records} registros</span><span><button className="footer-refresh" onClick={() => void loadData()}><RefreshCw size={12} /> Actualizar</button></span></footer>
+function Kpi({
+  label,
+  value,
+  unit,
+  detail,
+  icon,
+  tone,
+}: {
+  label: string;
+  value: string;
+  unit: string;
+  detail: string;
+  icon: ReactNode;
+  tone: string;
+}) {
+  return (
+    <article className="kpi-card">
+      <div className="kpi-top">
+        <span>{label}</span>
+        <span className={`kpi-icon ${tone}`}>{icon}</span>
       </div>
-    </main>
-  </div>
+      <strong>
+        {value}
+        <small>{unit}</small>
+      </strong>
+      <p>{detail}</p>
+    </article>
+  );
 }
-
-function formatMwh(value: number) { return value ? (value / 1_000_000).toFixed(2) : '—' }
-function KpiCard({ label, value, unit, change, icon, tone }: { label: string; value: string; unit: string; change: string; icon: ReactNode; tone: string }) { return <article className="kpi-card"><div className={`kpi-icon ${tone}`}>{icon}</div><div className="kpi-copy"><span>{label}</span><div><strong>{value}</strong><small>{unit}</small></div><em>{change}</em></div></article> }
-function StatusRow({ icon, label, value, state, warning }: { icon: ReactNode; label: string; value: string; state: string; warning?: boolean }) { return <div className="status-row"><span className={`status-row-icon ${warning ? 'warning' : ''}`}>{icon}</span><div><span>{label}</span><strong>{value}</strong></div><em className={warning ? 'warning-text' : ''}>{state}</em></div> }
-function EmptyChart({ state }: { state: DataState }) { return <div className="empty-chart"><Database size={22} /><span>{state === 'loading' ? 'Cargando datos...' : 'No hay datos para mostrar'}</span></div> }
-function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: { name: string; value: number; color: string }[]; label?: string }) { if (!active || !payload?.length) return null; return <div className="chart-tooltip"><strong>{label}</strong>{payload.map((item) => <span key={item.name}><i style={{ background: item.color }}></i>{item.name}: {item.value}</span>)}</div> }
-
-function SecondaryView({ activeView, data, state, onRefresh }: { activeView: string; data: DashboardData; state: DataState; onRefresh: () => void }) {
-  if (activeView === 'Rendimiento') return <section className="secondary-view"><ViewHeading eyebrow="ANÁLISIS DE RENDIMIENTO" title="Comportamiento de la generación" description="Explora la producción y el consumo agregados desde resumen_diario." onRefresh={onRefresh} /><div className="panel secondary-chart"><div className="chart-wrap">{data.points.length ? <ResponsiveContainer width="100%" height="100%"><AreaChart data={data.points}><CartesianGrid vertical={false} stroke="#e9e5dc" strokeDasharray="3 3" /><XAxis dataKey="time" tickLine={false} axisLine={false} /><YAxis tickLine={false} axisLine={false} /><Tooltip content={<ChartTooltip />} /><Area type="monotone" dataKey="generation" name="Generación solar" stroke="#d99b28" fill="#f7e9c3" /><Area type="monotone" dataKey="consumption" name="Consumo" stroke="#3478a8" fill="#dcebf3" /></AreaChart></ResponsiveContainer> : <EmptyChart state={state} />}</div></div></section>
-  if (activeView === 'Variables') return <section className="secondary-view"><ViewHeading eyebrow="VARIABLES MONITOREADAS" title="Lecturas ambientales y energéticas" description="Valores obtenidos de las mediciones almacenadas en Supabase." onRefresh={onRefresh} /><div className="variable-grid"><VariableCard label="Irradiación solar" value={data.latest.irradiance === null ? '—' : `${data.latest.irradiance.toFixed(1)} W/m²`} icon={<SunMedium />} /><VariableCard label="Temperatura ambiente" value={data.latest.temperature === null ? '—' : `${data.latest.temperature.toFixed(1)} °C`} icon={<ThermometerSun />} /><VariableCard label="Producción acumulada" value={formatMwh(data.totals.generationWh) + ' MWh'} icon={<Zap />} /><VariableCard label="Consumo acumulado" value={formatMwh(data.totals.consumptionWh) + ' MWh'} icon={<Activity />} /></div></section>
-  if (activeView === 'Predicción IA') return <section className="secondary-view"><ViewHeading eyebrow="ANÁLISIS PREDICTIVO" title="Modelos de producción" description="Ejecuta una estimación con las condiciones climáticas previstas." onRefresh={onRefresh} /><PredictionPanel /></section>
-  if (activeView === 'Calidad de datos') return <section className="secondary-view"><ViewHeading eyebrow="CALIDAD DEL DATO" title="Cobertura y disponibilidad" description="Indicadores calculados sobre el periodo que se está consultando." onRefresh={onRefresh} /><div className="quality-grid"><article className="panel quality-score"><span>Cobertura registrada</span><strong>{data.points.length ? `${data.totals.dataCoverage.toFixed(1)}%` : '—'}</strong><small>de la grilla esperada de 5 minutos</small></article><article className="panel quality-score"><span>Días consultados</span><strong>{data.points.length}</strong><small>resúmenes disponibles</small></article><article className="panel quality-score"><span>Estado de conexión</span><strong>{state === 'ready' ? 'OK' : '—'}</strong><small>lectura desde Supabase</small></article></div></section>
-  return <section className="secondary-view"><ViewHeading eyebrow="CONFIGURACIÓN" title="Conexión de la plataforma" description="Revisa el estado de las variables públicas y actualiza los datos de la central." onRefresh={onRefresh} /><div className="panel config-panel"><div className="config-row"><Database size={20} /><div><strong>Supabase</strong><span>{state === 'ready' ? 'Conexión disponible' : state === 'not-configured' ? 'Faltan variables VITE_' : 'Revisar conexión y políticas RLS'}</span></div><span className={`status-badge ${state === 'ready' ? '' : 'status-warning'}`}><span></span>{state === 'ready' ? 'Activo' : 'Pendiente'}</span></div><button className="primary-button" type="button" onClick={onRefresh}><RefreshCw size={15} /> Actualizar conexión</button></div></section>
+function Empty({ state }: { state: DataState }) {
+  return (
+    <div className="empty-chart">
+      <Database size={28} />
+      <strong>
+        {state === "loading"
+          ? "Consultando mediciones…"
+          : "Sin mediciones para mostrar"}
+      </strong>
+      <span>Los gráficos se completan con los datos reales de la central.</span>
+    </div>
+  );
 }
-
-function ViewHeading({ eyebrow, title, description, onRefresh }: { eyebrow: string; title: string; description: string; onRefresh: () => void }) { return <div className="secondary-heading"><div><p className="eyebrow">{eyebrow}</p><h2>{title}</h2><p>{description}</p></div><button className="outline-button" type="button" onClick={onRefresh}><RefreshCw size={15} /> Actualizar</button></div> }
-function VariableCard({ label, value, icon }: { label: string; value: string; icon: ReactNode }) { return <article className="panel variable-card"><div className="variable-icon">{icon}</div><span>{label}</span><strong>{value}</strong><small>Última lectura disponible</small></article> }
-
-export default App
+function DailyTable({ data }: { data: DashboardData }) {
+  return (
+    <section className="panel">
+      <h2>Detalle diario del registro</h2>
+      <div className="table-scroll">
+        <table>
+          <caption>
+            Acumulados disponibles; un guion representa ausencia de datos
+          </caption>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Generación (kWh)</th>
+              <th>Consumo (kWh)</th>
+              <th>Intervalos / 288</th>
+              <th>Cobertura</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.points.map((point) => (
+              <tr key={point.date}>
+                <th scope="row">{point.date}</th>
+                <td>{format(kwh(point.generation), 2)}</td>
+                <td>{format(kwh(point.consumption), 2)}</td>
+                <td>{point.records}</td>
+                <td>{format(Math.min(100, (point.records / 288) * 100))}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+function Variables({ data }: { data: DashboardData }) {
+  const latest = data.latest;
+  const values: [string, number | null, string, string][] = [
+    ["Tensión AC · fase L1", latest.voltageAc, "V", "AC / valor medido"],
+    ["Corriente AC · fase L1", latest.currentAc, "A", "AC / valor medido"],
+    ["Tensión DC · MPP1", latest.voltageDc, "V", "DC / valor medido"],
+    ["Corriente DC · MPP1", latest.currentDc, "A", "DC / valor medido"],
+    ["Factor de potencia", latest.powerFactor, "", "AC / adimensional"],
+    [
+      "Temperatura de módulo",
+      latest.moduleTemperature,
+      "°C",
+      "Ambiental / valor medido",
+    ],
+    ["Irradiancia", latest.irradiance, "W/m²", latest.source],
+    ["Temperatura ambiente", latest.temperature, "°C", latest.source],
+  ];
+  const weather: EChartsOption = {
+    ...chartBase,
+    color: ["#c88718"],
+    legend: { show: false },
+    xAxis: { ...chartBase.xAxis, data: data.points.map((point) => point.time) },
+    yAxis: { ...chartBase.yAxis, name: "W/m²" },
+    series: [
+      {
+        type: "line",
+        showSymbol: true,
+        connectNulls: false,
+        data: data.points.map((point) => point.irradiance),
+        name: "Irradiancia media diaria",
+      },
+    ],
+  };
+  return (
+    <>
+      <p className="notice">
+        Última lectura almacenada:{" "}
+        {latest.timestamp
+          ? new Date(latest.timestamp).toLocaleString("es-EC", {
+              timeZone: "America/Guayaquil",
+            })
+          : "sin medición puntual disponible"}
+        . Los promedios diarios se identifican por separado.
+      </p>
+      <section className="variable-grid">
+        {values.map(([label, value, unit, source]) => (
+          <article className="panel variable-card" key={label}>
+            <span>{label}</span>
+            <strong>
+              {format(value, 2)} <small>{unit}</small>
+            </strong>
+            <p>{source}</p>
+            {label === "Factor de potencia" &&
+              value !== null &&
+              Math.abs(value) > 1 && (
+                <small className="invalid-reading">
+                  Fuera del rango físico: revisar sensor o escala
+                </small>
+              )}
+          </article>
+        ))}
+      </section>
+      <section className="panel">
+        <h2>Irradiancia media por día</h2>
+        <p className="chart-description">
+          W/m² representa irradiancia; la irradiación integrada se expresa en
+          Wh/m².
+        </p>
+        <SolarChart
+          option={weather}
+          label="Irradiancia media diaria en vatios por metro cuadrado"
+        />
+      </section>
+      <div className="engineering-note">
+        <Activity size={23} />
+        <p>
+          Las magnitudes AC y DC se muestran por separado. La potencia activa AC
+          requiere factor de potencia y configuración de fases; no se deduce
+          multiplicando estas lecturas aisladas.
+        </p>
+      </div>
+    </>
+  );
+}

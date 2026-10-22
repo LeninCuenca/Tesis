@@ -27,9 +27,9 @@ def main():
     headers = {'apikey': config['SUPABASE_SECRET_KEY'], 'Authorization': f"Bearer {config['SUPABASE_SECRET_KEY']}"}
     df = pd.read_pickle(BASE_DIR / 'dataset_limpio.pkl')
     daily = df.assign(fecha=df.index.date).groupby('fecha').agg(
-        produccion_fotovoltaica_wh=('Producción fotovoltaica', 'sum'),
-        consumo_wh=('Consumo', 'sum'),
-        energia_red_wh=('Energía obtenida de la red', 'sum'),
+        produccion_fotovoltaica_wh=('Producción fotovoltaica', lambda values: values.sum(min_count=1)),
+        consumo_wh=('Consumo', lambda values: values.sum(min_count=1)),
+        energia_red_wh=('Energía obtenida de la red', lambda values: values.sum(min_count=1)),
         potencia_maxima=('Potencia aparente', 'max'),
         irradiacion_promedio=('Irradiación', 'mean'),
         temperatura_promedio=('Temperatura ambiente', 'mean'),

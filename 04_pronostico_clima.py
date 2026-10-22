@@ -1,117 +1,145 @@
-"""Entrena y compara modelos para pronosticar la producción fotovoltaica.
-
-Las diez variables son conocidas antes del instante pronosticado: tres
-variables meteorológicas, cuatro variables cíclicas de calendario y tres
-variables de calendario adicionales. No se usan magnitudes eléctricas
-medidas después de la producción, para evitar fuga de información.
-"""
-from pathlib import Path
-
-import pandas as pd
-import numpy as np
-import joblib
+"""Comparación temporal, calibración separada y prueba final sin selección sobre test."""
 import json
+import platform
+from datetime import datetime, timezone
+
+import joblib
+import numpy as np
+import pandas as pd
+import sklearn
+import xgboost
+from sklearn.base import clone
+from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.linear_model import Ridge
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from xgboost import XGBRegressor
 
-BASE_DIR = Path(__file__).resolve().parent
-DATASET = BASE_DIR / "dataset_limpio.pkl"
-OUTPUT_CSV = BASE_DIR / "comparacion_modelos_pronostico.csv"
-OUTPUT_MODEL = BASE_DIR / "modelo_pronostico_final.joblib"
-OUTPUT_METADATA = BASE_DIR / "metadata_modelo_pronostico.json"
+from solar_model import (BASE_DIR, BUNDLE_PATH, FEATURES, INTERVAL_MINUTES, REPORT_PATH,
+                         TARGET, TIMEZONE, bounded_predict, features, interval_bounds, load_data)
 
-if not DATASET.exists():
-        raise FileNotFoundError(
-                f"No existe {DATASET.name}. Ejecuta primero 01_limpieza_consolidacion.py "
-                "con los archivos Excel de origen."
-        )
 
-df = pd.read_pickle(DATASET)
-TARGET = "Producción fotovoltaica"
+def metrics(actual, predicted):
+    actual, predicted = np.asarray(actual), np.asarray(predicted)
+    return {'mae_wh': float(mean_absolute_error(actual, predicted)),
+            'rmse_wh': float(mean_squared_error(actual, predicted) ** .5),
+            'r2': float(r2_score(actual, predicted)),
+            'bias_wh': float(np.mean(predicted - actual))}
 
-CLIMA = ["Irradiación", "Temperatura ambiente", "Temperatura de módulo"]
 
-faltantes = [col for col in [TARGET] + CLIMA if col not in df.columns]
-if faltantes:
-        raise ValueError(f"Columnas requeridas ausentes en el dataset: {faltantes}")
+def seasonal_profile(data):
+    return data.groupby(data.index.hour * 60 + data.index.minute)[TARGET].mean()
 
-data = df[[TARGET] + CLIMA].copy()
-data["hora"] = data.index.hour
-data["mes"] = data.index.month
-data["dia_anio"] = data.index.dayofyear
-data["fin_de_semana"] = (data.index.dayofweek >= 5).astype(int)
-data["hora_sin"] = np.sin(2 * np.pi * data["hora"] / 24)
-data["hora_cos"] = np.cos(2 * np.pi * data["hora"] / 24)
-data["dia_anio_sin"] = np.sin(2 * np.pi * data["dia_anio"] / 365.25)
-data["dia_anio_cos"] = np.cos(2 * np.pi * data["dia_anio"] / 365.25)
 
-# Diez entradas: clima (3), componentes cíclicas (4) y calendario (3).
-feature_cols = CLIMA + [
-        "hora_sin", "hora_cos", "dia_anio_sin", "dia_anio_cos",
-        "mes", "hora", "fin_de_semana",
-]
+def baseline(data, profile):
+    slots = data.index.hour * 60 + data.index.minute
+    return np.array([profile.get(slot, np.nan) for slot in slots])
 
-data_full = data.dropna(subset=[TARGET] + feature_cols)
-print("Filas disponibles:", len(data_full), flush=True)
-print("Rango:", data_full.index.min(), "->", data_full.index.max(), flush=True)
 
-n = len(data_full)
-cut = int(n * 0.8)
-train, test = data_full.iloc[:cut], data_full.iloc[cut:]
-print(f"Train: {len(train)}  Test: {len(test)}", flush=True)
+def main():
+    data, quality = load_data()
+    days = data.index.normalize().unique().sort_values()
+    if len(days) < 40:
+        raise ValueError('Se requieren al menos 40 días para separar entrenamiento, validación, calibración y prueba')
+    cuts = [days[int(len(days) * fraction)] for fraction in (.60, .75, .85)]
+    train = data.loc[data.index < cuts[0]]
+    validation = data.loc[(data.index >= cuts[0]) & (data.index < cuts[1])]
+    calibration = data.loc[(data.index >= cuts[1]) & (data.index < cuts[2])]
+    test = data.loc[data.index >= cuts[2]]
+    partitions = dict(train=train, validation=validation, calibration=calibration, test=test)
+    for name, part in partitions.items():
+        if len(part) < 100:
+            raise ValueError(f'Partición {name} insuficiente: {len(part)} filas')
+    x_train, x_val = features(train), features(validation)
+    candidates = {
+        'Ridge': make_pipeline(StandardScaler(), Ridge(alpha=10)),
+        'HistGradientBoosting': HistGradientBoostingRegressor(max_iter=200, max_leaf_nodes=15,
+            l2_regularization=10, learning_rate=.05, early_stopping=False, random_state=42),
+        'XGBoost': XGBRegressor(n_estimators=600, max_depth=4, learning_rate=.03,
+            min_child_weight=20, subsample=.8, colsample_bytree=.9, reg_lambda=10,
+            tree_method='hist', n_jobs=4, random_state=42, early_stopping_rounds=40),
+    }
+    validation_scores = []
+    for name, model in candidates.items():
+        if name == 'XGBoost':
+            model.fit(x_train, train[TARGET], eval_set=[(x_val, validation[TARGET])], verbose=False)
+        else:
+            model.fit(x_train, train[TARGET])
+        score = {'model': name, **metrics(validation[TARGET], bounded_predict(model, x_val))}
+        validation_scores.append(score)
+        print('Validación:', score, flush=True)
+    validation_scores.sort(key=lambda item: item['rmse_wh'])
+    winner = validation_scores[0]['model']
+    selected = clone(candidates[winner])
+    if winner == 'XGBoost':
+        selected.set_params(n_estimators=candidates[winner].best_iteration + 1, early_stopping_rounds=None)
+    development = pd.concat([train, validation])
+    selected.fit(features(development), development[TARGET])
+    cal_pred = bounded_predict(selected, features(calibration))
+    errors = np.abs(calibration[TARGET].to_numpy() - cal_pred)
+    # Cuantil conformal finito. La dependencia temporal impide prometer cobertura universal.
+    rank = min(1, np.ceil((len(errors) + 1) * .9) / len(errors))
+    radius = float(np.quantile(errors, rank, method='higher'))
+    prediction = bounded_predict(selected, features(test))
+    lower, upper = interval_bounds(prediction, radius)
+    test_metrics = metrics(test[TARGET], prediction)
+    daylight = test['Irradiación'] > 20
+    daylight_metrics = metrics(test.loc[daylight, TARGET], prediction[daylight]) if daylight.any() else None
+    profile = seasonal_profile(development)
+    base_pred = baseline(test, profile)
+    if not np.isfinite(base_pred).all():
+        raise ValueError('Baseline incompleto: faltan franjas horarias en entrenamiento')
+    baseline_metrics = metrics(test[TARGET], base_pred)
+    # Predicción genuina a un día: misma franja del día anterior, solo donde existe.
+    persistence = data[TARGET].reindex(test.index - pd.Timedelta(days=1)).to_numpy()
+    matched = np.isfinite(persistence)
+    persistence_metrics = metrics(test[TARGET].to_numpy()[matched], persistence[matched]) if matched.any() else None
+    last_day = test.index.normalize().max()
+    recent = test.loc[test.index.normalize() == last_day]
+    recent_pred = bounded_predict(selected, features(recent))
+    backtest = [{'timestamp': timestamp.isoformat(), 'actual_wh': float(row[TARGET]),
+                 'predicted_wh': float(value)} for (timestamp, row), value in zip(recent.iterrows(), recent_pred)]
+    # El estimador térmico nunca observa calibración ni test.
+    thermal = Ridge(alpha=1).fit(development[['Irradiación', 'Temperatura ambiente']],
+                                 development['Temperatura de módulo'])
+    report = {
+        'schema_version': 2, 'model': winner, 'created_at': datetime.now(timezone.utc).isoformat(),
+        'target': TARGET, 'target_unit': 'Wh / 5 min', 'interval_minutes': INTERVAL_MINUTES,
+        'timezone': TIMEZONE, 'features': FEATURES,
+        'validation': validation_scores, 'test': test_metrics, 'daylight_test': daylight_metrics,
+        'baseline': {'model': 'Media histórica por franja de 5 min', **baseline_metrics},
+        'persistence': {'model': 'Misma franja del día anterior', 'matched_rows': int(matched.sum()),
+                        'selected_model_on_matched': metrics(test[TARGET].to_numpy()[matched], prediction[matched]) if matched.any() else None,
+                        'metrics': persistence_metrics},
+        'skill_vs_baseline_pct': 100 * (1 - test_metrics['rmse_wh'] / baseline_metrics['rmse_wh']) if baseline_metrics['rmse_wh'] else None,
+        'uncertainty': {'nominal_coverage': .9, 'radius_wh': radius,
+                        'test_coverage': float(np.mean((test[TARGET] >= lower) & (test[TARGET] <= upper))),
+                        'method': 'Cuantil absoluto sobre calibración temporal separada; cobertura empírica, no garantía futura'},
+        'partitions': {name: {'rows': len(part), 'start': part.index.min().isoformat(),
+                             'end': part.index.max().isoformat()} for name, part in partitions.items()},
+        'data_quality': quality, 'backtest': backtest,
+        'limitations': [
+            'Evaluación condicionada a meteorología observada, no a pronósticos meteorológicos archivados.',
+            'La temperatura de módulo se mide en evaluación; en escenarios automáticos se estima desde clima histórico.',
+            'El dataset limpio puede contener interpolaciones previas sin bandera de procedencia; auditar contra fuentes antes de publicación.',
+            'No se dispone de potencia STC ni irradiación POA verificada para calcular PR o eficiencia.',
+        ],
+        'versions': {'python': platform.python_version(), 'sklearn': sklearn.__version__,
+                     'xgboost': xgboost.__version__, 'pandas': pd.__version__},
+    }
+    BUNDLE_PATH.parent.mkdir(exist_ok=True)
+    joblib.dump({'model': selected, 'thermal_model': thermal, 'report': report,
+                 'baseline_profile': profile}, BUNDLE_PATH)
+    if winner == 'XGBoost':
+        selected.save_model(BASE_DIR / 'artifacts/model_xgboost.ubj')
+    REPORT_PATH.write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+    pd.DataFrame(validation_scores).to_csv(BASE_DIR / 'comparacion_modelos_pronostico.csv', index=False)
+    restored = joblib.load(BUNDLE_PATH)['model']
+    np.testing.assert_allclose(bounded_predict(restored, features(test.iloc[:100])), prediction[:100])
+    print(f'Seleccionado: {winner}; test: {test_metrics}; mejora baseline: {report["skill_vs_baseline_pct"]:.1f}%', flush=True)
+    print(f'Artefacto verificado: {BUNDLE_PATH}', flush=True)
 
-X_train, y_train = train[feature_cols], train[TARGET]
-X_test, y_test = test[feature_cols], test[TARGET]
 
-modelos = {
-    "Regresión Lineal": make_pipeline(StandardScaler(), LinearRegression()),
-    "Random Forest Regressor": RandomForestRegressor(n_estimators=150, max_depth=12, random_state=42, n_jobs=-1),
-    "Gradient Boosting": GradientBoostingRegressor(n_estimators=150, max_depth=4, learning_rate=0.1, random_state=42),
-}
-
-resultados = []
-for nombre, modelo in modelos.items():
-    modelo.fit(X_train, y_train)
-    pred = modelo.predict(X_test)
-    r2 = r2_score(y_test, pred)
-    rmse = mean_squared_error(y_test, pred) ** 0.5
-    mae = mean_absolute_error(y_test, pred)
-    resultados.append({"modelo": nombre, "R2_test": round(r2, 4), "RMSE_test": round(rmse, 2), "MAE_test": round(mae, 2)})
-    print(nombre, resultados[-1], flush=True)
-
-res_df = pd.DataFrame(resultados).sort_values(
-    ["RMSE_test", "MAE_test", "R2_test"], ascending=[True, True, False]
-)
-res_df.to_csv(OUTPUT_CSV, index=False)
-print(res_df.to_string(index=False))
-
-ganador_nombre = res_df.iloc[0]["modelo"]
-ganador = modelos[ganador_nombre]
-X_full, y_full = data_full[feature_cols], data_full[TARGET]
-ganador.fit(X_full, y_full)
-joblib.dump(ganador, OUTPUT_MODEL)
-
-metadata = {
-    "modelo": ganador_nombre,
-    "tipo": "Pronóstico (10 variables: clima futuro + calendario, sin sensores eléctricos)",
-    "target": TARGET,
-    "unidad_target": "Wh (por intervalo de 5 min)",
-    "columnas_entrada_en_orden": feature_cols,
-    "descripcion_columnas": {
-        "Irradiación": "W/m2, debe venir de pronóstico meteorológico (API clima)",
-        "Temperatura ambiente": "°C, pronóstico meteorológico",
-        "Temperatura de módulo": "°C, puede estimarse desde temp. ambiente + irradiación si no hay pronóstico directo",
-        "hora": "0-23", "mes": "1-12", "dia_anio": "1-366", "fin_de_semana": "0/1",
-        "hora_sin": "seno de la hora", "hora_cos": "coseno de la hora",
-        "dia_anio_sin": "seno del día del año", "dia_anio_cos": "coseno del día del año"
-    },
-    "filas_entrenamiento_final": len(data_full),
-    "rango_fechas_entrenamiento": [str(data_full.index.min()), str(data_full.index.max())],
-    "metricas_validacion_80_20": res_df.to_dict(orient="records"),
-}
-with open(OUTPUT_METADATA, "w", encoding="utf-8") as f:
-    json.dump(metadata, f, ensure_ascii=False, indent=2)
-print("\nGanador:", ganador_nombre)
+if __name__ == '__main__':
+    main()

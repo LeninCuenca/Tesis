@@ -88,3 +88,7 @@ ehthumbs.db
 
 # Antigravity Agent local configs
 .agents/
+
+# Entorno Linux y artefactos reproducibles
+.venv-linux/
+artifacts/*.joblib
