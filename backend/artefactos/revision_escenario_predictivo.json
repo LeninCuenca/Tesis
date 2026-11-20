@@ -1,0 +1,1121 @@
+{
+  "scope": "Test completo disponible en el bundle; escenario con antecedentes estrictamente anteriores; sin reentrenamiento",
+  "days": 55,
+  "scenario": {
+    "mae_wh": 72.6700867764179,
+    "rmse_wh": 150.52051626159758,
+    "r2": 0.5893852684443475
+  },
+  "observed_weather": {
+    "mae_wh": 44.072589079898755,
+    "rmse_wh": 101.007670376397,
+    "r2": 0.8150936450483516
+  },
+  "daily": [
+    {
+      "date": "2025-05-07",
+      "actual_kwh": 64.73835000000001,
+      "actual_peak_kw": 15.09012,
+      "actual_peak_time": "12:05",
+      "scenario_peak_kw": 16.21254639149088,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 124.77682857480129,
+        "rmse_wh": 231.80225506152652,
+        "daylight_mae_wh": 268.67743569902404,
+        "energy_kwh": 97.71870714299456
+      },
+      "observed_weather": {
+        "mae_wh": 134.29886016416458,
+        "rmse_wh": 241.8928174618214,
+        "daylight_mae_wh": 289.4516870632939,
+        "energy_kwh": 103.41580330369796
+      }
+    },
+    {
+      "date": "2025-05-08",
+      "actual_kwh": 74.18037,
+      "actual_peak_kw": 14.90412,
+      "actual_peak_time": "12:25",
+      "scenario_peak_kw": 16.21254639149088,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 96.98807350346387,
+        "rmse_wh": 192.5513716100544,
+        "daylight_mae_wh": 207.29100140726734,
+        "energy_kwh": 97.37996258318677
+      },
+      "observed_weather": {
+        "mae_wh": 151.51815239612912,
+        "rmse_wh": 273.4609500156363,
+        "daylight_mae_wh": 324.4252381789603,
+        "energy_kwh": 117.72875163516308
+      }
+    },
+    {
+      "date": "2025-05-09",
+      "actual_kwh": 49.22759,
+      "actual_peak_kw": 10.5228,
+      "actual_peak_time": "09:45",
+      "scenario_peak_kw": 16.096852765692134,
+      "scenario_peak_time": "13:05",
+      "scenario": {
+        "mae_wh": 172.87786233599476,
+        "rmse_wh": 315.64618795822514,
+        "daylight_mae_wh": 370.1640181350065,
+        "energy_kwh": 98.05447887399795
+      },
+      "observed_weather": {
+        "mae_wh": 106.55993368765935,
+        "rmse_wh": 189.69825103790504,
+        "daylight_mae_wh": 227.93328117057175,
+        "energy_kwh": 79.9091156313016
+      }
+    },
+    {
+      "date": "2025-05-10",
+      "actual_kwh": 50.238910000000004,
+      "actual_peak_kw": 12.9546,
+      "actual_peak_time": "10:55",
+      "scenario_peak_kw": 8.91881790182797,
+      "scenario_peak_time": "13:05",
+      "scenario": {
+        "mae_wh": 78.19963434947883,
+        "rmse_wh": 144.36066212355087,
+        "daylight_mae_wh": 169.31100204459577,
+        "energy_kwh": 68.0511680716329
+      },
+      "observed_weather": {
+        "mae_wh": 54.34767180585057,
+        "rmse_wh": 103.23167445211793,
+        "daylight_mae_wh": 118.68374391674725,
+        "energy_kwh": 62.33521452943523
+      }
+    },
+    {
+      "date": "2025-05-11",
+      "actual_kwh": 30.02582,
+      "actual_peak_kw": 5.83944,
+      "actual_peak_time": "10:30",
+      "scenario_peak_kw": 6.7021021680025035,
+      "scenario_peak_time": "13:30",
+      "scenario": {
+        "mae_wh": 58.80959186184646,
+        "rmse_wh": 108.51771233782014,
+        "daylight_mae_wh": 132.45571612390438,
+        "energy_kwh": 46.22730102817562
+      },
+      "observed_weather": {
+        "mae_wh": 49.53639353392301,
+        "rmse_wh": 101.51791464395048,
+        "daylight_mae_wh": 111.46933035753916,
+        "energy_kwh": 42.454422987314075
+      }
+    },
+    {
+      "date": "2025-05-12",
+      "actual_kwh": 42.506589999999996,
+      "actual_peak_kw": 11.124,
+      "actual_peak_time": "13:00",
+      "scenario_peak_kw": 9.789736166152732,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 61.25659708728785,
+        "rmse_wh": 117.27638679020245,
+        "daylight_mae_wh": 133.20620471804415,
+        "energy_kwh": 56.24075901575449
+      },
+      "observed_weather": {
+        "mae_wh": 15.131173285051766,
+        "rmse_wh": 28.521970554578903,
+        "daylight_mae_wh": 32.42680323983206,
+        "energy_kwh": 39.83437379870018
+      }
+    },
+    {
+      "date": "2025-05-13",
+      "actual_kwh": 49.20939,
+      "actual_peak_kw": 13.66044,
+      "actual_peak_time": "11:45",
+      "scenario_peak_kw": 9.306470204426518,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 46.66818920487638,
+        "rmse_wh": 99.3257862156919,
+        "daylight_mae_wh": 99.1248542652249,
+        "energy_kwh": 53.55113292690843
+      },
+      "observed_weather": {
+        "mae_wh": 18.52767494422556,
+        "rmse_wh": 31.822398636115928,
+        "daylight_mae_wh": 39.08240479303834,
+        "energy_kwh": 44.20608630264834
+      }
+    },
+    {
+      "date": "2025-05-14",
+      "actual_kwh": 48.637660000000004,
+      "actual_peak_kw": 10.22904,
+      "actual_peak_time": "11:25",
+      "scenario_peak_kw": 8.636437022172542,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 51.20963959588332,
+        "rmse_wh": 101.4565914566362,
+        "daylight_mae_wh": 110.23429676151858,
+        "energy_kwh": 51.42684374625201
+      },
+      "observed_weather": {
+        "mae_wh": 23.06743645640683,
+        "rmse_wh": 38.829080185189405,
+        "daylight_mae_wh": 49.30231003796946,
+        "energy_kwh": 42.01306595221268
+      }
+    },
+    {
+      "date": "2025-05-15",
+      "actual_kwh": 66.81721,
+      "actual_peak_kw": 14.05056,
+      "actual_peak_time": "11:10",
+      "scenario_peak_kw": 8.502706193837016,
+      "scenario_peak_time": "11:35",
+      "scenario": {
+        "mae_wh": 91.32491345610462,
+        "rmse_wh": 190.61831494277973,
+        "daylight_mae_wh": 195.67126982566134,
+        "energy_kwh": 50.84552029608359
+      },
+      "observed_weather": {
+        "mae_wh": 30.0882039691639,
+        "rmse_wh": 55.96445461463303,
+        "daylight_mae_wh": 64.03527414838901,
+        "energy_kwh": 60.31009453241702
+      }
+    },
+    {
+      "date": "2025-05-16",
+      "actual_kwh": 43.207879999999996,
+      "actual_peak_kw": 11.9082,
+      "actual_peak_time": "13:40",
+      "scenario_peak_kw": 8.636437022172542,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 83.01212021454519,
+        "rmse_wh": 161.26729670813856,
+        "daylight_mae_wh": 183.12774995091291,
+        "energy_kwh": 51.03330332298986
+      },
+      "observed_weather": {
+        "mae_wh": 18.732076648454694,
+        "rmse_wh": 37.64959745877519,
+        "daylight_mae_wh": 40.63323548425408,
+        "energy_kwh": 38.10496919750038
+      }
+    },
+    {
+      "date": "2025-05-17",
+      "actual_kwh": 40.7389,
+      "actual_peak_kw": 9.05904,
+      "actual_peak_time": "11:15",
+      "scenario_peak_kw": 5.704410575826228,
+      "scenario_peak_time": "13:35",
+      "scenario": {
+        "mae_wh": 52.42855443235021,
+        "rmse_wh": 96.19524316571719,
+        "daylight_mae_wh": 121.4487531281084,
+        "energy_kwh": 38.30936402656782
+      },
+      "observed_weather": {
+        "mae_wh": 34.03972715188794,
+        "rmse_wh": 75.11602176813676,
+        "daylight_mae_wh": 81.01549319583567,
+        "energy_kwh": 32.56541881631643
+      }
+    },
+    {
+      "date": "2025-05-18",
+      "actual_kwh": 41.394239999999996,
+      "actual_peak_kw": 11.0238,
+      "actual_peak_time": "11:00",
+      "scenario_peak_kw": 5.704410575826228,
+      "scenario_peak_time": "13:35",
+      "scenario": {
+        "mae_wh": 49.10309897896479,
+        "rmse_wh": 103.19130973132813,
+        "daylight_mae_wh": 105.02949631299894,
+        "energy_kwh": 38.298845208470475
+      },
+      "observed_weather": {
+        "mae_wh": 34.149774720702254,
+        "rmse_wh": 84.3303751401759,
+        "daylight_mae_wh": 72.8978323120925,
+        "energy_kwh": 36.265313005829704
+      }
+    },
+    {
+      "date": "2025-05-19",
+      "actual_kwh": 50.855290000000004,
+      "actual_peak_kw": 13.48704,
+      "actual_peak_time": "12:25",
+      "scenario_peak_kw": 8.636437022172542,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 59.77702613821245,
+        "rmse_wh": 125.04280366632638,
+        "daylight_mae_wh": 134.59159078216658,
+        "energy_kwh": 50.59342614935461
+      },
+      "observed_weather": {
+        "mae_wh": 21.742432106395917,
+        "rmse_wh": 50.73094928794754,
+        "daylight_mae_wh": 49.64434142133119,
+        "energy_kwh": 48.50098307987953
+      }
+    },
+    {
+      "date": "2025-05-20",
+      "actual_kwh": 58.25635,
+      "actual_peak_kw": 13.48752,
+      "actual_peak_time": "09:25",
+      "scenario_peak_kw": 8.498100656931772,
+      "scenario_peak_time": "11:15",
+      "scenario": {
+        "mae_wh": 51.79980968466298,
+        "rmse_wh": 112.56670056347504,
+        "daylight_mae_wh": 109.25769886770459,
+        "energy_kwh": 50.58354333435422
+      },
+      "observed_weather": {
+        "mae_wh": 26.553729263042765,
+        "rmse_wh": 45.46778890502051,
+        "daylight_mae_wh": 55.827896683335894,
+        "energy_kwh": 50.60959225859391
+      }
+    },
+    {
+      "date": "2025-05-21",
+      "actual_kwh": 43.70686,
+      "actual_peak_kw": 9.78252,
+      "actual_peak_time": "10:00",
+      "scenario_peak_kw": 8.498100656931772,
+      "scenario_peak_time": "11:15",
+      "scenario": {
+        "mae_wh": 49.2173006427501,
+        "rmse_wh": 92.51652174947777,
+        "daylight_mae_wh": 107.55585517640813,
+        "energy_kwh": 50.348354642527894
+      },
+      "observed_weather": {
+        "mae_wh": 20.281127021411546,
+        "rmse_wh": 36.83073176215293,
+        "daylight_mae_wh": 44.03059088741576,
+        "energy_kwh": 38.6657288316568
+      }
+    },
+    {
+      "date": "2025-05-22",
+      "actual_kwh": 54.43061,
+      "actual_peak_kw": 12.662400000000002,
+      "actual_peak_time": "11:50",
+      "scenario_peak_kw": 8.458757533925029,
+      "scenario_peak_time": "11:15",
+      "scenario": {
+        "mae_wh": 53.810912133425845,
+        "rmse_wh": 104.98795101323331,
+        "daylight_mae_wh": 114.95661271096517,
+        "energy_kwh": 49.90628523870728
+      },
+      "observed_weather": {
+        "mae_wh": 26.39349471976511,
+        "rmse_wh": 45.80908587821576,
+        "daylight_mae_wh": 56.048891016418644,
+        "energy_kwh": 46.85807650682595
+      }
+    },
+    {
+      "date": "2025-05-23",
+      "actual_kwh": 29.179050000000004,
+      "actual_peak_kw": 9.01764,
+      "actual_peak_time": "14:10",
+      "scenario_peak_kw": 8.15202045938001,
+      "scenario_peak_time": "11:15",
+      "scenario": {
+        "mae_wh": 78.7071808198811,
+        "rmse_wh": 144.78476610774317,
+        "daylight_mae_wh": 170.05034774629038,
+        "energy_kwh": 49.647025652424944
+      },
+      "observed_weather": {
+        "mae_wh": 14.036662147066684,
+        "rmse_wh": 29.887603436523737,
+        "daylight_mae_wh": 29.84342027597625,
+        "energy_kwh": 28.7013278332184
+      }
+    },
+    {
+      "date": "2025-05-24",
+      "actual_kwh": 35.0742,
+      "actual_peak_kw": 7.14516,
+      "actual_peak_time": "11:35",
+      "scenario_peak_kw": 5.330210543306981,
+      "scenario_peak_time": "13:00",
+      "scenario": {
+        "mae_wh": 33.79283207126801,
+        "rmse_wh": 64.80125040367714,
+        "daylight_mae_wh": 71.12346023857187,
+        "energy_kwh": 37.46858482434334
+      },
+      "observed_weather": {
+        "mae_wh": 27.586149073925682,
+        "rmse_wh": 53.145300683517235,
+        "daylight_mae_wh": 57.939278408209205,
+        "energy_kwh": 37.34577439106186
+      }
+    },
+    {
+      "date": "2025-05-25",
+      "actual_kwh": 31.79232,
+      "actual_peak_kw": 7.34184,
+      "actual_peak_time": "12:00",
+      "scenario_peak_kw": 4.350770756775876,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 31.89856969106815,
+        "rmse_wh": 58.592014930661435,
+        "daylight_mae_wh": 70.32683980973894,
+        "energy_kwh": 32.52783608672738
+      },
+      "observed_weather": {
+        "mae_wh": 26.02739364899687,
+        "rmse_wh": 50.91074499074268,
+        "daylight_mae_wh": 57.11438490870006,
+        "energy_kwh": 30.254711605382393
+      }
+    },
+    {
+      "date": "2025-05-26",
+      "actual_kwh": 56.73411,
+      "actual_peak_kw": 11.38176,
+      "actual_peak_time": "13:10",
+      "scenario_peak_kw": 7.9470813889394245,
+      "scenario_peak_time": "10:25",
+      "scenario": {
+        "mae_wh": 46.30104790919463,
+        "rmse_wh": 99.17973634242831,
+        "daylight_mae_wh": 101.3034827473939,
+        "energy_kwh": 48.99599004010744
+      },
+      "observed_weather": {
+        "mae_wh": 26.45438660938335,
+        "rmse_wh": 48.130437537142654,
+        "daylight_mae_wh": 57.50776022317956,
+        "energy_kwh": 50.06789001198228
+      }
+    },
+    {
+      "date": "2025-05-27",
+      "actual_kwh": 56.60152,
+      "actual_peak_kw": 11.06556,
+      "actual_peak_time": "12:40",
+      "scenario_peak_kw": 8.174976682345186,
+      "scenario_peak_time": "13:00",
+      "scenario": {
+        "mae_wh": 52.63002491433853,
+        "rmse_wh": 106.25326641446081,
+        "daylight_mae_wh": 114.26672317747997,
+        "energy_kwh": 49.114092832767824
+      },
+      "observed_weather": {
+        "mae_wh": 26.361046781684482,
+        "rmse_wh": 47.79251269345159,
+        "daylight_mae_wh": 56.83330147213758,
+        "energy_kwh": 52.2285564499929
+      }
+    },
+    {
+      "date": "2025-05-28",
+      "actual_kwh": 51.65602,
+      "actual_peak_kw": 13.49952,
+      "actual_peak_time": "11:50",
+      "scenario_peak_kw": 8.267813047900182,
+      "scenario_peak_time": "13:00",
+      "scenario": {
+        "mae_wh": 56.0559908289791,
+        "rmse_wh": 107.76557250071521,
+        "daylight_mae_wh": 120.98834102626773,
+        "energy_kwh": 49.38700648330577
+      },
+      "observed_weather": {
+        "mae_wh": 22.88089560707058,
+        "rmse_wh": 37.33195439204721,
+        "daylight_mae_wh": 49.01253057190725,
+        "energy_kwh": 45.10376794123339
+      }
+    },
+    {
+      "date": "2025-05-29",
+      "actual_kwh": 54.50967,
+      "actual_peak_kw": 12.68712,
+      "actual_peak_time": "09:05",
+      "scenario_peak_kw": 8.188110437344564,
+      "scenario_peak_time": "13:00",
+      "scenario": {
+        "mae_wh": 59.371383217757185,
+        "rmse_wh": 140.25906441127597,
+        "daylight_mae_wh": 128.40626189757404,
+        "energy_kwh": 49.09388674307254
+      },
+      "observed_weather": {
+        "mae_wh": 25.89948706492636,
+        "rmse_wh": 46.00878706410596,
+        "daylight_mae_wh": 55.799170561561276,
+        "energy_kwh": 47.19605476352189
+      }
+    },
+    {
+      "date": "2025-05-30",
+      "actual_kwh": 67.25323,
+      "actual_peak_kw": 14.341680000000002,
+      "actual_peak_time": "10:05",
+      "scenario_peak_kw": 7.729166850186456,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 68.64605014840056,
+        "rmse_wh": 137.79538923032035,
+        "daylight_mae_wh": 146.98217347848214,
+        "energy_kwh": 48.671683286582265
+      },
+      "observed_weather": {
+        "mae_wh": 33.37350472499904,
+        "rmse_wh": 57.16020776566834,
+        "daylight_mae_wh": 71.14889176671463,
+        "energy_kwh": 57.642168782375386
+      }
+    },
+    {
+      "date": "2025-05-31",
+      "actual_kwh": 32.15085,
+      "actual_peak_kw": 5.51004,
+      "actual_peak_time": "13:55",
+      "scenario_peak_kw": 5.300107470161249,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 33.1995351369643,
+        "rmse_wh": 61.029808211930316,
+        "daylight_mae_wh": 73.46264283601414,
+        "energy_kwh": 37.528957352507426
+      },
+      "observed_weather": {
+        "mae_wh": 29.30516243630423,
+        "rmse_wh": 58.77884583295466,
+        "daylight_mae_wh": 64.4175711273962,
+        "energy_kwh": 36.42335498050249
+      }
+    },
+    {
+      "date": "2025-06-01",
+      "actual_kwh": 31.42188,
+      "actual_peak_kw": 7.760280000000001,
+      "actual_peak_time": "15:35",
+      "scenario_peak_kw": 5.224101079259033,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 51.95991116829911,
+        "rmse_wh": 93.5334113954235,
+        "daylight_mae_wh": 111.96144847819211,
+        "energy_kwh": 37.556532787877764
+      },
+      "observed_weather": {
+        "mae_wh": 45.6399520341331,
+        "rmse_wh": 85.23269906054651,
+        "daylight_mae_wh": 98.19271124878556,
+        "energy_kwh": 38.82127419659721
+      }
+    },
+    {
+      "date": "2025-06-02",
+      "actual_kwh": 75.14501000000001,
+      "actual_peak_kw": 14.276760000000001,
+      "actual_peak_time": "12:45",
+      "scenario_peak_kw": 8.172072304910861,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 104.39149527900953,
+        "rmse_wh": 206.88318561442756,
+        "daylight_mae_wh": 225.66889781088597,
+        "energy_kwh": 51.19506844308648
+      },
+      "observed_weather": {
+        "mae_wh": 34.87051490064793,
+        "rmse_wh": 73.59151089946006,
+        "daylight_mae_wh": 75.07425895820889,
+        "energy_kwh": 75.7772763892161
+      }
+    },
+    {
+      "date": "2025-06-03",
+      "actual_kwh": 38.846199999999996,
+      "actual_peak_kw": 6.213840000000001,
+      "actual_peak_time": "10:25",
+      "scenario_peak_kw": 8.193783400160575,
+      "scenario_peak_time": "11:35",
+      "scenario": {
+        "mae_wh": 50.10395528687836,
+        "rmse_wh": 98.2868804792038,
+        "daylight_mae_wh": 107.89146027626026,
+        "energy_kwh": 51.68778559291489
+      },
+      "observed_weather": {
+        "mae_wh": 12.93083817478473,
+        "rmse_wh": 20.432693943179213,
+        "daylight_mae_wh": 27.439323104253052,
+        "energy_kwh": 35.155227898399055
+      }
+    },
+    {
+      "date": "2025-06-04",
+      "actual_kwh": 42.09114999999999,
+      "actual_peak_kw": 11.292,
+      "actual_peak_time": "11:05",
+      "scenario_peak_kw": 14.70589968389486,
+      "scenario_peak_time": "13:00",
+      "scenario": {
+        "mae_wh": 152.9675820881224,
+        "rmse_wh": 282.4911945645513,
+        "daylight_mae_wh": 331.71631945389254,
+        "energy_kwh": 86.14358147567633
+      },
+      "observed_weather": {
+        "mae_wh": 84.79304413259617,
+        "rmse_wh": 148.2862973762943,
+        "daylight_mae_wh": 182.98069801794716,
+        "energy_kwh": 66.50935454448476
+      }
+    },
+    {
+      "date": "2025-06-05",
+      "actual_kwh": 59.31842,
+      "actual_peak_kw": 14.16228,
+      "actual_peak_time": "12:20",
+      "scenario_peak_kw": 13.926518435303038,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 123.52931666348604,
+        "rmse_wh": 238.44981085579542,
+        "daylight_mae_wh": 262.4116409147265,
+        "energy_kwh": 84.67978331617778
+      },
+      "observed_weather": {
+        "mae_wh": 101.31856270493029,
+        "rmse_wh": 178.6044984621468,
+        "daylight_mae_wh": 215.04512070017822,
+        "energy_kwh": 88.49377389331697
+      }
+    },
+    {
+      "date": "2025-06-06",
+      "actual_kwh": 36.83056,
+      "actual_peak_kw": 8.595,
+      "actual_peak_time": "10:45",
+      "scenario_peak_kw": 13.926518435303038,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 165.0823396831549,
+        "rmse_wh": 280.60540181158194,
+        "daylight_mae_wh": 367.7938815651872,
+        "energy_kwh": 84.37321774589715
+      },
+      "observed_weather": {
+        "mae_wh": 67.53771851172434,
+        "rmse_wh": 119.79930177394958,
+        "daylight_mae_wh": 149.68713366384685,
+        "energy_kwh": 56.27751076567368
+      }
+    },
+    {
+      "date": "2025-06-07",
+      "actual_kwh": 28.075010000000002,
+      "actual_peak_kw": 5.67204,
+      "actual_peak_time": "13:45",
+      "scenario_peak_kw": 11.040904393938048,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 135.55853705208315,
+        "rmse_wh": 237.77453256973254,
+        "daylight_mae_wh": 296.25193699229004,
+        "energy_kwh": 67.0565343970368
+      },
+      "observed_weather": {
+        "mae_wh": 94.73727121081609,
+        "rmse_wh": 165.41090976914103,
+        "daylight_mae_wh": 207.45681067437874,
+        "energy_kwh": 55.3571289524626
+      }
+    },
+    {
+      "date": "2025-06-08",
+      "actual_kwh": 20.301129999999997,
+      "actual_peak_kw": 5.00844,
+      "actual_peak_time": "13:50",
+      "scenario_peak_kw": 10.506776163030365,
+      "scenario_peak_time": "13:10",
+      "scenario": {
+        "mae_wh": 162.52496230477544,
+        "rmse_wh": 279.9323527977929,
+        "daylight_mae_wh": 345.5798513498152,
+        "energy_kwh": 66.73728277937799
+      },
+      "observed_weather": {
+        "mae_wh": 100.2743464614206,
+        "rmse_wh": 195.51545453529982,
+        "daylight_mae_wh": 213.26564925173696,
+        "energy_kwh": 49.17733146838426
+      }
+    },
+    {
+      "date": "2025-06-09",
+      "actual_kwh": 64.49847,
+      "actual_peak_kw": 13.516560000000002,
+      "actual_peak_time": "11:20",
+      "scenario_peak_kw": 13.160001385770487,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 78.58809844682838,
+        "rmse_wh": 147.76934308979173,
+        "daylight_mae_wh": 166.9727609563392,
+        "energy_kwh": 79.81183357664526
+      },
+      "observed_weather": {
+        "mae_wh": 96.63250360746333,
+        "rmse_wh": 169.39295173145462,
+        "daylight_mae_wh": 205.18423640107972,
+        "energy_kwh": 92.32763495609797
+      }
+    },
+    {
+      "date": "2025-06-10",
+      "actual_kwh": 50.60199,
+      "actual_peak_kw": 11.36472,
+      "actual_peak_time": "10:55",
+      "scenario_peak_kw": 13.195079857523009,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 114.380106503364,
+        "rmse_wh": 208.15152614989577,
+        "daylight_mae_wh": 243.24068168697053,
+        "energy_kwh": 79.86397787865327
+      },
+      "observed_weather": {
+        "mae_wh": 88.46285162159198,
+        "rmse_wh": 150.5378062589989,
+        "daylight_mae_wh": 187.92788226684658,
+        "energy_kwh": 76.07777518416702
+      }
+    },
+    {
+      "date": "2025-06-11",
+      "actual_kwh": 46.617439999999995,
+      "actual_peak_kw": 9.46812,
+      "actual_peak_time": "15:15",
+      "scenario_peak_kw": 8.058925541981294,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 54.34037152154989,
+        "rmse_wh": 105.20770189418873,
+        "daylight_mae_wh": 118.60236797553652,
+        "energy_kwh": 50.01918875337033
+      },
+      "observed_weather": {
+        "mae_wh": 16.09064854715015,
+        "rmse_wh": 32.86514835086133,
+        "daylight_mae_wh": 34.98017246123088,
+        "energy_kwh": 45.249240027419795
+      }
+    },
+    {
+      "date": "2025-06-12",
+      "actual_kwh": 62.60556,
+      "actual_peak_kw": 13.68348,
+      "actual_peak_time": "10:50",
+      "scenario_peak_kw": 7.986343071901347,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 60.371973128988685,
+        "rmse_wh": 125.91917090120106,
+        "daylight_mae_wh": 129.52751583218705,
+        "energy_kwh": 48.99947468370907
+      },
+      "observed_weather": {
+        "mae_wh": 21.363919923852517,
+        "rmse_wh": 43.25529776484837,
+        "daylight_mae_wh": 45.77957807278214,
+        "energy_kwh": 59.35946253499397
+      }
+    },
+    {
+      "date": "2025-06-13",
+      "actual_kwh": 55.06934,
+      "actual_peak_kw": 14.75232,
+      "actual_peak_time": "12:50",
+      "scenario_peak_kw": 7.986343071901347,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 96.1840208080998,
+        "rmse_wh": 176.95633246648154,
+        "daylight_mae_wh": 207.81359632676978,
+        "energy_kwh": 49.16394264509385
+      },
+      "observed_weather": {
+        "mae_wh": 18.94116992957876,
+        "rmse_wh": 36.59223937849069,
+        "daylight_mae_wh": 40.70056621246496,
+        "energy_kwh": 50.13833117337692
+      }
+    },
+    {
+      "date": "2025-06-14",
+      "actual_kwh": 22.771690000000003,
+      "actual_peak_kw": 6.19872,
+      "actual_peak_time": "10:45",
+      "scenario_peak_kw": 5.784141211168996,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 73.37927186005557,
+        "rmse_wh": 127.71657354894752,
+        "daylight_mae_wh": 175.21192810716815,
+        "energy_kwh": 43.11960503006823
+      },
+      "observed_weather": {
+        "mae_wh": 51.99360511410172,
+        "rmse_wh": 107.33951501680757,
+        "daylight_mae_wh": 133.1828955714403,
+        "energy_kwh": 36.73921330591023
+      }
+    },
+    {
+      "date": "2025-06-15",
+      "actual_kwh": 16.324360000000002,
+      "actual_peak_kw": 6.49656,
+      "actual_peak_time": "11:20",
+      "scenario_peak_kw": 5.5961890278021125,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 93.79936579685533,
+        "rmse_wh": 157.01787783219478,
+        "daylight_mae_wh": 205.7227125969084,
+        "energy_kwh": 43.034204474106694
+      },
+      "observed_weather": {
+        "mae_wh": 58.03313797286733,
+        "rmse_wh": 123.11729425412007,
+        "daylight_mae_wh": 127.41315234743868,
+        "energy_kwh": 32.599614349495695
+      }
+    },
+    {
+      "date": "2025-06-16",
+      "actual_kwh": 44.86708,
+      "actual_peak_kw": 10.082880000000001,
+      "actual_peak_time": "12:35",
+      "scenario_peak_kw": 8.074173034911237,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 41.78639369841872,
+        "rmse_wh": 76.57795711982453,
+        "daylight_mae_wh": 92.04084396361876,
+        "energy_kwh": 49.546698312611255
+      },
+      "observed_weather": {
+        "mae_wh": 21.407530773538916,
+        "rmse_wh": 64.17768196690949,
+        "daylight_mae_wh": 47.42233515236922,
+        "energy_kwh": 45.88620998912494
+      }
+    },
+    {
+      "date": "2025-06-17",
+      "actual_kwh": 42.71468,
+      "actual_peak_kw": 7.006080000000001,
+      "actual_peak_time": "10:25",
+      "scenario_peak_kw": 7.505508307306984,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 40.49820326871408,
+        "rmse_wh": 74.4809941006952,
+        "daylight_mae_wh": 86.15340936637305,
+        "energy_kwh": 49.254067728077324
+      },
+      "observed_weather": {
+        "mae_wh": 11.605946673987107,
+        "rmse_wh": 21.482058605268346,
+        "daylight_mae_wh": 24.550441914473847,
+        "energy_kwh": 39.90226239780447
+      }
+    },
+    {
+      "date": "2025-06-18",
+      "actual_kwh": 39.80521000000001,
+      "actual_peak_kw": 9.51408,
+      "actual_peak_time": "12:15",
+      "scenario_peak_kw": 7.252978204714839,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 43.65422505986922,
+        "rmse_wh": 80.98821391734573,
+        "daylight_mae_wh": 94.668616302353,
+        "energy_kwh": 46.79594262058765
+      },
+      "observed_weather": {
+        "mae_wh": 19.261246362559444,
+        "rmse_wh": 34.201010257344755,
+        "daylight_mae_wh": 41.86833363819455,
+        "energy_kwh": 34.36125491217093
+      }
+    },
+    {
+      "date": "2025-06-19",
+      "actual_kwh": 47.13512,
+      "actual_peak_kw": 8.44656,
+      "actual_peak_time": "09:25",
+      "scenario_peak_kw": 7.053648198361209,
+      "scenario_peak_time": "12:15",
+      "scenario": {
+        "mae_wh": 43.721349274044236,
+        "rmse_wh": 84.88944544880601,
+        "daylight_mae_wh": 94.95705895066799,
+        "energy_kwh": 46.450591380848955
+      },
+      "observed_weather": {
+        "mae_wh": 22.883851958962392,
+        "rmse_wh": 38.24786703084043,
+        "daylight_mae_wh": 49.38536871902647,
+        "energy_kwh": 40.547691446858735
+      }
+    },
+    {
+      "date": "2025-06-20",
+      "actual_kwh": 27.57065,
+      "actual_peak_kw": 8.38176,
+      "actual_peak_time": "12:55",
+      "scenario_peak_kw": 6.897827506719881,
+      "scenario_peak_time": "11:20",
+      "scenario": {
+        "mae_wh": 65.285612980478,
+        "rmse_wh": 114.9048705270825,
+        "daylight_mae_wh": 145.2646268310503,
+        "energy_kwh": 44.91431190273797
+      },
+      "observed_weather": {
+        "mae_wh": 12.500245145465861,
+        "rmse_wh": 23.578113535857813,
+        "daylight_mae_wh": 27.18073272003627,
+        "energy_kwh": 24.061142506060204
+      }
+    },
+    {
+      "date": "2025-06-21",
+      "actual_kwh": 19.52286,
+      "actual_peak_kw": 5.9910000000000005,
+      "actual_peak_time": "12:40",
+      "scenario_peak_kw": 5.189464209093053,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 71.75698715306883,
+        "rmse_wh": 128.7149946654817,
+        "daylight_mae_wh": 154.95126925856502,
+        "energy_kwh": 38.34291833548269
+      },
+      "observed_weather": {
+        "mae_wh": 70.53854717677626,
+        "rmse_wh": 132.80535951828352,
+        "daylight_mae_wh": 152.2139011588497,
+        "energy_kwh": 38.834974412707915
+      }
+    },
+    {
+      "date": "2025-06-22",
+      "actual_kwh": 22.93105,
+      "actual_peak_kw": 8.20632,
+      "actual_peak_time": "13:10",
+      "scenario_peak_kw": 5.189464209093053,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 66.29494783472344,
+        "rmse_wh": 117.20515704039803,
+        "daylight_mae_wh": 141.9831454306394,
+        "energy_kwh": 38.36516394775644
+      },
+      "observed_weather": {
+        "mae_wh": 91.3110968552235,
+        "rmse_wh": 154.79546318494278,
+        "daylight_mae_wh": 195.7203151149063,
+        "energy_kwh": 47.86020052115999
+      }
+    },
+    {
+      "date": "2025-06-23",
+      "actual_kwh": 39.03322,
+      "actual_peak_kw": 9.98568,
+      "actual_peak_time": "15:20",
+      "scenario_peak_kw": 6.9042843250158015,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 48.390406469734266,
+        "rmse_wh": 92.18592672914436,
+        "daylight_mae_wh": 105.09173512981499,
+        "energy_kwh": 44.83426156962017
+      },
+      "observed_weather": {
+        "mae_wh": 20.00691760922173,
+        "rmse_wh": 34.727149079960405,
+        "daylight_mae_wh": 43.062722005643735,
+        "energy_kwh": 33.62048893701929
+      }
+    },
+    {
+      "date": "2025-06-24",
+      "actual_kwh": 59.751219999999996,
+      "actual_peak_kw": 13.195800000000002,
+      "actual_peak_time": "12:45",
+      "scenario_peak_kw": 6.867776242714347,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 75.64240701350339,
+        "rmse_wh": 150.49198617230573,
+        "daylight_mae_wh": 163.0448838550284,
+        "energy_kwh": 44.61197081458061
+      },
+      "observed_weather": {
+        "mae_wh": 36.642232507936804,
+        "rmse_wh": 68.84145148121233,
+        "daylight_mae_wh": 78.63163577108669,
+        "energy_kwh": 57.116761528493704
+      }
+    },
+    {
+      "date": "2025-06-25",
+      "actual_kwh": 50.09819,
+      "actual_peak_kw": 11.23056,
+      "actual_peak_time": "10:15",
+      "scenario_peak_kw": 6.867776242714347,
+      "scenario_peak_time": "11:25",
+      "scenario": {
+        "mae_wh": 44.27509996164356,
+        "rmse_wh": 89.8208484438594,
+        "daylight_mae_wh": 98.74929942203742,
+        "energy_kwh": 44.716305040458565
+      },
+      "observed_weather": {
+        "mae_wh": 24.40126135633028,
+        "rmse_wh": 44.684503479405336,
+        "daylight_mae_wh": 55.39155000358404,
+        "energy_kwh": 43.5352681178763
+      }
+    },
+    {
+      "date": "2025-06-26",
+      "actual_kwh": 56.68254,
+      "actual_peak_kw": 12.546959999999999,
+      "actual_peak_time": "12:45",
+      "scenario_peak_kw": 6.8601680010209165,
+      "scenario_peak_time": "13:10",
+      "scenario": {
+        "mae_wh": 48.84994878114573,
+        "rmse_wh": 115.91385544302008,
+        "daylight_mae_wh": 104.60032947037529,
+        "energy_kwh": 44.554263462958595
+      },
+      "observed_weather": {
+        "mae_wh": 31.61510186909321,
+        "rmse_wh": 53.379637846618934,
+        "daylight_mae_wh": 67.53648884184733,
+        "energy_kwh": 47.74661548191873
+      }
+    },
+    {
+      "date": "2025-06-27",
+      "actual_kwh": 51.53231,
+      "actual_peak_kw": 11.52336,
+      "actual_peak_time": "10:15",
+      "scenario_peak_kw": 6.817715860562517,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 57.236800205493715,
+        "rmse_wh": 116.55273416900948,
+        "daylight_mae_wh": 123.30015223511722,
+        "energy_kwh": 44.458874903494994
+      },
+      "observed_weather": {
+        "mae_wh": 26.539814735313062,
+        "rmse_wh": 43.466254845979684,
+        "daylight_mae_wh": 56.81798937094004,
+        "energy_kwh": 43.957398440737364
+      }
+    },
+    {
+      "date": "2025-06-28",
+      "actual_kwh": 20.746049999999997,
+      "actual_peak_kw": 6.3368400000000005,
+      "actual_peak_time": "13:05",
+      "scenario_peak_kw": 5.156462131900864,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 63.039840885591374,
+        "rmse_wh": 113.614513682225,
+        "daylight_mae_wh": 147.35855618266763,
+        "energy_kwh": 38.11275700562141
+      },
+      "observed_weather": {
+        "mae_wh": 50.86882022332148,
+        "rmse_wh": 100.3099471630927,
+        "daylight_mae_wh": 120.10524810558195,
+        "energy_kwh": 33.439602422778584
+      }
+    },
+    {
+      "date": "2025-06-29",
+      "actual_kwh": 23.19602,
+      "actual_peak_kw": 6.424320000000001,
+      "actual_peak_time": "11:40",
+      "scenario_peak_kw": 5.156462131900864,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 61.38014207521448,
+        "rmse_wh": 117.48424850228551,
+        "daylight_mae_wh": 129.72557651614025,
+        "energy_kwh": 38.068265240580686
+      },
+      "observed_weather": {
+        "mae_wh": 70.03196627622334,
+        "rmse_wh": 132.84143635941464,
+        "daylight_mae_wh": 148.0393844672965,
+        "energy_kwh": 41.36679563911517
+      }
+    },
+    {
+      "date": "2025-06-30",
+      "actual_kwh": 52.01216,
+      "actual_peak_kw": 12.971400000000001,
+      "actual_peak_time": "12:10",
+      "scenario_peak_kw": 6.817715860562517,
+      "scenario_peak_time": "13:15",
+      "scenario": {
+        "mae_wh": 66.01833351729108,
+        "rmse_wh": 133.33060763800026,
+        "daylight_mae_wh": 143.5524134780434,
+        "energy_kwh": 44.20990049347619
+      },
+      "observed_weather": {
+        "mae_wh": 23.865185054226565,
+        "rmse_wh": 44.89009279927093,
+        "daylight_mae_wh": 51.6359493657106,
+        "energy_kwh": 47.33507470232238
+      }
+    }
+  ],
+  "limitations": [
+    "Wh por intervalo y zona horaria pendientes de confirmacion documental",
+    "Clima historico mediano no representa el tiempo meteorologico de cada dia",
+    "Historial del bundle limitado a los ultimos 90 dias; las primeras fechas tienen menos antecedentes"
+  ]
+}

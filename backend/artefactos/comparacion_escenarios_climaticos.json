@@ -1,0 +1,1763 @@
+{
+  "days": 54,
+  "summary": {
+    "clima día previo": {
+      "energy_error_pct": 23.661383839290707,
+      "mae_wh": 86.92795380763354,
+      "rmse_wh": 170.237125373315,
+      "median_abs_energy_error_pct": 27.532542400159528,
+      "days_energy_within_5pct": 3,
+      "days_energy_within_10pct": 8,
+      "days_rmse_under_80wh": 2
+    },
+    "clima estacional previo": {
+      "energy_error_pct": 18.74002267544887,
+      "mae_wh": 72.73847487655456,
+      "rmse_wh": 140.72485713488535,
+      "median_abs_energy_error_pct": 23.565335538340328,
+      "days_energy_within_5pct": 8,
+      "days_energy_within_10pct": 11,
+      "days_rmse_under_80wh": 6
+    },
+    "clima mediano 90d": {
+      "energy_error_pct": 29.38929047936746,
+      "mae_wh": 71.70514711348488,
+      "rmse_wh": 136.29321033623268,
+      "median_abs_energy_error_pct": 20.460176912415033,
+      "days_energy_within_5pct": 4,
+      "days_energy_within_10pct": 12,
+      "days_rmse_under_80wh": 5
+    }
+  },
+  "daily": [
+    {
+      "date": "2025-05-08",
+      "actual_kwh": 74.18037,
+      "actual_peak_kw": 14.90412,
+      "actual_peak_time": "12:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 103.41580330369796,
+          "energy_error_pct": 39.41127997029128,
+          "mae_wh": 137.00392656329188,
+          "rmse_wh": 277.44078549178823,
+          "peak_kw": 23.988549324162857,
+          "peak_time": "12:05"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 102.57667561212345,
+          "energy_error_pct": 38.28008085174481,
+          "mae_wh": 133.77243073360526,
+          "rmse_wh": 269.41170441064844,
+          "peak_kw": 24.606082982358615,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 97.37996258318677,
+          "energy_error_pct": 31.274571134097574,
+          "mae_wh": 96.98807350346387,
+          "rmse_wh": 192.5513716100544,
+          "peak_kw": 16.21254639149088,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-09",
+      "actual_kwh": 49.22759,
+      "actual_peak_kw": 10.5228,
+      "actual_peak_time": "09:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 117.72875163516308,
+          "energy_error_pct": 139.15197074478579,
+          "mae_wh": 246.7763227977783,
+          "rmse_wh": 476.8757640918657,
+          "peak_kw": 23.21924601056757,
+          "peak_time": "12:05"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 111.4643078441153,
+          "energy_error_pct": 126.42649750701852,
+          "mae_wh": 223.74560936145846,
+          "rmse_wh": 424.44568940712765,
+          "peak_kw": 24.554474831483823,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 98.05447887399795,
+          "energy_error_pct": 99.18602327271753,
+          "mae_wh": 172.87786233599476,
+          "rmse_wh": 315.64618795822514,
+          "peak_kw": 16.096852765692134,
+          "peak_time": "13:05"
+        }
+      }
+    },
+    {
+      "date": "2025-05-10",
+      "actual_kwh": 50.238910000000004,
+      "actual_peak_kw": 12.9546,
+      "actual_peak_time": "10:55",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 79.9091156313016,
+          "energy_error_pct": 59.058219279243104,
+          "mae_wh": 113.99722104890104,
+          "rmse_wh": 233.01478554959684,
+          "peak_kw": 17.50504833992467,
+          "peak_time": "11:15"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 64.59395294314788,
+          "energy_error_pct": 28.573555722343258,
+          "mae_wh": 67.93902540693347,
+          "rmse_wh": 130.19415814701765,
+          "peak_kw": 9.29475812298706,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 68.0511680716329,
+          "energy_error_pct": 35.45510456264456,
+          "mae_wh": 78.19963434947883,
+          "rmse_wh": 144.36066212355087,
+          "peak_kw": 8.91881790182797,
+          "peak_time": "13:05"
+        }
+      }
+    },
+    {
+      "date": "2025-05-11",
+      "actual_kwh": 30.02582,
+      "actual_peak_kw": 5.83944,
+      "actual_peak_time": "10:30",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 62.33521452943523,
+          "energy_error_pct": 107.6053694101784,
+          "mae_wh": 115.48320510886758,
+          "rmse_wh": 207.91136358470922,
+          "peak_kw": 9.3146432264136,
+          "peak_time": "10:55"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 44.38116174175347,
+          "energy_error_pct": 47.809990673871596,
+          "mae_wh": 58.45163817751141,
+          "rmse_wh": 109.57429533215009,
+          "peak_kw": 6.91065608859438,
+          "peak_time": "13:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 46.22730102817562,
+          "energy_error_pct": 53.958496481280484,
+          "mae_wh": 58.80959186184646,
+          "rmse_wh": 108.51771233782014,
+          "peak_kw": 6.7021021680025035,
+          "peak_time": "13:30"
+        }
+      }
+    },
+    {
+      "date": "2025-05-12",
+      "actual_kwh": 42.506589999999996,
+      "actual_peak_kw": 11.124,
+      "actual_peak_time": "13:00",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 42.454422987314075,
+          "energy_error_pct": -0.12272688231619311,
+          "mae_wh": 61.070087587057614,
+          "rmse_wh": 118.98331043146558,
+          "peak_kw": 6.914554861037357,
+          "peak_time": "11:55"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 52.830472876292205,
+          "energy_error_pct": 24.287723094918245,
+          "mae_wh": 61.79405970435932,
+          "rmse_wh": 126.40263866137299,
+          "peak_kw": 12.601428329277057,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 56.24075901575449,
+          "energy_error_pct": 32.3106817454764,
+          "mae_wh": 61.25659708728785,
+          "rmse_wh": 117.27638679020245,
+          "peak_kw": 9.789736166152732,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-13",
+      "actual_kwh": 49.20939,
+      "actual_peak_kw": 13.66044,
+      "actual_peak_time": "11:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 39.83437379870018,
+          "energy_error_pct": -19.05127497272333,
+          "mae_wh": 63.13727776052706,
+          "rmse_wh": 140.89631441252934,
+          "peak_kw": 11.975377302849003,
+          "peak_time": "13:00"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 49.120731663131274,
+          "energy_error_pct": -0.18016548644217423,
+          "mae_wh": 48.85381456039502,
+          "rmse_wh": 114.93267869451826,
+          "peak_kw": 9.859381721712838,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 53.55113292690843,
+          "energy_error_pct": 8.822996844521814,
+          "mae_wh": 46.66818920487638,
+          "rmse_wh": 99.3257862156919,
+          "peak_kw": 9.306470204426518,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-14",
+      "actual_kwh": 48.637660000000004,
+      "actual_peak_kw": 10.22904,
+      "actual_peak_time": "11:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 44.20608630264834,
+          "energy_error_pct": -9.111403997132406,
+          "mae_wh": 67.4322151677452,
+          "rmse_wh": 135.2127368590263,
+          "peak_kw": 13.125331631230734,
+          "peak_time": "11:45"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 45.9192550960652,
+          "energy_error_pct": -5.589094754835666,
+          "mae_wh": 57.28002129607319,
+          "rmse_wh": 106.16367543640875,
+          "peak_kw": 8.730832860819639,
+          "peak_time": "13:00"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 51.42684374625201,
+          "energy_error_pct": 5.734617467723591,
+          "mae_wh": 51.20963959588332,
+          "rmse_wh": 101.4565914566362,
+          "peak_kw": 8.636437022172542,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-15",
+      "actual_kwh": 66.81721,
+      "actual_peak_kw": 14.05056,
+      "actual_peak_time": "11:10",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 42.01306595221268,
+          "energy_error_pct": -37.12238815087808,
+          "mae_wh": 103.07911974096447,
+          "rmse_wh": 220.41095814238406,
+          "peak_kw": 9.266418607334252,
+          "peak_time": "11:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.984388847434936,
+          "energy_error_pct": -35.66868648446271,
+          "mae_wh": 101.60142333195797,
+          "rmse_wh": 211.27574281286294,
+          "peak_kw": 7.668285658165448,
+          "peak_time": "10:50"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 50.84552029608359,
+          "energy_error_pct": -23.90355673922394,
+          "mae_wh": 91.32491345610462,
+          "rmse_wh": 190.61831494277973,
+          "peak_kw": 8.502706193837016,
+          "peak_time": "11:35"
+        }
+      }
+    },
+    {
+      "date": "2025-05-16",
+      "actual_kwh": 43.207879999999996,
+      "actual_peak_kw": 11.9082,
+      "actual_peak_time": "13:40",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 60.31009453241702,
+          "energy_error_pct": 39.581239654472796,
+          "mae_wh": 135.29623698425667,
+          "rmse_wh": 273.5540245454352,
+          "peak_kw": 13.001440723440746,
+          "peak_time": "10:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.457636822758545,
+          "energy_error_pct": -1.7363572969593677,
+          "mae_wh": 84.94723855914769,
+          "rmse_wh": 156.9331907922811,
+          "peak_kw": 7.668285658165448,
+          "peak_time": "10:50"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 51.03330332298986,
+          "energy_error_pct": 18.111102241049238,
+          "mae_wh": 83.01212021454519,
+          "rmse_wh": 161.26729670813856,
+          "peak_kw": 8.636437022172542,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-17",
+      "actual_kwh": 40.7389,
+      "actual_peak_kw": 9.05904,
+      "actual_peak_time": "11:15",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 38.10496919750038,
+          "energy_error_pct": -6.465394997163942,
+          "mae_wh": 101.4823052824845,
+          "rmse_wh": 189.70702165143751,
+          "peak_kw": 10.322164766416034,
+          "peak_time": "13:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 34.84062674438692,
+          "energy_error_pct": -14.478233962166598,
+          "mae_wh": 53.81521044404121,
+          "rmse_wh": 101.5288686948303,
+          "peak_kw": 5.028610985033404,
+          "peak_time": "11:25"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.30936402656782,
+          "energy_error_pct": -5.963675929964197,
+          "mae_wh": 52.42855443235021,
+          "rmse_wh": 96.19524316571719,
+          "peak_kw": 5.704410575826228,
+          "peak_time": "13:35"
+        }
+      }
+    },
+    {
+      "date": "2025-05-18",
+      "actual_kwh": 41.394239999999996,
+      "actual_peak_kw": 11.0238,
+      "actual_peak_time": "11:00",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 32.56541881631643,
+          "energy_error_pct": -21.328622493572947,
+          "mae_wh": 53.055764626158066,
+          "rmse_wh": 110.91559173829988,
+          "peak_kw": 5.603437300354693,
+          "peak_time": "13:00"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 34.41927427606751,
+          "energy_error_pct": -16.85008765454442,
+          "mae_wh": 48.49571724172686,
+          "rmse_wh": 106.95072228447967,
+          "peak_kw": 5.0767301168743,
+          "peak_time": "13:00"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.298845208470475,
+          "energy_error_pct": -7.4778394084044635,
+          "mae_wh": 49.10309897896479,
+          "rmse_wh": 103.19130973132813,
+          "peak_kw": 5.704410575826228,
+          "peak_time": "13:35"
+        }
+      }
+    },
+    {
+      "date": "2025-05-19",
+      "actual_kwh": 50.855290000000004,
+      "actual_peak_kw": 13.48704,
+      "actual_peak_time": "12:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 36.265313005829704,
+          "energy_error_pct": -28.689202232786993,
+          "mae_wh": 86.26168923480132,
+          "rmse_wh": 175.57094375082343,
+          "peak_kw": 6.034849139681797,
+          "peak_time": "11:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.61663272665458,
+          "energy_error_pct": -18.16656098774665,
+          "mae_wh": 69.17490755765486,
+          "rmse_wh": 148.26756554672912,
+          "peak_kw": 7.730573031386115,
+          "peak_time": "11:25"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 50.59342614935461,
+          "energy_error_pct": -0.5149195897720449,
+          "mae_wh": 59.77702613821245,
+          "rmse_wh": 125.04280366632638,
+          "peak_kw": 8.636437022172542,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-20",
+      "actual_kwh": 58.25635,
+      "actual_peak_kw": 13.48752,
+      "actual_peak_time": "09:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 48.50098307987953,
+          "energy_error_pct": -16.745585537234085,
+          "mae_wh": 76.52536471802455,
+          "rmse_wh": 154.1598176973807,
+          "peak_kw": 13.355137058545912,
+          "peak_time": "12:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 44.66284037094719,
+          "energy_error_pct": -23.33395351588764,
+          "mae_wh": 62.86719832744489,
+          "rmse_wh": 135.8732741605204,
+          "peak_kw": 9.394630486361343,
+          "peak_time": "11:50"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 50.58354333435422,
+          "energy_error_pct": -13.17076450145912,
+          "mae_wh": 51.79980968466298,
+          "rmse_wh": 112.56670056347504,
+          "peak_kw": 8.498100656931772,
+          "peak_time": "11:15"
+        }
+      }
+    },
+    {
+      "date": "2025-05-21",
+      "actual_kwh": 43.70686,
+      "actual_peak_kw": 9.78252,
+      "actual_peak_time": "10:00",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 50.60959225859391,
+          "energy_error_pct": 15.793246777723024,
+          "mae_wh": 58.655059623293354,
+          "rmse_wh": 121.95374499092743,
+          "peak_kw": 12.688841081322233,
+          "peak_time": "12:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 45.624312434401375,
+          "energy_error_pct": 4.387074327465701,
+          "mae_wh": 49.643495593913336,
+          "rmse_wh": 94.06598788499076,
+          "peak_kw": 8.99602217270786,
+          "peak_time": "11:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 50.348354642527894,
+          "energy_error_pct": 15.195542856494137,
+          "mae_wh": 49.2173006427501,
+          "rmse_wh": 92.51652174947777,
+          "peak_kw": 8.498100656931772,
+          "peak_time": "11:15"
+        }
+      }
+    },
+    {
+      "date": "2025-05-22",
+      "actual_kwh": 54.43061,
+      "actual_peak_kw": 12.662400000000002,
+      "actual_peak_time": "11:50",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 38.6657288316568,
+          "energy_error_pct": -28.963263811195937,
+          "mae_wh": 69.05046975415019,
+          "rmse_wh": 140.13267535028308,
+          "peak_kw": 8.748883822914674,
+          "peak_time": "09:45"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 45.71812255398444,
+          "energy_error_pct": -16.006595270594172,
+          "mae_wh": 57.348656828868634,
+          "rmse_wh": 116.31850875723907,
+          "peak_kw": 8.943420440611852,
+          "peak_time": "11:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.90628523870728,
+          "energy_error_pct": -8.31209637608824,
+          "mae_wh": 53.810912133425845,
+          "rmse_wh": 104.98795101323331,
+          "peak_kw": 8.458757533925029,
+          "peak_time": "11:15"
+        }
+      }
+    },
+    {
+      "date": "2025-05-23",
+      "actual_kwh": 29.179050000000004,
+      "actual_peak_kw": 9.01764,
+      "actual_peak_time": "14:10",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 46.85807650682595,
+          "energy_error_pct": 60.588081198071706,
+          "mae_wh": 77.79348881663121,
+          "rmse_wh": 162.6990186419549,
+          "peak_kw": 11.592847705417183,
+          "peak_time": "11:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 44.06372989913363,
+          "energy_error_pct": 51.01153018735574,
+          "mae_wh": 67.65495011728221,
+          "rmse_wh": 133.13415969356564,
+          "peak_kw": 8.8879499521231,
+          "peak_time": "11:55"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.647025652424944,
+          "energy_error_pct": 70.14613447807567,
+          "mae_wh": 78.7071808198811,
+          "rmse_wh": 144.78476610774317,
+          "peak_kw": 8.15202045938001,
+          "peak_time": "11:15"
+        }
+      }
+    },
+    {
+      "date": "2025-05-24",
+      "actual_kwh": 35.0742,
+      "actual_peak_kw": 7.14516,
+      "actual_peak_time": "11:35",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 28.7013278332184,
+          "energy_error_pct": -18.169686455518864,
+          "mae_wh": 43.96921190098314,
+          "rmse_wh": 87.0675482369204,
+          "peak_kw": 7.671141734021852,
+          "peak_time": "14:10"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 33.835077655140424,
+          "energy_error_pct": -3.5328598937668487,
+          "mae_wh": 35.34559742201656,
+          "rmse_wh": 69.46059843719108,
+          "peak_kw": 5.313258952047365,
+          "peak_time": "11:20"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 37.46858482434334,
+          "energy_error_pct": 6.826627048780409,
+          "mae_wh": 33.79283207126801,
+          "rmse_wh": 64.80125040367714,
+          "peak_kw": 5.330210543306981,
+          "peak_time": "13:00"
+        }
+      }
+    },
+    {
+      "date": "2025-05-25",
+      "actual_kwh": 31.79232,
+      "actual_peak_kw": 7.34184,
+      "actual_peak_time": "12:00",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 37.34577439106186,
+          "energy_error_pct": 17.46791171912543,
+          "mae_wh": 36.03452891969856,
+          "rmse_wh": 67.55671805727292,
+          "peak_kw": 5.40957182114454,
+          "peak_time": "11:35"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 30.189161928008637,
+          "energy_error_pct": -5.0425954192439,
+          "mae_wh": 31.779965608773313,
+          "rmse_wh": 59.9763596221673,
+          "peak_kw": 4.16725011700612,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 32.52783608672738,
+          "energy_error_pct": 2.313502401609502,
+          "mae_wh": 31.89856969106815,
+          "rmse_wh": 58.592014930661435,
+          "peak_kw": 4.350770756775876,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-05-26",
+      "actual_kwh": 56.73411,
+      "actual_peak_kw": 11.38176,
+      "actual_peak_time": "13:10",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 30.254711605382393,
+          "energy_error_pct": -46.672801238298455,
+          "mae_wh": 96.59543088984081,
+          "rmse_wh": 180.2731586093123,
+          "peak_kw": 4.22890553096776,
+          "peak_time": "12:05"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.835105736555924,
+          "energy_error_pct": -26.261105115501195,
+          "mae_wh": 60.05931098587135,
+          "rmse_wh": 122.54356337329824,
+          "peak_kw": 8.491310932280024,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 48.99599004010744,
+          "energy_error_pct": -13.639272670167134,
+          "mae_wh": 46.30104790919463,
+          "rmse_wh": 99.17973634242831,
+          "peak_kw": 7.9470813889394245,
+          "peak_time": "10:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-27",
+      "actual_kwh": 56.60152,
+      "actual_peak_kw": 11.06556,
+      "actual_peak_time": "12:40",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 50.06789001198228,
+          "energy_error_pct": -11.543205885668307,
+          "mae_wh": 50.47475476464267,
+          "rmse_wh": 101.19227239176227,
+          "peak_kw": 10.36362100086617,
+          "peak_time": "12:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.10696917245955,
+          "energy_error_pct": -25.60805933752389,
+          "mae_wh": 59.24432344147029,
+          "rmse_wh": 121.90152256901301,
+          "peak_kw": 7.803287250417383,
+          "peak_time": "12:20"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.114092832767824,
+          "energy_error_pct": -13.228314658744456,
+          "mae_wh": 52.63002491433853,
+          "rmse_wh": 106.25326641446081,
+          "peak_kw": 8.174976682345186,
+          "peak_time": "13:00"
+        }
+      }
+    },
+    {
+      "date": "2025-05-28",
+      "actual_kwh": 51.65602,
+      "actual_peak_kw": 13.49952,
+      "actual_peak_time": "11:50",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 52.2285564499929,
+          "energy_error_pct": 1.1083634588822555,
+          "mae_wh": 79.53313953278263,
+          "rmse_wh": 155.71922056886925,
+          "peak_kw": 11.829931552645633,
+          "peak_time": "12:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.745596703168296,
+          "energy_error_pct": -19.185417879332757,
+          "mae_wh": 56.083436955910265,
+          "rmse_wh": 112.27723534229007,
+          "peak_kw": 7.845686729239247,
+          "peak_time": "11:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.38700648330577,
+          "energy_error_pct": -4.392544212067106,
+          "mae_wh": 56.0559908289791,
+          "rmse_wh": 107.76557250071521,
+          "peak_kw": 8.267813047900182,
+          "peak_time": "13:00"
+        }
+      }
+    },
+    {
+      "date": "2025-05-29",
+      "actual_kwh": 54.50967,
+      "actual_peak_kw": 12.68712,
+      "actual_peak_time": "09:05",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 45.10376794123339,
+          "energy_error_pct": -17.255474228272895,
+          "mae_wh": 62.86454482055711,
+          "rmse_wh": 142.61059467063615,
+          "peak_kw": 13.028114325400654,
+          "peak_time": "11:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.29968476454455,
+          "energy_error_pct": -22.399668234013248,
+          "mae_wh": 58.82097066095376,
+          "rmse_wh": 145.70423517123086,
+          "peak_kw": 7.845686729239247,
+          "peak_time": "11:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.09388674307254,
+          "energy_error_pct": -9.93545412571285,
+          "mae_wh": 59.371383217757185,
+          "rmse_wh": 140.25906441127597,
+          "peak_kw": 8.188110437344564,
+          "peak_time": "13:00"
+        }
+      }
+    },
+    {
+      "date": "2025-05-30",
+      "actual_kwh": 67.25323,
+      "actual_peak_kw": 14.341680000000002,
+      "actual_peak_time": "10:05",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 47.19605476352189,
+          "energy_error_pct": -29.823363482286435,
+          "mae_wh": 99.55437396339521,
+          "rmse_wh": 178.21880745629534,
+          "peak_kw": 10.414289257130642,
+          "peak_time": "09:05"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.07468637510947,
+          "energy_error_pct": -37.438415411260586,
+          "mae_wh": 88.84044226532299,
+          "rmse_wh": 169.9722353075547,
+          "peak_kw": 7.389821787471792,
+          "peak_time": "14:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 48.671683286582265,
+          "energy_error_pct": -27.62922570918561,
+          "mae_wh": 68.64605014840056,
+          "rmse_wh": 137.79538923032035,
+          "peak_kw": 7.729166850186456,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-05-31",
+      "actual_kwh": 32.15085,
+      "actual_peak_kw": 5.51004,
+      "actual_peak_time": "13:55",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 57.642168782375386,
+          "energy_error_pct": 79.28660916391135,
+          "mae_wh": 94.5237276311432,
+          "rmse_wh": 182.01481696398852,
+          "peak_kw": 12.76883041466639,
+          "peak_time": "10:05"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 37.022397767843984,
+          "energy_error_pct": 15.152158552088002,
+          "mae_wh": 32.30461386804874,
+          "rmse_wh": 60.721361907970916,
+          "peak_kw": 5.224175695047372,
+          "peak_time": "13:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 37.528957352507426,
+          "energy_error_pct": 16.72772991229603,
+          "mae_wh": 33.1995351369643,
+          "rmse_wh": 61.029808211930316,
+          "peak_kw": 5.300107470161249,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-01",
+      "actual_kwh": 31.42188,
+      "actual_peak_kw": 7.760280000000001,
+      "actual_peak_time": "15:35",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 36.42335498050249,
+          "energy_error_pct": 15.917172939691993,
+          "mae_wh": 55.24770734447793,
+          "rmse_wh": 98.44658520081995,
+          "peak_kw": 5.515210712779939,
+          "peak_time": "13:20"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 37.23503116978599,
+          "energy_error_pct": 18.500328973906054,
+          "mae_wh": 48.965492429009515,
+          "rmse_wh": 86.74749719362426,
+          "peak_kw": 5.178213789134882,
+          "peak_time": "13:20"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 37.556532787877764,
+          "energy_error_pct": 19.52350651163379,
+          "mae_wh": 51.95991116829911,
+          "rmse_wh": 93.5334113954235,
+          "peak_kw": 5.224101079259033,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-02",
+      "actual_kwh": 75.14501000000001,
+      "actual_peak_kw": 14.276760000000001,
+      "actual_peak_time": "12:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 38.82127419659721,
+          "energy_error_pct": -48.33818746368228,
+          "mae_wh": 136.51281706289186,
+          "rmse_wh": 276.6221913961177,
+          "peak_kw": 5.639097300019209,
+          "peak_time": "13:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 49.64652915237066,
+          "energy_error_pct": -33.93236736228972,
+          "mae_wh": 113.81769090968538,
+          "rmse_wh": 233.20981410317148,
+          "peak_kw": 7.961299398450915,
+          "peak_time": "12:55"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 51.19506844308648,
+          "energy_error_pct": -31.871632669838657,
+          "mae_wh": 104.39149527900953,
+          "rmse_wh": 206.88318561442756,
+          "peak_kw": 8.172072304910861,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-03",
+      "actual_kwh": 38.846199999999996,
+      "actual_peak_kw": 6.213840000000001,
+      "actual_peak_time": "10:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 75.7772763892161,
+          "energy_error_pct": 95.06998468116859,
+          "mae_wh": 134.8444043023465,
+          "rmse_wh": 262.9123807263874,
+          "peak_kw": 13.295484012955104,
+          "peak_time": "12:45"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 51.791941118314185,
+          "energy_error_pct": 33.32563061075264,
+          "mae_wh": 50.60340580784834,
+          "rmse_wh": 97.91729938516883,
+          "peak_kw": 8.750077248260663,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 51.68778559291489,
+          "energy_error_pct": 33.057507794623156,
+          "mae_wh": 50.10395528687836,
+          "rmse_wh": 98.2868804792038,
+          "peak_kw": 8.193783400160575,
+          "peak_time": "11:35"
+        }
+      }
+    },
+    {
+      "date": "2025-06-04",
+      "actual_kwh": 42.09114999999999,
+      "actual_peak_kw": 11.292,
+      "actual_peak_time": "11:05",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 35.155227898399055,
+          "energy_error_pct": -16.47833832432932,
+          "mae_wh": 40.978014494002565,
+          "rmse_wh": 98.83476996327366,
+          "peak_kw": 5.72053322422711,
+          "peak_time": "10:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 82.4755371349025,
+          "energy_error_pct": 95.945079036573,
+          "mae_wh": 142.16885435461666,
+          "rmse_wh": 257.551430303065,
+          "peak_kw": 14.282953083694599,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 86.14358147567633,
+          "energy_error_pct": 104.65960534619829,
+          "mae_wh": 152.9675820881224,
+          "rmse_wh": 282.4911945645513,
+          "peak_kw": 14.70589968389486,
+          "peak_time": "13:00"
+        }
+      }
+    },
+    {
+      "date": "2025-06-05",
+      "actual_kwh": 59.31842,
+      "actual_peak_kw": 14.16228,
+      "actual_peak_time": "12:20",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 66.50935454448476,
+          "energy_error_pct": 12.122599598041827,
+          "mae_wh": 109.97640954261031,
+          "rmse_wh": 223.2764556975666,
+          "peak_kw": 16.956277662668285,
+          "peak_time": "11:10"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 79.47534662358544,
+          "energy_error_pct": 33.980889281247606,
+          "mae_wh": 112.3521998724552,
+          "rmse_wh": 213.75762072450036,
+          "peak_kw": 13.947487172825365,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 84.67978331617778,
+          "energy_error_pct": 42.75461705854231,
+          "mae_wh": 123.52931666348604,
+          "rmse_wh": 238.44981085579542,
+          "peak_kw": 13.926518435303038,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-06",
+      "actual_kwh": 36.83056,
+      "actual_peak_kw": 8.595,
+      "actual_peak_time": "10:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 88.49377389331697,
+          "energy_error_pct": 140.2726808751129,
+          "mae_wh": 189.54465457817352,
+          "rmse_wh": 350.1727289839569,
+          "peak_kw": 18.90355560011763,
+          "peak_time": "12:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 80.63021228860036,
+          "energy_error_pct": 118.92203726633635,
+          "mae_wh": 152.08579295643,
+          "rmse_wh": 259.95032968677094,
+          "peak_kw": 13.931478990070477,
+          "peak_time": "12:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 84.37321774589715,
+          "energy_error_pct": 129.0848082296255,
+          "mae_wh": 165.0823396831549,
+          "rmse_wh": 280.60540181158194,
+          "peak_kw": 13.926518435303038,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-07",
+      "actual_kwh": 28.075010000000002,
+      "actual_peak_kw": 5.67204,
+      "actual_peak_time": "13:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 56.27751076567368,
+          "energy_error_pct": 100.45410764118579,
+          "mae_wh": 106.68629161766012,
+          "rmse_wh": 209.0207668719701,
+          "peak_kw": 14.053005851166805,
+          "peak_time": "10:45"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 60.728848101507275,
+          "energy_error_pct": 116.3092661463247,
+          "mae_wh": 113.83600960883132,
+          "rmse_wh": 203.27054059182575,
+          "peak_kw": 9.834470015090874,
+          "peak_time": "11:20"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 67.0565343970368,
+          "energy_error_pct": 138.84776674001822,
+          "mae_wh": 135.55853705208315,
+          "rmse_wh": 237.77453256973254,
+          "peak_kw": 11.040904393938048,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-08",
+      "actual_kwh": 20.301129999999997,
+      "actual_peak_kw": 5.00844,
+      "actual_peak_time": "13:50",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 55.3571289524626,
+          "energy_error_pct": 172.68003777357524,
+          "mae_wh": 122.36785201606553,
+          "rmse_wh": 208.07859054845392,
+          "peak_kw": 9.003938294913086,
+          "peak_time": "10:35"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 58.19815268968734,
+          "energy_error_pct": 186.6744495980635,
+          "mae_wh": 132.90614972119712,
+          "rmse_wh": 227.9061073257632,
+          "peak_kw": 9.834470015090874,
+          "peak_time": "11:20"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 66.73728277937799,
+          "energy_error_pct": 228.73678844171727,
+          "mae_wh": 162.52496230477544,
+          "rmse_wh": 279.9323527977929,
+          "peak_kw": 10.506776163030365,
+          "peak_time": "13:10"
+        }
+      }
+    },
+    {
+      "date": "2025-06-09",
+      "actual_kwh": 64.49847,
+      "actual_peak_kw": 13.516560000000002,
+      "actual_peak_time": "11:20",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 49.17733146838426,
+          "energy_error_pct": -23.754266623093134,
+          "mae_wh": 65.18063257898454,
+          "rmse_wh": 129.7557212476712,
+          "peak_kw": 9.828251778788374,
+          "peak_time": "13:10"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 62.266077099329635,
+          "energy_error_pct": -3.4611563664539213,
+          "mae_wh": 60.093632002846185,
+          "rmse_wh": 122.93343682556325,
+          "peak_kw": 11.73674666736011,
+          "peak_time": "10:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 79.81183357664526,
+          "energy_error_pct": 23.742212143396955,
+          "mae_wh": 78.58809844682838,
+          "rmse_wh": 147.76934308979173,
+          "peak_kw": 13.160001385770487,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-10",
+      "actual_kwh": 50.60199,
+      "actual_peak_kw": 11.36472,
+      "actual_peak_time": "10:55",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 92.32763495609797,
+          "energy_error_pct": 82.45850599175641,
+          "mae_wh": 151.24030632154694,
+          "rmse_wh": 287.065134176235,
+          "peak_kw": 17.736825518978687,
+          "peak_time": "11:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 61.37637093837843,
+          "energy_error_pct": 21.29240557214931,
+          "mae_wh": 67.2669128805826,
+          "rmse_wh": 127.61768944345758,
+          "peak_kw": 9.97590401668822,
+          "peak_time": "10:25"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 79.86397787865327,
+          "energy_error_pct": 57.82774131739339,
+          "mae_wh": 114.380106503364,
+          "rmse_wh": 208.15152614989577,
+          "peak_kw": 13.195079857523009,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-11",
+      "actual_kwh": 46.617439999999995,
+      "actual_peak_kw": 9.46812,
+      "actual_peak_time": "15:15",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 76.07777518416702,
+          "energy_error_pct": 63.19595238212787,
+          "mae_wh": 127.00963571521646,
+          "rmse_wh": 240.47221994230284,
+          "peak_kw": 15.782028823181438,
+          "peak_time": "11:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.80768858400502,
+          "energy_error_pct": -10.317493659014676,
+          "mae_wh": 53.86801472234751,
+          "rmse_wh": 109.99462927817049,
+          "peak_kw": 7.37055530976105,
+          "peak_time": "11:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 50.01918875337033,
+          "energy_error_pct": 7.297159074737558,
+          "mae_wh": 54.34037152154989,
+          "rmse_wh": 105.20770189418873,
+          "peak_kw": 8.058925541981294,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-12",
+      "actual_kwh": 62.60556,
+      "actual_peak_kw": 13.68348,
+      "actual_peak_time": "10:50",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 45.249240027419795,
+          "energy_error_pct": -27.723288430900073,
+          "mae_wh": 97.91260971814644,
+          "rmse_wh": 186.92987562059395,
+          "peak_kw": 8.476818614552178,
+          "peak_time": "14:00"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.1634144926932,
+          "energy_error_pct": -32.652284409414754,
+          "mae_wh": 84.5368130306822,
+          "rmse_wh": 170.18023284163726,
+          "peak_kw": 7.515122919697692,
+          "peak_time": "15:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 48.99947468370907,
+          "energy_error_pct": -21.73303028723157,
+          "mae_wh": 60.371973128988685,
+          "rmse_wh": 125.91917090120106,
+          "peak_kw": 7.986343071901347,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-13",
+      "actual_kwh": 55.06934,
+      "actual_peak_kw": 14.75232,
+      "actual_peak_time": "12:50",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 59.35946253499397,
+          "energy_error_pct": 7.790401219615095,
+          "mae_wh": 108.43354956170589,
+          "rmse_wh": 191.68085500610383,
+          "peak_kw": 13.524141560516716,
+          "peak_time": "12:35"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.46556562923268,
+          "energy_error_pct": -22.88709901147775,
+          "mae_wh": 103.60713324379732,
+          "rmse_wh": 191.3129047858964,
+          "peak_kw": 7.231317023118482,
+          "peak_time": "13:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.16394264509385,
+          "energy_error_pct": -10.723566606947077,
+          "mae_wh": 96.1840208080998,
+          "rmse_wh": 176.95633246648154,
+          "peak_kw": 7.986343071901347,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-14",
+      "actual_kwh": 22.771690000000003,
+      "actual_peak_kw": 6.19872,
+      "actual_peak_time": "10:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 50.13833117337692,
+          "energy_error_pct": 120.17834940391738,
+          "mae_wh": 103.97520212283573,
+          "rmse_wh": 214.03742684210673,
+          "peak_kw": 13.683825623005097,
+          "peak_time": "11:55"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.44005996220103,
+          "energy_error_pct": 81.98060821221891,
+          "mae_wh": 70.07573734370399,
+          "rmse_wh": 121.26393492021964,
+          "peak_kw": 5.770805264401266,
+          "peak_time": "10:55"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 43.11960503006823,
+          "energy_error_pct": 89.35619196497152,
+          "mae_wh": 73.37927186005557,
+          "rmse_wh": 127.71657354894752,
+          "peak_kw": 5.784141211168996,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-15",
+      "actual_kwh": 16.324360000000002,
+      "actual_peak_kw": 6.49656,
+      "actual_peak_time": "11:20",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 36.73921330591023,
+          "energy_error_pct": 125.05760290700665,
+          "mae_wh": 78.59240380931394,
+          "rmse_wh": 139.59785784027648,
+          "peak_kw": 6.017209441360473,
+          "peak_time": "12:40"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 42.308061033619154,
+          "energy_error_pct": 159.17133065932845,
+          "mae_wh": 91.01419769809138,
+          "rmse_wh": 152.69679996725728,
+          "peak_kw": 5.783780604289791,
+          "peak_time": "13:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 43.034204474106694,
+          "energy_error_pct": 163.61955062315886,
+          "mae_wh": 93.79936579685533,
+          "rmse_wh": 157.01787783219478,
+          "peak_kw": 5.5961890278021125,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-16",
+      "actual_kwh": 44.86708,
+      "actual_peak_kw": 10.082880000000001,
+      "actual_peak_time": "12:35",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 32.599614349495695,
+          "energy_error_pct": -27.34179636941898,
+          "mae_wh": 48.5208844943036,
+          "rmse_wh": 100.9515043470023,
+          "peak_kw": 6.046725350810919,
+          "peak_time": "13:10"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 48.50934054184242,
+          "energy_error_pct": 8.117890760536284,
+          "mae_wh": 41.06461741697464,
+          "rmse_wh": 76.44755367231096,
+          "peak_kw": 9.358344629737994,
+          "peak_time": "12:05"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.546698312611255,
+          "energy_error_pct": 10.429959588658889,
+          "mae_wh": 41.78639369841872,
+          "rmse_wh": 76.57795711982453,
+          "peak_kw": 8.074173034911237,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-17",
+      "actual_kwh": 42.71468,
+      "actual_peak_kw": 7.006080000000001,
+      "actual_peak_time": "10:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 45.88620998912494,
+          "energy_error_pct": 7.424918058908414,
+          "mae_wh": 55.47045886292789,
+          "rmse_wh": 110.327562690859,
+          "peak_kw": 10.952697925106055,
+          "peak_time": "13:20"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 44.83856650005754,
+          "energy_error_pct": 4.9722636340891135,
+          "mae_wh": 40.94035605382804,
+          "rmse_wh": 83.41064404874393,
+          "peak_kw": 8.904015811710051,
+          "peak_time": "10:50"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 49.254067728077324,
+          "energy_error_pct": 15.309462058658351,
+          "mae_wh": 40.49820326871408,
+          "rmse_wh": 74.4809941006952,
+          "peak_kw": 7.505508307306984,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-18",
+      "actual_kwh": 39.80521000000001,
+      "actual_peak_kw": 9.51408,
+      "actual_peak_time": "12:15",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 39.90226239780447,
+          "energy_error_pct": 0.2438183288179241,
+          "mae_wh": 36.246161905755585,
+          "rmse_wh": 75.85594236251754,
+          "peak_kw": 6.395686635107561,
+          "peak_time": "10:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 40.91172253380693,
+          "energy_error_pct": 2.7798183549513356,
+          "mae_wh": 36.92506947387113,
+          "rmse_wh": 69.60052819380657,
+          "peak_kw": 8.366750956321793,
+          "peak_time": "12:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 46.79594262058765,
+          "energy_error_pct": 17.56235583379071,
+          "mae_wh": 43.65422505986922,
+          "rmse_wh": 80.98821391734573,
+          "peak_kw": 7.252978204714839,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-19",
+      "actual_kwh": 47.13512,
+      "actual_peak_kw": 8.44656,
+      "actual_peak_time": "09:25",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 34.36125491217093,
+          "energy_error_pct": -27.10052523008124,
+          "mae_wh": 54.965143575641356,
+          "rmse_wh": 103.06109309222168,
+          "peak_kw": 7.998388957372064,
+          "peak_time": "12:15"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 40.45641676513233,
+          "energy_error_pct": -14.169271733831746,
+          "mae_wh": 50.27357509348982,
+          "rmse_wh": 94.43419847520623,
+          "peak_kw": 8.366750956321793,
+          "peak_time": "12:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 46.450591380848955,
+          "energy_error_pct": -1.452268752367758,
+          "mae_wh": 43.721349274044236,
+          "rmse_wh": 84.88944544880601,
+          "peak_kw": 7.053648198361209,
+          "peak_time": "12:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-20",
+      "actual_kwh": 27.57065,
+      "actual_peak_kw": 8.38176,
+      "actual_peak_time": "12:55",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 40.547691446858735,
+          "energy_error_pct": 47.06831883491587,
+          "mae_wh": 62.10699777775413,
+          "rmse_wh": 116.18896458823359,
+          "peak_kw": 7.456311515594742,
+          "peak_time": "09:25"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 36.85562403617229,
+          "energy_error_pct": 33.67702261706664,
+          "mae_wh": 43.265137466541596,
+          "rmse_wh": 79.95863221640639,
+          "peak_kw": 7.736418338866178,
+          "peak_time": "12:35"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.91431190273797,
+          "energy_error_pct": 62.90624959055362,
+          "mae_wh": 65.285612980478,
+          "rmse_wh": 114.9048705270825,
+          "peak_kw": 6.897827506719881,
+          "peak_time": "11:20"
+        }
+      }
+    },
+    {
+      "date": "2025-06-21",
+      "actual_kwh": 19.52286,
+      "actual_peak_kw": 5.9910000000000005,
+      "actual_peak_time": "12:40",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 24.061142506060204,
+          "energy_error_pct": 23.24599216539074,
+          "mae_wh": 42.653498893858746,
+          "rmse_wh": 90.96712348741,
+          "peak_kw": 8.306796674817635,
+          "peak_time": "12:55"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 32.93114781111276,
+          "energy_error_pct": 68.67993629577202,
+          "mae_wh": 58.81009314892534,
+          "rmse_wh": 106.98603884650467,
+          "peak_kw": 5.120159899715032,
+          "peak_time": "13:00"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.34291833548269,
+          "energy_error_pct": 96.40010907972855,
+          "mae_wh": 71.75698715306883,
+          "rmse_wh": 128.7149946654817,
+          "peak_kw": 5.189464209093053,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-22",
+      "actual_kwh": 22.93105,
+      "actual_peak_kw": 8.20632,
+      "actual_peak_time": "13:10",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 38.834974412707915,
+          "energy_error_pct": 69.35541291265737,
+          "mae_wh": 73.83334511806477,
+          "rmse_wh": 130.8695050717574,
+          "peak_kw": 6.005728054573728,
+          "peak_time": "13:30"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 33.25796932007646,
+          "energy_error_pct": 45.03465528214565,
+          "mae_wh": 55.2046194896539,
+          "rmse_wh": 100.76827269626631,
+          "peak_kw": 5.120159899715032,
+          "peak_time": "13:00"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.36516394775644,
+          "energy_error_pct": 67.30661678273104,
+          "mae_wh": 66.29494783472344,
+          "rmse_wh": 117.20515704039803,
+          "peak_kw": 5.189464209093053,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-23",
+      "actual_kwh": 39.03322,
+      "actual_peak_kw": 9.98568,
+      "actual_peak_time": "15:20",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 47.86020052115999,
+          "energy_error_pct": 22.614020880572983,
+          "mae_wh": 48.80396721560212,
+          "rmse_wh": 89.97905826375053,
+          "peak_kw": 6.236789288634865,
+          "peak_time": "13:10"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 37.1483471337462,
+          "energy_error_pct": -4.828894122119065,
+          "mae_wh": 44.72033538379222,
+          "rmse_wh": 95.93200897883254,
+          "peak_kw": 7.1230756385093725,
+          "peak_time": "12:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.83426156962017,
+          "energy_error_pct": 14.861806352691808,
+          "mae_wh": 48.390406469734266,
+          "rmse_wh": 92.18592672914436,
+          "peak_kw": 6.9042843250158015,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-24",
+      "actual_kwh": 59.751219999999996,
+      "actual_peak_kw": 13.195800000000002,
+      "actual_peak_time": "12:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 33.62048893701929,
+          "energy_error_pct": -43.73254816049062,
+          "mae_wh": 101.57909217825244,
+          "rmse_wh": 194.906915997725,
+          "peak_kw": 8.496077213866684,
+          "peak_time": "14:55"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 35.73698469769563,
+          "energy_error_pct": -40.190368167050586,
+          "mae_wh": 88.88697423957053,
+          "rmse_wh": 175.00783686994495,
+          "peak_kw": 6.635817270909466,
+          "peak_time": "12:15"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.61197081458061,
+          "energy_error_pct": -25.337138196373875,
+          "mae_wh": 75.64240701350339,
+          "rmse_wh": 150.49198617230573,
+          "peak_kw": 6.867776242714347,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-25",
+      "actual_kwh": 50.09819,
+      "actual_peak_kw": 11.23056,
+      "actual_peak_time": "10:15",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 57.116761528493704,
+          "energy_error_pct": 14.009630943740081,
+          "mae_wh": 80.71956847262659,
+          "rmse_wh": 150.27221805527446,
+          "peak_kw": 12.847965430913884,
+          "peak_time": "12:50"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 39.20963602434731,
+          "energy_error_pct": -21.73442588575094,
+          "mae_wh": 65.6613992288041,
+          "rmse_wh": 127.60009334851436,
+          "peak_kw": 8.193345962043583,
+          "peak_time": "12:55"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.716305040458565,
+          "energy_error_pct": -10.742673456948115,
+          "mae_wh": 44.27509996164356,
+          "rmse_wh": 89.8208484438594,
+          "peak_kw": 6.867776242714347,
+          "peak_time": "11:25"
+        }
+      }
+    },
+    {
+      "date": "2025-06-26",
+      "actual_kwh": 56.68254,
+      "actual_peak_kw": 12.546959999999999,
+      "actual_peak_time": "12:45",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 43.5352681178763,
+          "energy_error_pct": -23.194570818674855,
+          "mae_wh": 67.4608181361196,
+          "rmse_wh": 137.8366179024465,
+          "peak_kw": 9.550484656959174,
+          "peak_time": "10:15"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 43.19395604991648,
+          "energy_error_pct": -23.796717560793013,
+          "mae_wh": 61.540775476110575,
+          "rmse_wh": 132.61267270973002,
+          "peak_kw": 8.222567227813194,
+          "peak_time": "13:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.554263462958595,
+          "energy_error_pct": -21.396847313196275,
+          "mae_wh": 48.84994878114573,
+          "rmse_wh": 115.91385544302008,
+          "peak_kw": 6.8601680010209165,
+          "peak_time": "13:10"
+        }
+      }
+    },
+    {
+      "date": "2025-06-27",
+      "actual_kwh": 51.53231,
+      "actual_peak_kw": 11.52336,
+      "actual_peak_time": "10:15",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 47.74661548191873,
+          "energy_error_pct": -7.346254258893648,
+          "mae_wh": 54.75467500484857,
+          "rmse_wh": 115.49132694580727,
+          "peak_kw": 10.847173627268948,
+          "peak_time": "10:20"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 44.42830088849335,
+          "energy_error_pct": -13.785543693862468,
+          "mae_wh": 63.86614572314896,
+          "rmse_wh": 129.8632636837214,
+          "peak_kw": 8.222567227813194,
+          "peak_time": "13:10"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.458874903494994,
+          "energy_error_pct": -13.726213896689298,
+          "mae_wh": 57.236800205493715,
+          "rmse_wh": 116.55273416900948,
+          "peak_kw": 6.817715860562517,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-28",
+      "actual_kwh": 20.746049999999997,
+      "actual_peak_kw": 6.3368400000000005,
+      "actual_peak_time": "13:05",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 43.957398440737364,
+          "energy_error_pct": 111.88321844754725,
+          "mae_wh": 89.7178371902597,
+          "rmse_wh": 171.63430611129357,
+          "peak_kw": 10.505490406366095,
+          "peak_time": "10:15"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 40.287673706780566,
+          "energy_error_pct": 94.19443077974157,
+          "mae_wh": 70.17278667052402,
+          "rmse_wh": 124.3134841327683,
+          "peak_kw": 5.695660407994503,
+          "peak_time": "13:30"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.11275700562141,
+          "energy_error_pct": 83.71090885070372,
+          "mae_wh": 63.039840885591374,
+          "rmse_wh": 113.614513682225,
+          "peak_kw": 5.156462131900864,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-29",
+      "actual_kwh": 23.19602,
+      "actual_peak_kw": 6.424320000000001,
+      "actual_peak_time": "11:40",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 33.439602422778584,
+          "energy_error_pct": 44.160948398814035,
+          "mae_wh": 54.9632388013998,
+          "rmse_wh": 107.03164471830713,
+          "peak_kw": 5.729637798059786,
+          "peak_time": "12:20"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 38.427390872464954,
+          "energy_error_pct": 65.6637253824792,
+          "mae_wh": 66.33596852153235,
+          "rmse_wh": 125.47040544385068,
+          "peak_kw": 5.500396766280007,
+          "peak_time": "12:45"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 38.068265240580686,
+          "energy_error_pct": 64.1155044726668,
+          "mae_wh": 61.38014207521448,
+          "rmse_wh": 117.48424850228551,
+          "peak_kw": 5.156462131900864,
+          "peak_time": "13:15"
+        }
+      }
+    },
+    {
+      "date": "2025-06-30",
+      "actual_kwh": 52.01216,
+      "actual_peak_kw": 12.971400000000001,
+      "actual_peak_time": "12:10",
+      "methods": {
+        "clima día previo": {
+          "forecast_kwh": 41.36679563911517,
+          "energy_error_pct": -20.46706839493848,
+          "mae_wh": 64.16185996084127,
+          "rmse_wh": 146.4354325756041,
+          "peak_kw": 6.065242392640307,
+          "peak_time": "13:20"
+        },
+        "clima estacional previo": {
+          "forecast_kwh": 41.632781750218,
+          "energy_error_pct": -19.955676229908537,
+          "mae_wh": 73.14769491431453,
+          "rmse_wh": 152.39641214365076,
+          "peak_kw": 9.176151138226865,
+          "peak_time": "12:45"
+        },
+        "clima mediano 90d": {
+          "forecast_kwh": 44.20990049347619,
+          "energy_error_pct": -15.000837316742487,
+          "mae_wh": 66.01833351729108,
+          "rmse_wh": 133.33060763800026,
+          "peak_kw": 6.817715860562517,
+          "peak_time": "13:15"
+        }
+      }
+    }
+  ],
+  "caveat": "Todos los perfiles usan clima anterior al día. La climatología anual es un experimento con historia disponible, no un pronóstico meteorológico archivado."
+}

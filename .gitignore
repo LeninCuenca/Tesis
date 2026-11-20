@@ -29,7 +29,7 @@ MANIFEST
 # Datasets pesados y datos históricos
 dataset_limpio.pkl
 dataset_limpio.csv
-datos_historicos/
+base_datos/datos/historicos/
 *.pkl
 *.pickle
 *.parquet
@@ -91,4 +91,12 @@ ehthumbs.db
 
 # Entorno Linux y artefactos reproducibles
 .venv-linux/
-artifacts/*.joblib
+backend/artefactos/**/*.joblib
+backend/artefactos/*.joblib
+
+# Salidas de limpieza auditada (datos locales)
+base_datos/datos/auditoria/
+backend/artefactos/training-runs/
+
+# Modelo legado conservado en el historial del proyecto
+!backend/artefactos/legados/modelo_pronostico_final.joblib

@@ -1,0 +1,2739 @@
+{
+  "schema_version": 3,
+  "model": "HistGradientBoosting",
+  "created_at": "2026-11-19T13:39:33.146851+00:00",
+  "target": "Producción fotovoltaica",
+  "target_unit": "Wh / 5 min",
+  "interval_minutes": 5,
+  "timezone": "America/Guayaquil",
+  "features": [
+    "Irradiación",
+    "Temperatura ambiente",
+    "Temperatura de módulo",
+    "hora_sin",
+    "hora_cos",
+    "dia_anio_sin",
+    "dia_anio_cos",
+    "mes",
+    "hora",
+    "fin_de_semana"
+  ],
+  "validation": [
+    {
+      "model": "HistGradientBoosting",
+      "mae_wh": 32.798668203903155,
+      "rmse_wh": 84.27669426242298,
+      "r2": 0.895936285623692,
+      "bias_wh": 0.3184124608345435
+    },
+    {
+      "model": "XGBoost",
+      "mae_wh": 33.83348642859522,
+      "rmse_wh": 84.28384415842223,
+      "r2": 0.8959186276862666,
+      "bias_wh": -1.0122452250835192
+    },
+    {
+      "model": "Ridge",
+      "mae_wh": 57.89030085914493,
+      "rmse_wh": 124.25720643905423,
+      "r2": 0.7737818168763939,
+      "bias_wh": 1.0680408444260796
+    }
+  ],
+  "test": {
+    "mae_wh": 31.18032322889687,
+    "rmse_wh": 65.58974667767325,
+    "r2": 0.9220322439622779,
+    "bias_wh": -8.765192198866144
+  },
+  "daylight_test": {
+    "mae_wh": 67.901080228589,
+    "rmse_wh": 97.0372979232901,
+    "r2": 0.8373371301359096,
+    "bias_wh": -18.87697708948003
+  },
+  "baseline": {
+    "model": "Media histórica por franja de 5 min",
+    "mae_wh": 67.52146683329107,
+    "rmse_wh": 131.43040407673132,
+    "r2": 0.6869347858298722,
+    "bias_wh": 18.221605425142627
+  },
+  "persistence": {
+    "model": "Misma franja del día anterior",
+    "matched_rows": 15840,
+    "selected_model_on_matched": {
+      "mae_wh": 31.18032322889687,
+      "rmse_wh": 65.58974667767325,
+      "r2": 0.9220322439622779,
+      "bias_wh": -8.765192198866144
+    },
+    "metrics": {
+      "mae_wh": 80.7805220959596,
+      "rmse_wh": 171.17090482218407,
+      "r2": 0.4689896075569402,
+      "bias_wh": 0.36410542929292883
+    }
+  },
+  "skill_vs_baseline_pct": 50.09545383473003,
+  "uncertainty": {
+    "nominal_coverage": 0.9,
+    "radius_wh": 116.88450455289785,
+    "test_coverage": 0.9321969696969697,
+    "method": "Cuantil absoluto sobre calibración temporal separada; cobertura empírica, no garantía futura"
+  },
+  "partitions": {
+    "train": {
+      "rows": 47303,
+      "start": "2024-03-01T15:45:00-05:00",
+      "end": "2025-02-04T23:55:00-05:00"
+    },
+    "validation": {
+      "rows": 15542,
+      "start": "2025-02-05T00:00:00-05:00",
+      "end": "2025-03-30T23:55:00-05:00"
+    },
+    "calibration": {
+      "rows": 10650,
+      "start": "2025-03-31T00:00:00-05:00",
+      "end": "2025-05-06T23:55:00-05:00"
+    },
+    "test": {
+      "rows": 15840,
+      "start": "2025-05-07T00:00:00-05:00",
+      "end": "2025-06-30T23:55:00-05:00"
+    }
+  },
+  "final_training_rows": 62845,
+  "data_quality": {
+    "source_path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/auditoria/audited-by-device/cleaned.pkl",
+    "source_sha256": "6695dc6f6c712d82d0905f0af74ed5fa4291210ba494e177c06701a4ecec1cfb",
+    "channel_mapping": {
+      "Producción fotovoltaica": "Producción fotovoltaica",
+      "Irradiación": "Irradiación | Sensor Card / Box (1) [W/m²]",
+      "Temperatura ambiente": "Temperatura ambiente | Sensor Card / Box (1) [°C]",
+      "Temperatura de módulo": "Temperatura de módulo | Sensor Card / Box (1) [°C]"
+    },
+    "input_rows": 458749,
+    "observed_timestamps": 326123,
+    "inserted_timestamps": 252181,
+    "imputed_observed_cells": 0,
+    "cleaning_warnings": [
+      "No se ha declarado zona horaria: no se localizan ni desplazan fechas ingenuas. La hora de los informes es la registrada.",
+      "Inicio/centro/fin del intervalo sin confirmar: no se realinean sensores ni se calculan integrales.",
+      "No hay ubicación, inclinación ni capacidad instalada confirmadas en esta configuración. No se inventan límites de potencia ni geometría solar.",
+      "Una unidad Wh no demuestra si la señal es energía de intervalo o un contador. Los reinicios no se convierten automáticamente en consumo negativo.",
+      "Irradiación con W/m² es irradiancia; se conserva el nombre legado para compatibilidad y se documenta quantity=irradiance.",
+      "Los umbrales estadísticos de temperatura son heurísticos configurables; la cuantización o estabilidad natural también pueden generar banderas.",
+      "Digital 2 cambia de unidad entre archivos; sus variantes se mantienen separadas y requieren diccionario del fabricante."
+    ],
+    "source_manifest": [
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025 limpio.xlsx",
+        "sha256": "ba2e77a8e7152c2cfdd849f9e9d2eebee40cd3feb50fa52af71474f975b24127",
+        "bytes": 3656578,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 12,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025.xlsx",
+        "sha256": "84cb5c725396a67e71bf70c166283bd5e8ad43914238bbbb2b78ede911a4f744",
+        "bytes": 10825453,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 31,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012020-31122020.xlsx",
+        "sha256": "b8c4efe4e24a65d4ae17a0fc8541c419d4068bb3c46326c4392d10f2adc795cf",
+        "bytes": 27923439,
+        "accepted_rows": 105408,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2020-01-01T00:00:00",
+        "last_timestamp": "2020-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 105408,
+        "parsed_structure_rows": 105408,
+        "structural_rejections": 0,
+        "columns": 64,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012023-31122023.xlsx",
+        "sha256": "c28596df214896af0a5a2222b01055b6f97552188725241cbde40671cead29a4",
+        "bytes": 33468370,
+        "accepted_rows": 104999,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2023-01-01T00:00:00",
+        "last_timestamp": "2023-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 104999,
+        "parsed_structure_rows": 104999,
+        "structural_rejections": 0,
+        "columns": 58,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012024-26042024.xlsx",
+        "sha256": "c315116218fdf6d3ee661ba478d73ca7a107c0bccf673a0fcb406d83cddb1d9c",
+        "bytes": 13718830,
+        "accepted_rows": 29869,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-01-01T00:00:00",
+        "last_timestamp": "2024-04-26T10:00:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 29869,
+        "parsed_structure_rows": 29869,
+        "structural_rejections": 0,
+        "columns": 95,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012025-30062025 1.xlsx",
+        "sha256": "74655f2d6da24649e747baa2d0847bd2063b19d80130a55ca4bc657dedfa7d1c",
+        "bytes": 26290801,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 104,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01032024-31072024.xlsx",
+        "sha256": "25a17b80a3670abd6d6cdd7c34c7a9f18414fcbc273da1d2b40262687b98d4b6",
+        "bytes": 8086725,
+        "accepted_rows": 35879,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-03-01T00:00:00",
+        "last_timestamp": "2024-07-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 35879,
+        "parsed_structure_rows": 35879,
+        "structural_rejections": 0,
+        "columns": 35,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01042024-24062024.xlsx",
+        "sha256": "c86a2da5a809f5b2bd87ec6c8ef25845a2a888e2dfd34d081635e62beaad5ed8",
+        "bytes": 7886828,
+        "accepted_rows": 17282,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-04-01T00:00:00",
+        "last_timestamp": "2024-06-24T17:05:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 17282,
+        "parsed_structure_rows": 17282,
+        "structural_rejections": 0,
+        "columns": 96,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01082024-31082024.xlsx",
+        "sha256": "1210243592129ee62d1bfd1f299c708532f577fefd5cac57a188e0a8f4db26c6",
+        "bytes": 4200466,
+        "accepted_rows": 8928,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-08-01T00:00:00",
+        "last_timestamp": "2024-08-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 8928,
+        "parsed_structure_rows": 8928,
+        "structural_rejections": 0,
+        "columns": 98,
+        "units_row": true
+      }
+    ],
+    "rows_source": 578304,
+    "first_timestamp": "2020-01-01T00:00:00-05:00",
+    "last_timestamp": "2025-06-30T23:55:00-05:00",
+    "rows_valid": 89335,
+    "rows_excluded": 488969,
+    "rows_missing_or_nonfinite": 482359,
+    "rows_complete_outside_bounds": 0,
+    "rows_off_grid": 0,
+    "rows_ten_minute_days": 6610,
+    "days_ten_minute": 46,
+    "zero_irradiance_positive_energy": 1240
+  },
+  "production_quality": {
+    "source_path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/auditoria/audited-by-device/cleaned.pkl",
+    "source_sha256": "6695dc6f6c712d82d0905f0af74ed5fa4291210ba494e177c06701a4ecec1cfb",
+    "channel_mapping": {
+      "Producción fotovoltaica": "Producción fotovoltaica"
+    },
+    "input_rows": 458749,
+    "observed_timestamps": 326123,
+    "inserted_timestamps": 252181,
+    "imputed_observed_cells": 0,
+    "cleaning_warnings": [
+      "No se ha declarado zona horaria: no se localizan ni desplazan fechas ingenuas. La hora de los informes es la registrada.",
+      "Inicio/centro/fin del intervalo sin confirmar: no se realinean sensores ni se calculan integrales.",
+      "No hay ubicación, inclinación ni capacidad instalada confirmadas en esta configuración. No se inventan límites de potencia ni geometría solar.",
+      "Una unidad Wh no demuestra si la señal es energía de intervalo o un contador. Los reinicios no se convierten automáticamente en consumo negativo.",
+      "Irradiación con W/m² es irradiancia; se conserva el nombre legado para compatibilidad y se documenta quantity=irradiance.",
+      "Los umbrales estadísticos de temperatura son heurísticos configurables; la cuantización o estabilidad natural también pueden generar banderas.",
+      "Digital 2 cambia de unidad entre archivos; sus variantes se mantienen separadas y requieren diccionario del fabricante."
+    ],
+    "source_manifest": [
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025 limpio.xlsx",
+        "sha256": "ba2e77a8e7152c2cfdd849f9e9d2eebee40cd3feb50fa52af71474f975b24127",
+        "bytes": 3656578,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 12,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025.xlsx",
+        "sha256": "84cb5c725396a67e71bf70c166283bd5e8ad43914238bbbb2b78ede911a4f744",
+        "bytes": 10825453,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 31,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012020-31122020.xlsx",
+        "sha256": "b8c4efe4e24a65d4ae17a0fc8541c419d4068bb3c46326c4392d10f2adc795cf",
+        "bytes": 27923439,
+        "accepted_rows": 105408,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2020-01-01T00:00:00",
+        "last_timestamp": "2020-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 105408,
+        "parsed_structure_rows": 105408,
+        "structural_rejections": 0,
+        "columns": 64,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012023-31122023.xlsx",
+        "sha256": "c28596df214896af0a5a2222b01055b6f97552188725241cbde40671cead29a4",
+        "bytes": 33468370,
+        "accepted_rows": 104999,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2023-01-01T00:00:00",
+        "last_timestamp": "2023-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 104999,
+        "parsed_structure_rows": 104999,
+        "structural_rejections": 0,
+        "columns": 58,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012024-26042024.xlsx",
+        "sha256": "c315116218fdf6d3ee661ba478d73ca7a107c0bccf673a0fcb406d83cddb1d9c",
+        "bytes": 13718830,
+        "accepted_rows": 29869,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-01-01T00:00:00",
+        "last_timestamp": "2024-04-26T10:00:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 29869,
+        "parsed_structure_rows": 29869,
+        "structural_rejections": 0,
+        "columns": 95,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012025-30062025 1.xlsx",
+        "sha256": "74655f2d6da24649e747baa2d0847bd2063b19d80130a55ca4bc657dedfa7d1c",
+        "bytes": 26290801,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 104,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01032024-31072024.xlsx",
+        "sha256": "25a17b80a3670abd6d6cdd7c34c7a9f18414fcbc273da1d2b40262687b98d4b6",
+        "bytes": 8086725,
+        "accepted_rows": 35879,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-03-01T00:00:00",
+        "last_timestamp": "2024-07-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 35879,
+        "parsed_structure_rows": 35879,
+        "structural_rejections": 0,
+        "columns": 35,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01042024-24062024.xlsx",
+        "sha256": "c86a2da5a809f5b2bd87ec6c8ef25845a2a888e2dfd34d081635e62beaad5ed8",
+        "bytes": 7886828,
+        "accepted_rows": 17282,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-04-01T00:00:00",
+        "last_timestamp": "2024-06-24T17:05:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 17282,
+        "parsed_structure_rows": 17282,
+        "structural_rejections": 0,
+        "columns": 96,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01082024-31082024.xlsx",
+        "sha256": "1210243592129ee62d1bfd1f299c708532f577fefd5cac57a188e0a8f4db26c6",
+        "bytes": 4200466,
+        "accepted_rows": 8928,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-08-01T00:00:00",
+        "last_timestamp": "2024-08-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 8928,
+        "parsed_structure_rows": 8928,
+        "structural_rejections": 0,
+        "columns": 98,
+        "units_row": true
+      }
+    ],
+    "rows_source": 578304,
+    "first_timestamp": "2020-01-01T00:00:00-05:00",
+    "last_timestamp": "2025-06-30T23:55:00-05:00",
+    "rows_valid": 318528,
+    "rows_excluded": 259776,
+    "rows_missing_or_nonfinite": 253152,
+    "rows_negative": 0,
+    "rows_off_grid": 0,
+    "rows_ten_minute_days": 6624,
+    "days_ten_minute": 46
+  },
+  "backtest": [
+    {
+      "timestamp": "2025-06-30T00:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T00:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T01:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T02:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T03:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T04:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T05:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:20:00-05:00",
+      "actual_wh": 0.01,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:25:00-05:00",
+      "actual_wh": 0.03,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:30:00-05:00",
+      "actual_wh": 0.05,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T06:35:00-05:00",
+      "actual_wh": 0.11,
+      "predicted_wh": 0.33125308086592464
+    },
+    {
+      "timestamp": "2025-06-30T06:40:00-05:00",
+      "actual_wh": 1.07,
+      "predicted_wh": 0.33125308086592464
+    },
+    {
+      "timestamp": "2025-06-30T06:45:00-05:00",
+      "actual_wh": 2.39,
+      "predicted_wh": 2.8717001000722133
+    },
+    {
+      "timestamp": "2025-06-30T06:50:00-05:00",
+      "actual_wh": 7.69,
+      "predicted_wh": 5.92970950419405
+    },
+    {
+      "timestamp": "2025-06-30T06:55:00-05:00",
+      "actual_wh": 13.44,
+      "predicted_wh": 8.99184310708216
+    },
+    {
+      "timestamp": "2025-06-30T07:00:00-05:00",
+      "actual_wh": 21.29,
+      "predicted_wh": 16.901276490921074
+    },
+    {
+      "timestamp": "2025-06-30T07:05:00-05:00",
+      "actual_wh": 28.22,
+      "predicted_wh": 25.29366765064661
+    },
+    {
+      "timestamp": "2025-06-30T07:10:00-05:00",
+      "actual_wh": 35.47,
+      "predicted_wh": 33.471612825182895
+    },
+    {
+      "timestamp": "2025-06-30T07:15:00-05:00",
+      "actual_wh": 41.6,
+      "predicted_wh": 42.78700948328539
+    },
+    {
+      "timestamp": "2025-06-30T07:20:00-05:00",
+      "actual_wh": 59.58,
+      "predicted_wh": 55.594436940160826
+    },
+    {
+      "timestamp": "2025-06-30T07:25:00-05:00",
+      "actual_wh": 76.26,
+      "predicted_wh": 67.51897089142957
+    },
+    {
+      "timestamp": "2025-06-30T07:30:00-05:00",
+      "actual_wh": 107.46,
+      "predicted_wh": 92.64918949350016
+    },
+    {
+      "timestamp": "2025-06-30T07:35:00-05:00",
+      "actual_wh": 97.9,
+      "predicted_wh": 83.24016647624885
+    },
+    {
+      "timestamp": "2025-06-30T07:40:00-05:00",
+      "actual_wh": 101.14,
+      "predicted_wh": 87.98670193790473
+    },
+    {
+      "timestamp": "2025-06-30T07:45:00-05:00",
+      "actual_wh": 105.97,
+      "predicted_wh": 91.66598694866477
+    },
+    {
+      "timestamp": "2025-06-30T07:50:00-05:00",
+      "actual_wh": 120.09,
+      "predicted_wh": 107.4205310510966
+    },
+    {
+      "timestamp": "2025-06-30T07:55:00-05:00",
+      "actual_wh": 115.32,
+      "predicted_wh": 105.66891830403009
+    },
+    {
+      "timestamp": "2025-06-30T08:00:00-05:00",
+      "actual_wh": 111.19,
+      "predicted_wh": 104.20240442492286
+    },
+    {
+      "timestamp": "2025-06-30T08:05:00-05:00",
+      "actual_wh": 129.61,
+      "predicted_wh": 116.6621007597091
+    },
+    {
+      "timestamp": "2025-06-30T08:10:00-05:00",
+      "actual_wh": 107.05,
+      "predicted_wh": 105.39935106527984
+    },
+    {
+      "timestamp": "2025-06-30T08:15:00-05:00",
+      "actual_wh": 130.04,
+      "predicted_wh": 116.6621007597091
+    },
+    {
+      "timestamp": "2025-06-30T08:20:00-05:00",
+      "actual_wh": 146.86,
+      "predicted_wh": 135.91490518047416
+    },
+    {
+      "timestamp": "2025-06-30T08:25:00-05:00",
+      "actual_wh": 146.92,
+      "predicted_wh": 135.91490518047416
+    },
+    {
+      "timestamp": "2025-06-30T08:30:00-05:00",
+      "actual_wh": 197.55,
+      "predicted_wh": 168.28790045509334
+    },
+    {
+      "timestamp": "2025-06-30T08:35:00-05:00",
+      "actual_wh": 237.4,
+      "predicted_wh": 196.95566668838893
+    },
+    {
+      "timestamp": "2025-06-30T08:40:00-05:00",
+      "actual_wh": 182.71,
+      "predicted_wh": 157.93072334632456
+    },
+    {
+      "timestamp": "2025-06-30T08:45:00-05:00",
+      "actual_wh": 199.19,
+      "predicted_wh": 168.28790045509334
+    },
+    {
+      "timestamp": "2025-06-30T08:50:00-05:00",
+      "actual_wh": 236.81,
+      "predicted_wh": 196.95566668838893
+    },
+    {
+      "timestamp": "2025-06-30T08:55:00-05:00",
+      "actual_wh": 249.42,
+      "predicted_wh": 202.95202070248897
+    },
+    {
+      "timestamp": "2025-06-30T09:00:00-05:00",
+      "actual_wh": 291.73,
+      "predicted_wh": 235.9074277513438
+    },
+    {
+      "timestamp": "2025-06-30T09:05:00-05:00",
+      "actual_wh": 318.4,
+      "predicted_wh": 255.7841661127158
+    },
+    {
+      "timestamp": "2025-06-30T09:10:00-05:00",
+      "actual_wh": 364.71,
+      "predicted_wh": 288.472228607277
+    },
+    {
+      "timestamp": "2025-06-30T09:15:00-05:00",
+      "actual_wh": 435.56,
+      "predicted_wh": 344.09243297147145
+    },
+    {
+      "timestamp": "2025-06-30T09:20:00-05:00",
+      "actual_wh": 469.37,
+      "predicted_wh": 376.7124748026517
+    },
+    {
+      "timestamp": "2025-06-30T09:25:00-05:00",
+      "actual_wh": 413.26,
+      "predicted_wh": 331.7774978120071
+    },
+    {
+      "timestamp": "2025-06-30T09:30:00-05:00",
+      "actual_wh": 335.05,
+      "predicted_wh": 268.9552328660368
+    },
+    {
+      "timestamp": "2025-06-30T09:35:00-05:00",
+      "actual_wh": 300.86,
+      "predicted_wh": 250.16544886273476
+    },
+    {
+      "timestamp": "2025-06-30T09:40:00-05:00",
+      "actual_wh": 337.21,
+      "predicted_wh": 268.7715916572014
+    },
+    {
+      "timestamp": "2025-06-30T09:45:00-05:00",
+      "actual_wh": 428.86,
+      "predicted_wh": 344.09243297147145
+    },
+    {
+      "timestamp": "2025-06-30T09:50:00-05:00",
+      "actual_wh": 313.83,
+      "predicted_wh": 253.14817635531685
+    },
+    {
+      "timestamp": "2025-06-30T09:55:00-05:00",
+      "actual_wh": 562.48,
+      "predicted_wh": 452.6849605059064
+    },
+    {
+      "timestamp": "2025-06-30T10:00:00-05:00",
+      "actual_wh": 493.96,
+      "predicted_wh": 411.1363084563989
+    },
+    {
+      "timestamp": "2025-06-30T10:05:00-05:00",
+      "actual_wh": 518.38,
+      "predicted_wh": 426.19199828840846
+    },
+    {
+      "timestamp": "2025-06-30T10:10:00-05:00",
+      "actual_wh": 386.28,
+      "predicted_wh": 308.17535597908955
+    },
+    {
+      "timestamp": "2025-06-30T10:15:00-05:00",
+      "actual_wh": 343.4,
+      "predicted_wh": 288.5707573933753
+    },
+    {
+      "timestamp": "2025-06-30T10:20:00-05:00",
+      "actual_wh": 407.67,
+      "predicted_wh": 331.69238538927
+    },
+    {
+      "timestamp": "2025-06-30T10:25:00-05:00",
+      "actual_wh": 458.89,
+      "predicted_wh": 378.91128584926446
+    },
+    {
+      "timestamp": "2025-06-30T10:30:00-05:00",
+      "actual_wh": 481.43,
+      "predicted_wh": 384.26769628831534
+    },
+    {
+      "timestamp": "2025-06-30T10:35:00-05:00",
+      "actual_wh": 762.07,
+      "predicted_wh": 652.4761682049889
+    },
+    {
+      "timestamp": "2025-06-30T10:40:00-05:00",
+      "actual_wh": 671.64,
+      "predicted_wh": 546.6934878451408
+    },
+    {
+      "timestamp": "2025-06-30T10:45:00-05:00",
+      "actual_wh": 829.89,
+      "predicted_wh": 708.4382664108842
+    },
+    {
+      "timestamp": "2025-06-30T10:50:00-05:00",
+      "actual_wh": 753.13,
+      "predicted_wh": 688.2383448444333
+    },
+    {
+      "timestamp": "2025-06-30T10:55:00-05:00",
+      "actual_wh": 784.88,
+      "predicted_wh": 688.2383448444333
+    },
+    {
+      "timestamp": "2025-06-30T11:00:00-05:00",
+      "actual_wh": 638.51,
+      "predicted_wh": 544.7589278533861
+    },
+    {
+      "timestamp": "2025-06-30T11:05:00-05:00",
+      "actual_wh": 473.92,
+      "predicted_wh": 411.7524074858955
+    },
+    {
+      "timestamp": "2025-06-30T11:10:00-05:00",
+      "actual_wh": 433.52,
+      "predicted_wh": 376.3469363604473
+    },
+    {
+      "timestamp": "2025-06-30T11:15:00-05:00",
+      "actual_wh": 344.31,
+      "predicted_wh": 291.2746819150194
+    },
+    {
+      "timestamp": "2025-06-30T11:20:00-05:00",
+      "actual_wh": 325.51,
+      "predicted_wh": 258.5866194204582
+    },
+    {
+      "timestamp": "2025-06-30T11:25:00-05:00",
+      "actual_wh": 305.32,
+      "predicted_wh": 252.78426096164185
+    },
+    {
+      "timestamp": "2025-06-30T11:30:00-05:00",
+      "actual_wh": 399.36,
+      "predicted_wh": 310.61052686916116
+    },
+    {
+      "timestamp": "2025-06-30T11:35:00-05:00",
+      "actual_wh": 513.21,
+      "predicted_wh": 422.90275933526453
+    },
+    {
+      "timestamp": "2025-06-30T11:40:00-05:00",
+      "actual_wh": 695.81,
+      "predicted_wh": 577.6577284083709
+    },
+    {
+      "timestamp": "2025-06-30T11:45:00-05:00",
+      "actual_wh": 868.94,
+      "predicted_wh": 738.9481086451226
+    },
+    {
+      "timestamp": "2025-06-30T11:50:00-05:00",
+      "actual_wh": 1012.66,
+      "predicted_wh": 847.4778415343856
+    },
+    {
+      "timestamp": "2025-06-30T11:55:00-05:00",
+      "actual_wh": 859.97,
+      "predicted_wh": 784.4414823270187
+    },
+    {
+      "timestamp": "2025-06-30T12:00:00-05:00",
+      "actual_wh": 936.91,
+      "predicted_wh": 911.0354684877564
+    },
+    {
+      "timestamp": "2025-06-30T12:05:00-05:00",
+      "actual_wh": 1079.4,
+      "predicted_wh": 1043.6590169101564
+    },
+    {
+      "timestamp": "2025-06-30T12:10:00-05:00",
+      "actual_wh": 1080.95,
+      "predicted_wh": 1041.4750891790036
+    },
+    {
+      "timestamp": "2025-06-30T12:15:00-05:00",
+      "actual_wh": 920.05,
+      "predicted_wh": 835.452032146338
+    },
+    {
+      "timestamp": "2025-06-30T12:20:00-05:00",
+      "actual_wh": 920.3,
+      "predicted_wh": 997.5231335528113
+    },
+    {
+      "timestamp": "2025-06-30T12:25:00-05:00",
+      "actual_wh": 1022.72,
+      "predicted_wh": 950.6910797120928
+    },
+    {
+      "timestamp": "2025-06-30T12:30:00-05:00",
+      "actual_wh": 716.79,
+      "predicted_wh": 649.5240929141992
+    },
+    {
+      "timestamp": "2025-06-30T12:35:00-05:00",
+      "actual_wh": 710.78,
+      "predicted_wh": 645.6134279497503
+    },
+    {
+      "timestamp": "2025-06-30T12:40:00-05:00",
+      "actual_wh": 879.24,
+      "predicted_wh": 845.6639132712866
+    },
+    {
+      "timestamp": "2025-06-30T12:45:00-05:00",
+      "actual_wh": 770.98,
+      "predicted_wh": 776.3420238079399
+    },
+    {
+      "timestamp": "2025-06-30T12:50:00-05:00",
+      "actual_wh": 944.93,
+      "predicted_wh": 1000.910201537171
+    },
+    {
+      "timestamp": "2025-06-30T12:55:00-05:00",
+      "actual_wh": 879.57,
+      "predicted_wh": 877.3108625763441
+    },
+    {
+      "timestamp": "2025-06-30T13:00:00-05:00",
+      "actual_wh": 775.2,
+      "predicted_wh": 767.0230055208468
+    },
+    {
+      "timestamp": "2025-06-30T13:05:00-05:00",
+      "actual_wh": 631.99,
+      "predicted_wh": 692.4137041928385
+    },
+    {
+      "timestamp": "2025-06-30T13:10:00-05:00",
+      "actual_wh": 726.2,
+      "predicted_wh": 745.2625704686218
+    },
+    {
+      "timestamp": "2025-06-30T13:15:00-05:00",
+      "actual_wh": 767.91,
+      "predicted_wh": 685.4327026632128
+    },
+    {
+      "timestamp": "2025-06-30T13:20:00-05:00",
+      "actual_wh": 465.78,
+      "predicted_wh": 554.6438948429285
+    },
+    {
+      "timestamp": "2025-06-30T13:25:00-05:00",
+      "actual_wh": 375.63,
+      "predicted_wh": 463.65551808668135
+    },
+    {
+      "timestamp": "2025-06-30T13:30:00-05:00",
+      "actual_wh": 341.02,
+      "predicted_wh": 311.06597628631687
+    },
+    {
+      "timestamp": "2025-06-30T13:35:00-05:00",
+      "actual_wh": 349.97,
+      "predicted_wh": 331.53767704782155
+    },
+    {
+      "timestamp": "2025-06-30T13:40:00-05:00",
+      "actual_wh": 280.72,
+      "predicted_wh": 271.0990789069316
+    },
+    {
+      "timestamp": "2025-06-30T13:45:00-05:00",
+      "actual_wh": 287.02,
+      "predicted_wh": 374.03862054729984
+    },
+    {
+      "timestamp": "2025-06-30T13:50:00-05:00",
+      "actual_wh": 358.51,
+      "predicted_wh": 346.9143531605149
+    },
+    {
+      "timestamp": "2025-06-30T13:55:00-05:00",
+      "actual_wh": 426.94,
+      "predicted_wh": 379.1059579794539
+    },
+    {
+      "timestamp": "2025-06-30T14:00:00-05:00",
+      "actual_wh": 459.36,
+      "predicted_wh": 746.787511263749
+    },
+    {
+      "timestamp": "2025-06-30T14:05:00-05:00",
+      "actual_wh": 370.34,
+      "predicted_wh": 325.90073485748604
+    },
+    {
+      "timestamp": "2025-06-30T14:10:00-05:00",
+      "actual_wh": 346.03,
+      "predicted_wh": 297.833094600503
+    },
+    {
+      "timestamp": "2025-06-30T14:15:00-05:00",
+      "actual_wh": 608.79,
+      "predicted_wh": 585.1439989884726
+    },
+    {
+      "timestamp": "2025-06-30T14:20:00-05:00",
+      "actual_wh": 434.42,
+      "predicted_wh": 412.5876454197295
+    },
+    {
+      "timestamp": "2025-06-30T14:25:00-05:00",
+      "actual_wh": 383.58,
+      "predicted_wh": 326.0640723454155
+    },
+    {
+      "timestamp": "2025-06-30T14:30:00-05:00",
+      "actual_wh": 412.68,
+      "predicted_wh": 485.9596618058578
+    },
+    {
+      "timestamp": "2025-06-30T14:35:00-05:00",
+      "actual_wh": 398.49,
+      "predicted_wh": 516.0364194135716
+    },
+    {
+      "timestamp": "2025-06-30T14:40:00-05:00",
+      "actual_wh": 402.93,
+      "predicted_wh": 336.02699118288353
+    },
+    {
+      "timestamp": "2025-06-30T14:45:00-05:00",
+      "actual_wh": 213.4,
+      "predicted_wh": 185.8915124885567
+    },
+    {
+      "timestamp": "2025-06-30T14:50:00-05:00",
+      "actual_wh": 172.67,
+      "predicted_wh": 155.39079593258012
+    },
+    {
+      "timestamp": "2025-06-30T14:55:00-05:00",
+      "actual_wh": 247.46,
+      "predicted_wh": 199.55936079120124
+    },
+    {
+      "timestamp": "2025-06-30T15:00:00-05:00",
+      "actual_wh": 233.83,
+      "predicted_wh": 197.29185965695942
+    },
+    {
+      "timestamp": "2025-06-30T15:05:00-05:00",
+      "actual_wh": 225.67,
+      "predicted_wh": 193.60055093561482
+    },
+    {
+      "timestamp": "2025-06-30T15:10:00-05:00",
+      "actual_wh": 288.45,
+      "predicted_wh": 235.13364423728376
+    },
+    {
+      "timestamp": "2025-06-30T15:15:00-05:00",
+      "actual_wh": 262.68,
+      "predicted_wh": 220.0501200391376
+    },
+    {
+      "timestamp": "2025-06-30T15:20:00-05:00",
+      "actual_wh": 193.09,
+      "predicted_wh": 168.48365329156138
+    },
+    {
+      "timestamp": "2025-06-30T15:25:00-05:00",
+      "actual_wh": 183.82,
+      "predicted_wh": 158.26691631489504
+    },
+    {
+      "timestamp": "2025-06-30T15:30:00-05:00",
+      "actual_wh": 252.75,
+      "predicted_wh": 203.28821367105945
+    },
+    {
+      "timestamp": "2025-06-30T15:35:00-05:00",
+      "actual_wh": 219.59,
+      "predicted_wh": 185.50552594071212
+    },
+    {
+      "timestamp": "2025-06-30T15:40:00-05:00",
+      "actual_wh": 220.42,
+      "predicted_wh": 185.50552594071212
+    },
+    {
+      "timestamp": "2025-06-30T15:45:00-05:00",
+      "actual_wh": 198.93,
+      "predicted_wh": 168.48365329156138
+    },
+    {
+      "timestamp": "2025-06-30T15:50:00-05:00",
+      "actual_wh": 265.64,
+      "predicted_wh": 210.440028644252
+    },
+    {
+      "timestamp": "2025-06-30T15:55:00-05:00",
+      "actual_wh": 572.75,
+      "predicted_wh": 457.3750965290427
+    },
+    {
+      "timestamp": "2025-06-30T16:00:00-05:00",
+      "actual_wh": 356.4,
+      "predicted_wh": 303.6726678256942
+    },
+    {
+      "timestamp": "2025-06-30T16:05:00-05:00",
+      "actual_wh": 664.47,
+      "predicted_wh": 519.974588684859
+    },
+    {
+      "timestamp": "2025-06-30T16:10:00-05:00",
+      "actual_wh": 562.34,
+      "predicted_wh": 465.54845786466115
+    },
+    {
+      "timestamp": "2025-06-30T16:15:00-05:00",
+      "actual_wh": 368.17,
+      "predicted_wh": 316.47976848284964
+    },
+    {
+      "timestamp": "2025-06-30T16:20:00-05:00",
+      "actual_wh": 555.67,
+      "predicted_wh": 465.36481665582573
+    },
+    {
+      "timestamp": "2025-06-30T16:25:00-05:00",
+      "actual_wh": 445.93,
+      "predicted_wh": 398.3050871756125
+    },
+    {
+      "timestamp": "2025-06-30T16:30:00-05:00",
+      "actual_wh": 339.81,
+      "predicted_wh": 268.0611539181896
+    },
+    {
+      "timestamp": "2025-06-30T16:35:00-05:00",
+      "actual_wh": 437.09,
+      "predicted_wh": 384.81471241891387
+    },
+    {
+      "timestamp": "2025-06-30T16:40:00-05:00",
+      "actual_wh": 504.97,
+      "predicted_wh": 435.60982063509067
+    },
+    {
+      "timestamp": "2025-06-30T16:45:00-05:00",
+      "actual_wh": 416.96,
+      "predicted_wh": 354.2956528988764
+    },
+    {
+      "timestamp": "2025-06-30T16:50:00-05:00",
+      "actual_wh": 426.25,
+      "predicted_wh": 390.10723055276327
+    },
+    {
+      "timestamp": "2025-06-30T16:55:00-05:00",
+      "actual_wh": 259.47,
+      "predicted_wh": 204.0309228906485
+    },
+    {
+      "timestamp": "2025-06-30T17:00:00-05:00",
+      "actual_wh": 281.12,
+      "predicted_wh": 213.73278554131036
+    },
+    {
+      "timestamp": "2025-06-30T17:05:00-05:00",
+      "actual_wh": 174.86,
+      "predicted_wh": 147.9886433709102
+    },
+    {
+      "timestamp": "2025-06-30T17:10:00-05:00",
+      "actual_wh": 145.16,
+      "predicted_wh": 112.24093387743069
+    },
+    {
+      "timestamp": "2025-06-30T17:15:00-05:00",
+      "actual_wh": 85.13,
+      "predicted_wh": 64.49836309242991
+    },
+    {
+      "timestamp": "2025-06-30T17:20:00-05:00",
+      "actual_wh": 50.75,
+      "predicted_wh": 40.84421451158388
+    },
+    {
+      "timestamp": "2025-06-30T17:25:00-05:00",
+      "actual_wh": 47.05,
+      "predicted_wh": 28.573401251694516
+    },
+    {
+      "timestamp": "2025-06-30T17:30:00-05:00",
+      "actual_wh": 48.91,
+      "predicted_wh": 31.67780263972044
+    },
+    {
+      "timestamp": "2025-06-30T17:35:00-05:00",
+      "actual_wh": 40.26,
+      "predicted_wh": 24.520546376387077
+    },
+    {
+      "timestamp": "2025-06-30T17:40:00-05:00",
+      "actual_wh": 33.38,
+      "predicted_wh": 21.425501469748582
+    },
+    {
+      "timestamp": "2025-06-30T17:45:00-05:00",
+      "actual_wh": 41.96,
+      "predicted_wh": 28.573401251694516
+    },
+    {
+      "timestamp": "2025-06-30T17:50:00-05:00",
+      "actual_wh": 53.36,
+      "predicted_wh": 37.14973811536577
+    },
+    {
+      "timestamp": "2025-06-30T17:55:00-05:00",
+      "actual_wh": 46.37,
+      "predicted_wh": 31.67780263972044
+    },
+    {
+      "timestamp": "2025-06-30T18:00:00-05:00",
+      "actual_wh": 28.45,
+      "predicted_wh": 16.316098097355397
+    },
+    {
+      "timestamp": "2025-06-30T18:05:00-05:00",
+      "actual_wh": 20.32,
+      "predicted_wh": 11.541635055267532
+    },
+    {
+      "timestamp": "2025-06-30T18:10:00-05:00",
+      "actual_wh": 7.66,
+      "predicted_wh": 1.4687278324323936
+    },
+    {
+      "timestamp": "2025-06-30T18:15:00-05:00",
+      "actual_wh": 6.6,
+      "predicted_wh": 1.1174864895874934
+    },
+    {
+      "timestamp": "2025-06-30T18:20:00-05:00",
+      "actual_wh": 2.09,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:25:00-05:00",
+      "actual_wh": 0.03,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:30:00-05:00",
+      "actual_wh": 0.02,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:35:00-05:00",
+      "actual_wh": 0.04,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:40:00-05:00",
+      "actual_wh": 0.01,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T18:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T19:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T20:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T21:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T22:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:00:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:05:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:10:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:15:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:20:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:25:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:30:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:35:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:40:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:45:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:50:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    },
+    {
+      "timestamp": "2025-06-30T23:55:00-05:00",
+      "actual_wh": 0.0,
+      "predicted_wh": 0.0
+    }
+  ],
+  "limitations": [
+    "Evaluación condicionada a meteorología observada, no a pronósticos meteorológicos archivados.",
+    "La temperatura de módulo interviene en el diagnóstico con clima observado. El pronóstico anticipado tiene su propia evaluación en pronostico_diario.",
+    "Limpieza auditada sin imputación: se excluyen filas incompletas y fuera de los límites declarados; las banderas estadísticas requieren revisión y no prueban fallas.",
+    "Zona horaria de origen sin confirmar: se conserva la hora de reloj registrada y se etiqueta America/Guayaquil por compatibilidad con la aplicación, sin desplazar valores.",
+    "Se conserva la interpretación previa de producción como Wh por 5 min; el fabricante debe confirmar que no es un contador acumulado y si la fecha indica inicio o fin del intervalo.",
+    "No se dispone de potencia STC ni irradiación POA verificada para calcular PR o eficiencia."
+  ],
+  "versions": {
+    "python": "3.14.10",
+    "sklearn": "1.8.0",
+    "xgboost": "3.4.1",
+    "pandas": "3.1.0"
+  },
+  "archivo_meteorologico": {
+    "fuente": "Open-Meteo Previous Runs · GFS, ICON y ECMWF · radiación horaria prevista",
+    "documentacion": "https://open-meteo.com/en/docs/previous-runs-api",
+    "coordenadas_aproximadas_campus": [
+      -3.986,
+      -79.198
+    ],
+    "unidad": "W/m²",
+    "plazos_horas": [
+      24,
+      48
+    ],
+    "margen_minimo_horas": 9,
+    "sha256": "ab6f66f6645a9dda24f47df1ff342138ed7bdbb1a1abe44db5d69d0838dc2191",
+    "dias_ajuste": 138,
+    "ajuste_anterior_a": "2025-02-05T00:00:00-05:00"
+  },
+  "pronostico_diario": {
+    "metodo": "radiacion_calendario",
+    "nombre": "Producción por calendario y pronóstico regional de radiación",
+    "seleccion": {
+      "media_180_dias": {
+        "rmse_wh": 151.30705342576798,
+        "mae_wh": 77.55424357670607,
+        "rmse_08_17_wh": 244.75846344075387,
+        "mae_diario_kwh": 14.440714856077761,
+        "sesgo_diario_kwh": 0.6689285478870546,
+        "dias_con_respaldo": 0
+      },
+      "calendario": {
+        "rmse_wh": 131.54151432918758,
+        "mae_wh": 65.37357058426126,
+        "rmse_08_17_wh": 212.11724964061636,
+        "mae_diario_kwh": 7.711461398627579,
+        "sesgo_diario_kwh": 1.7257625535154255,
+        "dias_con_respaldo": 0
+      },
+      "radiacion_calendario": {
+        "rmse_wh": 131.4658203103785,
+        "mae_wh": 64.96861419611214,
+        "rmse_08_17_wh": 212.04468927312308,
+        "mae_diario_kwh": 7.607417759016856,
+        "sesgo_diario_kwh": 1.8722299117445371,
+        "dias_con_respaldo": 0
+      }
+    },
+    "criterio": "Menor RMSE por intervalo con control del error absoluto diario en selección cronológica.",
+    "inicio_seleccion": "2025-02-05",
+    "fin_seleccion": "2025-04-17",
+    "fin_calibracion": "2025-05-06",
+    "dias_seleccion": 72,
+    "dias_calibracion": 19,
+    "dias_prueba": 55,
+    "dias_con_respaldo_prueba": 0,
+    "prueba": {
+      "rmse_wh": 116.58203016238565,
+      "mae_wh": 60.33867604131153,
+      "rmse_08_17_wh": 188.508079652397,
+      "mae_diario_kwh": 8.70664231479705,
+      "sesgo_diario_kwh": 4.861545662037724
+    },
+    "calendario_prueba": {
+      "rmse_wh": 119.33915930099997,
+      "mae_wh": 61.714629053485005,
+      "rmse_08_17_wh": 193.05626745574563,
+      "mae_diario_kwh": 9.325940408221516,
+      "sesgo_diario_kwh": 5.5588153885534135
+    },
+    "por_dia_prueba": [
+      {
+        "fecha": "2025-05-07",
+        "intervalos": 288,
+        "medido_kwh": 64.73835000000001,
+        "previsto_kwh": 62.433829012270294,
+        "metodo_anterior_kwh": 50.153441335718654,
+        "error_absoluto_diario_kwh": 2.3045209877297044,
+        "error_absoluto_anterior_kwh": 14.584908664281341,
+        "rmse_wh": 162.91801976645144,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-08",
+        "intervalos": 288,
+        "medido_kwh": 74.18037,
+        "previsto_kwh": 63.50714746688656,
+        "metodo_anterior_kwh": 50.268680564611365,
+        "error_absoluto_diario_kwh": 10.673222533113442,
+        "error_absoluto_anterior_kwh": 23.91168943538864,
+        "rmse_wh": 170.90708421455588,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-09",
+        "intervalos": 288,
+        "medido_kwh": 49.22759,
+        "previsto_kwh": 62.016939989860816,
+        "metodo_anterior_kwh": 50.456056193035714,
+        "error_absoluto_diario_kwh": 12.789349989860813,
+        "error_absoluto_anterior_kwh": 1.2284661930357137,
+        "rmse_wh": 125.00229481021447,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-10",
+        "intervalos": 288,
+        "medido_kwh": 50.238910000000004,
+        "previsto_kwh": 29.81793749926382,
+        "metodo_anterior_kwh": 50.44646526667928,
+        "error_absoluto_diario_kwh": 20.420972500736184,
+        "error_absoluto_anterior_kwh": 0.20755526667928278,
+        "rmse_wh": 172.39914929487801,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-11",
+        "intervalos": 288,
+        "medido_kwh": 30.02582,
+        "previsto_kwh": 28.708445347287682,
+        "metodo_anterior_kwh": 50.44485709809572,
+        "error_absoluto_diario_kwh": 1.3173746527123182,
+        "error_absoluto_anterior_kwh": 20.41903709809572,
+        "rmse_wh": 51.98022748082918,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-12",
+        "intervalos": 288,
+        "medido_kwh": 42.506589999999996,
+        "previsto_kwh": 51.27450823648269,
+        "metodo_anterior_kwh": 50.28872423362934,
+        "error_absoluto_diario_kwh": 8.767918236482693,
+        "error_absoluto_anterior_kwh": 7.782134233629337,
+        "rmse_wh": 103.03299781618044,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-13",
+        "intervalos": 288,
+        "medido_kwh": 49.20939,
+        "previsto_kwh": 60.664901006891604,
+        "metodo_anterior_kwh": 50.22993881798773,
+        "error_absoluto_diario_kwh": 11.455511006891603,
+        "error_absoluto_anterior_kwh": 1.0205488179877402,
+        "rmse_wh": 116.99317498386868,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-14",
+        "intervalos": 288,
+        "medido_kwh": 48.637660000000004,
+        "previsto_kwh": 60.45754189827763,
+        "metodo_anterior_kwh": 50.22236854013885,
+        "error_absoluto_diario_kwh": 11.819881898277636,
+        "error_absoluto_anterior_kwh": 1.584708540138848,
+        "rmse_wh": 125.53708115085443,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-15",
+        "intervalos": 288,
+        "medido_kwh": 66.81721,
+        "previsto_kwh": 59.677145007660194,
+        "metodo_anterior_kwh": 50.21035375147056,
+        "error_absoluto_diario_kwh": 7.140064992339813,
+        "error_absoluto_anterior_kwh": 16.606856248529454,
+        "rmse_wh": 167.8956660654115,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-16",
+        "intervalos": 288,
+        "medido_kwh": 43.207879999999996,
+        "previsto_kwh": 59.71322258953846,
+        "metodo_anterior_kwh": 50.333228604056124,
+        "error_absoluto_diario_kwh": 16.505342589538454,
+        "error_absoluto_anterior_kwh": 7.125348604056122,
+        "rmse_wh": 199.0791661062818,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-17",
+        "intervalos": 288,
+        "medido_kwh": 40.7389,
+        "previsto_kwh": 31.378084898331917,
+        "metodo_anterior_kwh": 50.28093603161138,
+        "error_absoluto_diario_kwh": 9.360815101668083,
+        "error_absoluto_anterior_kwh": 9.542036031611376,
+        "rmse_wh": 118.4213161531457,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-18",
+        "intervalos": 288,
+        "medido_kwh": 41.394239999999996,
+        "previsto_kwh": 31.34621758047142,
+        "metodo_anterior_kwh": 50.211157403605625,
+        "error_absoluto_diario_kwh": 10.048022419528577,
+        "error_absoluto_anterior_kwh": 8.816917403605629,
+        "rmse_wh": 118.15067497014012,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-19",
+        "intervalos": 288,
+        "medido_kwh": 50.855290000000004,
+        "previsto_kwh": 57.40232098943205,
+        "metodo_anterior_kwh": 50.14711022990419,
+        "error_absoluto_diario_kwh": 6.54703098943205,
+        "error_absoluto_anterior_kwh": 0.7081797700958096,
+        "rmse_wh": 120.38659255264366,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-20",
+        "intervalos": 288,
+        "medido_kwh": 58.25635,
+        "previsto_kwh": 59.29870880746807,
+        "metodo_anterior_kwh": 50.152468666819814,
+        "error_absoluto_diario_kwh": 1.0423588074680583,
+        "error_absoluto_anterior_kwh": 8.103881333180192,
+        "rmse_wh": 106.00845442551464,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-21",
+        "intervalos": 288,
+        "medido_kwh": 43.70686,
+        "previsto_kwh": 56.02177275363871,
+        "metodo_anterior_kwh": 50.21051636703966,
+        "error_absoluto_diario_kwh": 12.314912753638707,
+        "error_absoluto_anterior_kwh": 6.50365636703966,
+        "rmse_wh": 100.29023866341151,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-22",
+        "intervalos": 288,
+        "medido_kwh": 54.43061,
+        "previsto_kwh": 59.589380280020706,
+        "metodo_anterior_kwh": 50.16430265322796,
+        "error_absoluto_diario_kwh": 5.158770280020699,
+        "error_absoluto_anterior_kwh": 4.266307346772034,
+        "rmse_wh": 92.15884548420794,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-23",
+        "intervalos": 288,
+        "medido_kwh": 29.179050000000004,
+        "previsto_kwh": 32.26812607360499,
+        "metodo_anterior_kwh": 50.19440288517051,
+        "error_absoluto_diario_kwh": 3.089076073604988,
+        "error_absoluto_anterior_kwh": 21.015352885170504,
+        "rmse_wh": 71.68593369536464,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-24",
+        "intervalos": 288,
+        "medido_kwh": 35.0742,
+        "previsto_kwh": 31.942424280482605,
+        "metodo_anterior_kwh": 50.047278633506835,
+        "error_absoluto_diario_kwh": 3.131775719517396,
+        "error_absoluto_anterior_kwh": 14.97307863350684,
+        "rmse_wh": 63.73867468840955,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-25",
+        "intervalos": 288,
+        "medido_kwh": 31.79232,
+        "previsto_kwh": 32.69000121463335,
+        "metodo_anterior_kwh": 49.943147152877316,
+        "error_absoluto_diario_kwh": 0.8976812146333434,
+        "error_absoluto_anterior_kwh": 18.15082715287732,
+        "rmse_wh": 56.12993988275594,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-26",
+        "intervalos": 288,
+        "medido_kwh": 56.73411,
+        "previsto_kwh": 60.873092335269085,
+        "metodo_anterior_kwh": 49.81774474482591,
+        "error_absoluto_diario_kwh": 4.138982335269087,
+        "error_absoluto_anterior_kwh": 6.916365255174093,
+        "rmse_wh": 97.00088302713196,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-27",
+        "intervalos": 288,
+        "medido_kwh": 56.60152,
+        "previsto_kwh": 60.165991991967005,
+        "metodo_anterior_kwh": 49.865283681957884,
+        "error_absoluto_diario_kwh": 3.5644719919670087,
+        "error_absoluto_anterior_kwh": 6.736236318042118,
+        "rmse_wh": 113.04376816397358,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-28",
+        "intervalos": 288,
+        "medido_kwh": 51.65602,
+        "previsto_kwh": 56.89398856686396,
+        "metodo_anterior_kwh": 49.911264540781254,
+        "error_absoluto_diario_kwh": 5.237968566863957,
+        "error_absoluto_anterior_kwh": 1.7447554592187535,
+        "rmse_wh": 107.41502109281531,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-29",
+        "intervalos": 288,
+        "medido_kwh": 54.50967,
+        "previsto_kwh": 58.39981609740942,
+        "metodo_anterior_kwh": 49.9229635151209,
+        "error_absoluto_diario_kwh": 3.8901460974094264,
+        "error_absoluto_anterior_kwh": 4.5867064848791035,
+        "rmse_wh": 148.63046040977642,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-30",
+        "intervalos": 288,
+        "medido_kwh": 67.25323,
+        "previsto_kwh": 54.318978538983544,
+        "metodo_anterior_kwh": 49.95372147752946,
+        "error_absoluto_diario_kwh": 12.934251461016462,
+        "error_absoluto_anterior_kwh": 17.299508522470536,
+        "rmse_wh": 121.52849153758875,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-05-31",
+        "intervalos": 288,
+        "medido_kwh": 32.15085,
+        "previsto_kwh": 30.471170801520536,
+        "metodo_anterior_kwh": 50.0691794002537,
+        "error_absoluto_diario_kwh": 1.67967919847946,
+        "error_absoluto_anterior_kwh": 17.9183294002537,
+        "rmse_wh": 45.2062435979527,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-01",
+        "intervalos": 288,
+        "medido_kwh": 31.42188,
+        "previsto_kwh": 31.112055586893113,
+        "metodo_anterior_kwh": 49.95033641153537,
+        "error_absoluto_diario_kwh": 0.3098244131068832,
+        "error_absoluto_anterior_kwh": 18.528456411535362,
+        "rmse_wh": 76.64994793873234,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-02",
+        "intervalos": 288,
+        "medido_kwh": 75.14501000000001,
+        "previsto_kwh": 59.0862104317918,
+        "metodo_anterior_kwh": 49.8281865349177,
+        "error_absoluto_diario_kwh": 16.058799568208208,
+        "error_absoluto_anterior_kwh": 25.316823465082308,
+        "rmse_wh": 157.17773236650268,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-03",
+        "intervalos": 288,
+        "medido_kwh": 38.846199999999996,
+        "previsto_kwh": 55.57598062409134,
+        "metodo_anterior_kwh": 49.99393661510273,
+        "error_absoluto_diario_kwh": 16.729780624091347,
+        "error_absoluto_anterior_kwh": 11.147736615102732,
+        "rmse_wh": 105.98822931747706,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-04",
+        "intervalos": 288,
+        "medido_kwh": 42.09114999999999,
+        "previsto_kwh": 58.312291118757216,
+        "metodo_anterior_kwh": 49.921401944039665,
+        "error_absoluto_diario_kwh": 16.221141118757213,
+        "error_absoluto_anterior_kwh": 7.83025194403967,
+        "rmse_wh": 127.5230364681887,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-05",
+        "intervalos": 288,
+        "medido_kwh": 59.31842,
+        "previsto_kwh": 59.06787151980207,
+        "metodo_anterior_kwh": 49.870709568070495,
+        "error_absoluto_diario_kwh": 0.2505484801979301,
+        "error_absoluto_anterior_kwh": 9.447710431929506,
+        "rmse_wh": 142.33927367447026,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-06",
+        "intervalos": 288,
+        "medido_kwh": 36.83056,
+        "previsto_kwh": 54.061273018440424,
+        "metodo_anterior_kwh": 49.931288397416736,
+        "error_absoluto_diario_kwh": 17.230713018440415,
+        "error_absoluto_anterior_kwh": 13.100728397416733,
+        "rmse_wh": 112.50840264127402,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-07",
+        "intervalos": 288,
+        "medido_kwh": 28.075010000000002,
+        "previsto_kwh": 32.122678100979655,
+        "metodo_anterior_kwh": 49.84773199356719,
+        "error_absoluto_diario_kwh": 4.04766810097965,
+        "error_absoluto_anterior_kwh": 21.77272199356718,
+        "rmse_wh": 57.32272499405872,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-08",
+        "intervalos": 288,
+        "medido_kwh": 20.301129999999997,
+        "previsto_kwh": 33.16431092349764,
+        "metodo_anterior_kwh": 49.70972424885062,
+        "error_absoluto_diario_kwh": 12.863180923497634,
+        "error_absoluto_anterior_kwh": 29.40859424885062,
+        "rmse_wh": 85.9054196547803,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-09",
+        "intervalos": 288,
+        "medido_kwh": 64.49847,
+        "previsto_kwh": 59.8816707565214,
+        "metodo_anterior_kwh": 49.52448474059017,
+        "error_absoluto_diario_kwh": 4.6167992434785905,
+        "error_absoluto_anterior_kwh": 14.973985259409828,
+        "rmse_wh": 112.80026693960906,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-10",
+        "intervalos": 288,
+        "medido_kwh": 50.60199,
+        "previsto_kwh": 58.132945022491214,
+        "metodo_anterior_kwh": 49.61826319373917,
+        "error_absoluto_diario_kwh": 7.530955022491216,
+        "error_absoluto_anterior_kwh": 0.9837268062608289,
+        "rmse_wh": 109.89875067384735,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-11",
+        "intervalos": 288,
+        "medido_kwh": 46.617439999999995,
+        "previsto_kwh": 58.92837801712632,
+        "metodo_anterior_kwh": 49.6243960589325,
+        "error_absoluto_diario_kwh": 12.31093801712632,
+        "error_absoluto_anterior_kwh": 3.006956058932504,
+        "rmse_wh": 129.27382500936585,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-12",
+        "intervalos": 288,
+        "medido_kwh": 62.60556,
+        "previsto_kwh": 57.9109580071622,
+        "metodo_anterior_kwh": 49.605765877847155,
+        "error_absoluto_diario_kwh": 4.6946019928377964,
+        "error_absoluto_anterior_kwh": 12.999794122152847,
+        "rmse_wh": 98.46459110599126,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-13",
+        "intervalos": 288,
+        "medido_kwh": 55.06934,
+        "previsto_kwh": 59.48127186630518,
+        "metodo_anterior_kwh": 49.685622112917436,
+        "error_absoluto_diario_kwh": 4.411931866305183,
+        "error_absoluto_anterior_kwh": 5.3837178870825575,
+        "rmse_wh": 152.82524604263273,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-14",
+        "intervalos": 288,
+        "medido_kwh": 22.771690000000003,
+        "previsto_kwh": 30.82151525551649,
+        "metodo_anterior_kwh": 49.718375229342875,
+        "error_absoluto_diario_kwh": 8.049825255516486,
+        "error_absoluto_anterior_kwh": 26.946685229342876,
+        "rmse_wh": 74.97495508056636,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-15",
+        "intervalos": 288,
+        "medido_kwh": 16.324360000000002,
+        "previsto_kwh": 31.437368107884012,
+        "metodo_anterior_kwh": 49.55493218152177,
+        "error_absoluto_diario_kwh": 15.113008107884015,
+        "error_absoluto_anterior_kwh": 33.23057218152177,
+        "rmse_wh": 92.92586008438089,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-16",
+        "intervalos": 288,
+        "medido_kwh": 44.86708,
+        "previsto_kwh": 56.84307055431132,
+        "metodo_anterior_kwh": 49.3545554397338,
+        "error_absoluto_diario_kwh": 11.975990554311313,
+        "error_absoluto_anterior_kwh": 4.487475439733797,
+        "rmse_wh": 99.48104825065812,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-17",
+        "intervalos": 288,
+        "medido_kwh": 42.71468,
+        "previsto_kwh": 57.20671876856002,
+        "metodo_anterior_kwh": 49.327690238535695,
+        "error_absoluto_diario_kwh": 14.492038768560025,
+        "error_absoluto_anterior_kwh": 6.613010238535698,
+        "rmse_wh": 101.90929960756968,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-18",
+        "intervalos": 288,
+        "medido_kwh": 39.80521000000001,
+        "previsto_kwh": 54.1974179473683,
+        "metodo_anterior_kwh": 49.28827888603875,
+        "error_absoluto_diario_kwh": 14.3922079473683,
+        "error_absoluto_anterior_kwh": 9.48306888603875,
+        "rmse_wh": 105.1450886134419,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-19",
+        "intervalos": 288,
+        "medido_kwh": 47.13512,
+        "previsto_kwh": 56.221520229952624,
+        "metodo_anterior_kwh": 49.2320801026062,
+        "error_absoluto_diario_kwh": 9.086400229952625,
+        "error_absoluto_anterior_kwh": 2.096960102606202,
+        "rmse_wh": 103.84959455568399,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-20",
+        "intervalos": 288,
+        "medido_kwh": 27.57065,
+        "previsto_kwh": 54.69658517090997,
+        "metodo_anterior_kwh": 49.219630316321116,
+        "error_absoluto_diario_kwh": 27.12593517090997,
+        "error_absoluto_anterior_kwh": 21.648980316321115,
+        "rmse_wh": 158.57150850819005,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-21",
+        "intervalos": 288,
+        "medido_kwh": 19.52286,
+        "previsto_kwh": 31.862927455932084,
+        "metodo_anterior_kwh": 49.092958708839404,
+        "error_absoluto_diario_kwh": 12.340067455932079,
+        "error_absoluto_anterior_kwh": 29.570098708839403,
+        "rmse_wh": 95.44466599692721,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-22",
+        "intervalos": 288,
+        "medido_kwh": 22.93105,
+        "previsto_kwh": 31.52916388103624,
+        "metodo_anterior_kwh": 48.920849153370106,
+        "error_absoluto_diario_kwh": 8.598113881036236,
+        "error_absoluto_anterior_kwh": 25.98979915337011,
+        "rmse_wh": 82.3164741517305,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-23",
+        "intervalos": 288,
+        "medido_kwh": 39.03322,
+        "previsto_kwh": 59.840825101743775,
+        "metodo_anterior_kwh": 48.77048813456438,
+        "error_absoluto_diario_kwh": 20.807605101743775,
+        "error_absoluto_anterior_kwh": 9.737268134564381,
+        "rmse_wh": 153.86557148062906,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-24",
+        "intervalos": 288,
+        "medido_kwh": 59.751219999999996,
+        "previsto_kwh": 58.95233531378937,
+        "metodo_anterior_kwh": 48.7144306577268,
+        "error_absoluto_diario_kwh": 0.7988846862106193,
+        "error_absoluto_anterior_kwh": 11.036789342273194,
+        "rmse_wh": 140.77651290717205,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-25",
+        "intervalos": 288,
+        "medido_kwh": 50.09819,
+        "previsto_kwh": 59.39938574774802,
+        "metodo_anterior_kwh": 48.7775895014206,
+        "error_absoluto_diario_kwh": 9.30119574774802,
+        "error_absoluto_anterior_kwh": 1.3206004985794033,
+        "rmse_wh": 103.50665063759469,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-26",
+        "intervalos": 288,
+        "medido_kwh": 56.68254,
+        "previsto_kwh": 57.30091572633406,
+        "metodo_anterior_kwh": 48.785128259012836,
+        "error_absoluto_diario_kwh": 0.6183757263340622,
+        "error_absoluto_anterior_kwh": 7.897411740987158,
+        "rmse_wh": 101.67976555793351,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-27",
+        "intervalos": 288,
+        "medido_kwh": 51.53231,
+        "previsto_kwh": 57.06283245442841,
+        "metodo_anterior_kwh": 48.82981643629241,
+        "error_absoluto_diario_kwh": 5.530522454428411,
+        "error_absoluto_anterior_kwh": 2.7024935637075864,
+        "rmse_wh": 124.23783681757688,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-28",
+        "intervalos": 288,
+        "medido_kwh": 20.746049999999997,
+        "previsto_kwh": 30.294761603225183,
+        "metodo_anterior_kwh": 48.84495194394768,
+        "error_absoluto_diario_kwh": 9.548711603225179,
+        "error_absoluto_anterior_kwh": 28.098901943947684,
+        "rmse_wh": 76.34697014809689,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-29",
+        "intervalos": 288,
+        "medido_kwh": 23.19602,
+        "previsto_kwh": 29.5344796288007,
+        "metodo_anterior_kwh": 48.687845666180834,
+        "error_absoluto_diario_kwh": 6.338459628800698,
+        "error_absoluto_anterior_kwh": 25.49182566618084,
+        "rmse_wh": 80.80025678740515,
+        "uso_respaldo": false
+      },
+      {
+        "fecha": "2025-06-30",
+        "intervalos": 288,
+        "medido_kwh": 52.01216,
+        "previsto_kwh": 53.25316020615753,
+        "metodo_anterior_kwh": 48.5460585250954,
+        "error_absoluto_diario_kwh": 1.2410002061575314,
+        "error_absoluto_anterior_kwh": 3.4661014749046055,
+        "rmse_wh": 112.34937691497144,
+        "uso_respaldo": false
+      }
+    ],
+    "cobertura_calendario_prueba": 0.9702651515151515,
+    "referencia_prueba": {
+      "rmse_wh": 131.43040407673132,
+      "mae_wh": 67.52146683329107,
+      "rmse_08_17_wh": 212.9290693785121,
+      "mae_diario_kwh": 12.140213054306397,
+      "sesgo_diario_kwh": 5.247822362441075
+    },
+    "media_180_dias_prueba": {
+      "rmse_wh": 131.61169318592647,
+      "mae_wh": 67.34712643268485,
+      "rmse_08_17_wh": 213.26629221846375,
+      "mae_diario_kwh": 12.09950250415522,
+      "sesgo_diario_kwh": 4.790609797595152
+    },
+    "dias_con_menor_error_diario": 31,
+    "periodo_prueba_examinado_previamente": true,
+    "radios_horarios_wh": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.001920218595764685,
+      16.01427019216874,
+      97.67941699853436,
+      322.32135043009635,
+      389.59991369899365,
+      430.03391015127886,
+      464.8600419845456,
+      441.49221213665135,
+      435.5850273487552,
+      439.22165369273773,
+      411.00004965022447,
+      222.6630433340515,
+      106.80694499137252,
+      27.210046353212817,
+      0.015482558051587441,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "radios_respaldo_wh": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0019195176386481159,
+      15.634309655692032,
+      95.03250438340208,
+      324.3164714916102,
+      398.0821657592437,
+      471.22570769519575,
+      500.768768659325,
+      476.89582652922456,
+      424.29635675158784,
+      423.59926147717823,
+      403.58266827953526,
+      229.525832657349,
+      110.87664169414904,
+      27.50375805491236,
+      0.015575502893896032,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "cobertura_prueba": 0.969570707070707
+  }
+}

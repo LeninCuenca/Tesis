@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
+  publicDir: "publico",
   server: {
     host: "127.0.0.1",
     port: 5176,
@@ -20,7 +21,7 @@ export default defineConfig({
         codeSplitting: {
           groups: [
             { name: "rendering", test: /node_modules[\\/]zrender[\\/]/, priority: 20 },
-            { name: "charts", test: /node_modules[\\/]echarts[\\/]/, priority: 10, maxSize: 700000 },
+            { name: "charts", test: /node_modules[\\/]echarts[\\/]/, priority: 10 },
           ],
         },
       },

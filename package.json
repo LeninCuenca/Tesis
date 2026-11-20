@@ -1,4 +1,18 @@
 {
+  "name": "tesis-solaris",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/iniciar.mjs",
+    "frontend": "npm run dev:frontend --prefix frontend",
+    "api": ".venv-linux/bin/python -m backend.servidor",
+    "limpiar": ".venv-linux/bin/python -m backend.procesos.limpiar_consolidar",
+    "entrenar": ".venv-linux/bin/python -m backend.procesos.entrenar_pronostico",
+    "evaluar": ".venv-linux/bin/python -m backend.procesos.evaluar_objetivos",
+    "pruebas:backend": ".venv-linux/bin/python -m unittest discover -s backend/pruebas -p \"prueba_*.py\" -v",
+    "test": "npm test --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "lint": "npm run lint --prefix frontend"
+  },
   "dependencies": {
     "@supabase/server": "^1.4.1",
     "@supabase/supabase-js": "^2.109.0",

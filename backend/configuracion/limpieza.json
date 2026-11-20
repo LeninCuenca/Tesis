@@ -1,0 +1,83 @@
+{
+  "timestamp_columns": [
+    "Fecha y hora",
+    "timestamp",
+    "datetime",
+    "date",
+    "time"
+  ],
+  "timestamp_formats": [
+    "%d.%m.%Y %H:%M",
+    "ISO8601"
+  ],
+  "timezone": null,
+  "timestamp_position": "unknown",
+  "frequency": "5min",
+  "csv": {
+    "encoding": "auto",
+    "delimiter": "auto",
+    "decimal": "auto",
+    "thousands": null
+  },
+  "units": {},
+  "missing_markers": [
+    "",
+    "n/a",
+    "na",
+    "nan",
+    "null",
+    "none"
+  ],
+  "numeric_sentinels": {},
+  "consensus": {
+    "absolute_tolerance": 0.0,
+    "relative_tolerance": 0.0
+  },
+  "bounds": {
+    "Factor de potencia": {
+      "min": -1.0,
+      "max": 1.0,
+      "action": "flag",
+      "confidence": "confirmed",
+      "reason": "El factor de potencia adimensional está entre -1 y 1; verificar convención de signo.",
+      "unit": "1"
+    },
+    "Irradiación": {
+      "min": 0.0,
+      "action": "flag",
+      "confidence": "manual_review",
+      "reason": "Irradiancia negativa: posible offset instrumental; no confirma falla ni se reemplaza.",
+      "unit": "W/m²"
+    },
+    "Consumo": {
+      "min": 0.0,
+      "action": "flag",
+      "confidence": "manual_review",
+      "reason": "Consumo negativo: revisar si es consumo absoluto o flujo neto con signo.",
+      "unit": "Wh"
+    }
+  },
+  "anomalies": {
+    "Temperatura ambiente": {
+      "window": 13,
+      "min_periods": 8,
+      "sigma": 8.0,
+      "absolute_floor": 3.0,
+      "stuck_minutes": 360
+    },
+    "Temperatura de módulo": {
+      "window": 13,
+      "min_periods": 8,
+      "sigma": 8.0,
+      "absolute_floor": 5.0,
+      "stuck_minutes": 360
+    }
+  },
+  "imputation": {
+    "enabled": false,
+    "max_steps": 2,
+    "columns": []
+  },
+  "max_grid_rows": 2000000,
+  "plots": true
+}

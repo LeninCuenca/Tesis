@@ -1,0 +1,12 @@
+{
+  "central_id": 1,
+  "name": "Edificio Central UTPL",
+  "dc_capacity_kwp": null,
+  "module_area_m2": null,
+  "irradiance_plane": "unconfirmed",
+  "irradiance_sampling": "unconfirmed",
+  "energy_semantics": "unconfirmed",
+  "same_period_complete": false,
+  "source_reference": null,
+  "notes": "Los seis Excel contienen canales y unidades, pero no ficha técnica de módulos ni confirmación de POA o energía de intervalo. No usar los 15 kW del inversor como potencia STC DC."
+}

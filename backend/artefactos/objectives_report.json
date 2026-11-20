@@ -1,0 +1,1463 @@
+{
+  "created_at": "2026-11-19T13:39:47.516252+00:00",
+  "central": "Edificio Central UTPL",
+  "source_sha256": "6695dc6f6c712d82d0905f0af74ed5fa4291210ba494e177c06701a4ecec1cfb",
+  "model_bundle_sha256": "8d8d029adc8fa93965d89c1209b7ae7b8ee2c2e099982c0f3dc053a040157547",
+  "storage": {
+    "source_manifest": [
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025 limpio.xlsx",
+        "sha256": "ba2e77a8e7152c2cfdd849f9e9d2eebee40cd3feb50fa52af71474f975b24127",
+        "bytes": 3656578,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 12,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/2025.xlsx",
+        "sha256": "84cb5c725396a67e71bf70c166283bd5e8ad43914238bbbb2b78ede911a4f744",
+        "bytes": 10825453,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 31,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012020-31122020.xlsx",
+        "sha256": "b8c4efe4e24a65d4ae17a0fc8541c419d4068bb3c46326c4392d10f2adc795cf",
+        "bytes": 27923439,
+        "accepted_rows": 105408,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2020-01-01T00:00:00",
+        "last_timestamp": "2020-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 105408,
+        "parsed_structure_rows": 105408,
+        "structural_rejections": 0,
+        "columns": 64,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012023-31122023.xlsx",
+        "sha256": "c28596df214896af0a5a2222b01055b6f97552188725241cbde40671cead29a4",
+        "bytes": 33468370,
+        "accepted_rows": 104999,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2023-01-01T00:00:00",
+        "last_timestamp": "2023-12-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 104999,
+        "parsed_structure_rows": 104999,
+        "structural_rejections": 0,
+        "columns": 58,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012024-26042024.xlsx",
+        "sha256": "c315116218fdf6d3ee661ba478d73ca7a107c0bccf673a0fcb406d83cddb1d9c",
+        "bytes": 13718830,
+        "accepted_rows": 29869,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-01-01T00:00:00",
+        "last_timestamp": "2024-04-26T10:00:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 29869,
+        "parsed_structure_rows": 29869,
+        "structural_rejections": 0,
+        "columns": 95,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01012025-30062025 1.xlsx",
+        "sha256": "74655f2d6da24649e747baa2d0847bd2063b19d80130a55ca4bc657dedfa7d1c",
+        "bytes": 26290801,
+        "accepted_rows": 52128,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2025-01-01T00:00:00",
+        "last_timestamp": "2025-06-30T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 52128,
+        "parsed_structure_rows": 52128,
+        "structural_rejections": 0,
+        "columns": 104,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01032024-31072024.xlsx",
+        "sha256": "25a17b80a3670abd6d6cdd7c34c7a9f18414fcbc273da1d2b40262687b98d4b6",
+        "bytes": 8086725,
+        "accepted_rows": 35879,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-03-01T00:00:00",
+        "last_timestamp": "2024-07-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 35879,
+        "parsed_structure_rows": 35879,
+        "structural_rejections": 0,
+        "columns": 35,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01042024-24062024.xlsx",
+        "sha256": "c86a2da5a809f5b2bd87ec6c8ef25845a2a888e2dfd34d081635e62beaad5ed8",
+        "bytes": 7886828,
+        "accepted_rows": 17282,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-04-01T00:00:00",
+        "last_timestamp": "2024-06-24T17:05:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 17282,
+        "parsed_structure_rows": 17282,
+        "structural_rejections": 0,
+        "columns": 96,
+        "units_row": true
+      },
+      {
+        "path": "/home/lenin/Documentos/LENIN WINDOWS/TESIS/base_datos/datos/historicos/UTPL_Edificio_Central_01082024-31082024.xlsx",
+        "sha256": "1210243592129ee62d1bfd1f299c708532f577fefd5cac57a188e0a8f4db26c6",
+        "bytes": 4200466,
+        "accepted_rows": 8928,
+        "invalid_timestamps": 0,
+        "out_of_order_rows": 0,
+        "first_timestamp": "2024-08-01T00:00:00",
+        "last_timestamp": "2024-08-31T23:55:00",
+        "format": "excel",
+        "sheet": 0,
+        "formula_policy": "cached_values",
+        "header_row": 1,
+        "timestamp_column": "Fecha y hora",
+        "body_rows": 8928,
+        "parsed_structure_rows": 8928,
+        "structural_rejections": 0,
+        "columns": 98,
+        "units_row": true
+      }
+    ],
+    "cleaning_version": 3,
+    "central_id": 1,
+    "source_sha256": "6695dc6f6c712d82d0905f0af74ed5fa4291210ba494e177c06701a4ecec1cfb",
+    "rows": 578304,
+    "channels": 103,
+    "clock_convention": "unshifted_source_clock",
+    "database_sha256": "81d1b294d0fdc898b0777ff8ab848b13899fa53fa9ee6718bd9407995282df1a",
+    "integrity": "ok",
+    "roundtrip": "all_values_and_nulls_exact"
+  },
+  "daily_test": {
+    "complete_days": 55,
+    "excluded_days": 0,
+    "mae_kwh": 7.127702636049508,
+    "rmse_kwh": 8.24243496530984,
+    "bias_kwh": -2.5243753532734483,
+    "actual_kwh": 2471.23956,
+    "predicted_kwh": 2332.3989155699596,
+    "days": [
+      {
+        "date": "2025-05-07",
+        "actual_kwh": 64.73835,
+        "predicted_kwh": 58.04401849263823,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-08",
+        "actual_kwh": 74.18037,
+        "predicted_kwh": 66.17487565622673,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-09",
+        "actual_kwh": 49.22759,
+        "predicted_kwh": 44.70939703641541,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-10",
+        "actual_kwh": 50.238910000000004,
+        "predicted_kwh": 36.55458072431077,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-11",
+        "actual_kwh": 30.02582,
+        "predicted_kwh": 36.35565937196453,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-12",
+        "actual_kwh": 42.50659,
+        "predicted_kwh": 37.977912653248936,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-13",
+        "actual_kwh": 49.20939,
+        "predicted_kwh": 42.95249493716128,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-14",
+        "actual_kwh": 48.637660000000004,
+        "predicted_kwh": 41.64809367711608,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-15",
+        "actual_kwh": 66.81721,
+        "predicted_kwh": 60.00707174944629,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-16",
+        "actual_kwh": 43.20788,
+        "predicted_kwh": 37.68994378584938,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-17",
+        "actual_kwh": 40.738899999999994,
+        "predicted_kwh": 32.11034517723044,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-18",
+        "actual_kwh": 41.394239999999996,
+        "predicted_kwh": 35.96568266760866,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-19",
+        "actual_kwh": 50.85529,
+        "predicted_kwh": 48.268769335007605,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-20",
+        "actual_kwh": 58.25635,
+        "predicted_kwh": 50.457704545431596,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-21",
+        "actual_kwh": 43.70686,
+        "predicted_kwh": 38.66271556906489,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-22",
+        "actual_kwh": 54.43061,
+        "predicted_kwh": 46.96552627195663,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-23",
+        "actual_kwh": 29.179049999999997,
+        "predicted_kwh": 28.135920474756436,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-24",
+        "actual_kwh": 35.0742,
+        "predicted_kwh": 36.85751189610819,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-25",
+        "actual_kwh": 31.79232,
+        "predicted_kwh": 29.693509525881638,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-26",
+        "actual_kwh": 56.73411,
+        "predicted_kwh": 47.531360133862776,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-27",
+        "actual_kwh": 56.60152,
+        "predicted_kwh": 49.64370627598472,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-28",
+        "actual_kwh": 51.65602,
+        "predicted_kwh": 44.30296191964728,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-29",
+        "actual_kwh": 54.50967,
+        "predicted_kwh": 46.65105438781128,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-30",
+        "actual_kwh": 67.25323,
+        "predicted_kwh": 56.688502087511864,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-31",
+        "actual_kwh": 32.15085,
+        "predicted_kwh": 35.78192237430422,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-01",
+        "actual_kwh": 31.42188,
+        "predicted_kwh": 38.612810835380614,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-02",
+        "actual_kwh": 75.14501000000001,
+        "predicted_kwh": 71.00140513806784,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-03",
+        "actual_kwh": 38.846199999999996,
+        "predicted_kwh": 32.88166041038984,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-04",
+        "actual_kwh": 42.09114999999999,
+        "predicted_kwh": 37.28808105661073,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-05",
+        "actual_kwh": 59.318419999999996,
+        "predicted_kwh": 54.290416843068506,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-06",
+        "actual_kwh": 36.83056,
+        "predicted_kwh": 31.534456091960923,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-07",
+        "actual_kwh": 28.075010000000002,
+        "predicted_kwh": 32.338341566527845,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-08",
+        "actual_kwh": 20.301129999999997,
+        "predicted_kwh": 28.520073911967128,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-09",
+        "actual_kwh": 64.49847,
+        "predicted_kwh": 58.65727586209038,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-10",
+        "actual_kwh": 50.60199,
+        "predicted_kwh": 44.70533783901636,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-11",
+        "actual_kwh": 46.617439999999995,
+        "predicted_kwh": 41.359852651473425,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-12",
+        "actual_kwh": 62.60556,
+        "predicted_kwh": 55.58428644454169,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-13",
+        "actual_kwh": 55.06934,
+        "predicted_kwh": 47.128316971075485,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-14",
+        "actual_kwh": 22.771690000000003,
+        "predicted_kwh": 31.971455273589367,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-15",
+        "actual_kwh": 16.32436,
+        "predicted_kwh": 28.62675083788736,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-16",
+        "actual_kwh": 44.86708,
+        "predicted_kwh": 42.53777963720774,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-17",
+        "actual_kwh": 42.714679999999994,
+        "predicted_kwh": 36.78201827475976,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-18",
+        "actual_kwh": 39.80521,
+        "predicted_kwh": 32.71312201289476,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-19",
+        "actual_kwh": 47.13511999999999,
+        "predicted_kwh": 39.36608862575448,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-20",
+        "actual_kwh": 27.57065,
+        "predicted_kwh": 23.786901159551284,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-21",
+        "actual_kwh": 19.52286,
+        "predicted_kwh": 38.45781840021797,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-22",
+        "actual_kwh": 22.93105,
+        "predicted_kwh": 47.56505381248046,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-23",
+        "actual_kwh": 39.03322,
+        "predicted_kwh": 33.55792915966696,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-24",
+        "actual_kwh": 59.751219999999996,
+        "predicted_kwh": 57.53875955303112,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-25",
+        "actual_kwh": 50.09819,
+        "predicted_kwh": 43.3160681080012,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-26",
+        "actual_kwh": 56.682539999999996,
+        "predicted_kwh": 47.56475519283404,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-27",
+        "actual_kwh": 51.53231000000001,
+        "predicted_kwh": 43.9263086012467,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-28",
+        "actual_kwh": 20.74605,
+        "predicted_kwh": 32.95227623163264,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-29",
+        "actual_kwh": 23.19602,
+        "predicted_kwh": 41.0927457642813,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-30",
+        "actual_kwh": 52.01216,
+        "predicted_kwh": 46.90952857620655,
+        "rows": 288,
+        "complete": true
+      }
+    ]
+  },
+  "daily_baseline": {
+    "complete_days": 55,
+    "excluded_days": 0,
+    "mae_kwh": 12.140213054306399,
+    "rmse_kwh": 15.351207358323833,
+    "bias_kwh": 5.247822362441077,
+    "actual_kwh": 2471.23956,
+    "predicted_kwh": 2759.8697899342587,
+    "days": [
+      {
+        "date": "2025-05-07",
+        "actual_kwh": 64.73835,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-08",
+        "actual_kwh": 74.18037,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-09",
+        "actual_kwh": 49.22759,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-10",
+        "actual_kwh": 50.238910000000004,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-11",
+        "actual_kwh": 30.02582,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-12",
+        "actual_kwh": 42.50659,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-13",
+        "actual_kwh": 49.20939,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-14",
+        "actual_kwh": 48.637660000000004,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-15",
+        "actual_kwh": 66.81721,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-16",
+        "actual_kwh": 43.20788,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-17",
+        "actual_kwh": 40.738899999999994,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-18",
+        "actual_kwh": 41.394239999999996,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-19",
+        "actual_kwh": 50.85529,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-20",
+        "actual_kwh": 58.25635,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-21",
+        "actual_kwh": 43.70686,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-22",
+        "actual_kwh": 54.43061,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-23",
+        "actual_kwh": 29.179049999999997,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-24",
+        "actual_kwh": 35.0742,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-25",
+        "actual_kwh": 31.79232,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-26",
+        "actual_kwh": 56.73411,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-27",
+        "actual_kwh": 56.60152,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-28",
+        "actual_kwh": 51.65602,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-29",
+        "actual_kwh": 54.50967,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-30",
+        "actual_kwh": 67.25323,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-31",
+        "actual_kwh": 32.15085,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-01",
+        "actual_kwh": 31.42188,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-02",
+        "actual_kwh": 75.14501000000001,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-03",
+        "actual_kwh": 38.846199999999996,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-04",
+        "actual_kwh": 42.09114999999999,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-05",
+        "actual_kwh": 59.318419999999996,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-06",
+        "actual_kwh": 36.83056,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-07",
+        "actual_kwh": 28.075010000000002,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-08",
+        "actual_kwh": 20.301129999999997,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-09",
+        "actual_kwh": 64.49847,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-10",
+        "actual_kwh": 50.60199,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-11",
+        "actual_kwh": 46.617439999999995,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-12",
+        "actual_kwh": 62.60556,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-13",
+        "actual_kwh": 55.06934,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-14",
+        "actual_kwh": 22.771690000000003,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-15",
+        "actual_kwh": 16.32436,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-16",
+        "actual_kwh": 44.86708,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-17",
+        "actual_kwh": 42.714679999999994,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-18",
+        "actual_kwh": 39.80521,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-19",
+        "actual_kwh": 47.13511999999999,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-20",
+        "actual_kwh": 27.57065,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-21",
+        "actual_kwh": 19.52286,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-22",
+        "actual_kwh": 22.93105,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-23",
+        "actual_kwh": 39.03322,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-24",
+        "actual_kwh": 59.751219999999996,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-25",
+        "actual_kwh": 50.09819,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-26",
+        "actual_kwh": 56.682539999999996,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-27",
+        "actual_kwh": 51.53231000000001,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-28",
+        "actual_kwh": 20.74605,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-29",
+        "actual_kwh": 23.19602,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-30",
+        "actual_kwh": 52.01216,
+        "predicted_kwh": 50.17945072607744,
+        "rows": 288,
+        "complete": true
+      }
+    ]
+  },
+  "daily_persistence": {
+    "complete_days": 55,
+    "excluded_days": 0,
+    "mae_kwh": 13.478783454545454,
+    "rmse_kwh": 17.67615335991727,
+    "bias_kwh": 0.10486236363636359,
+    "actual_kwh": 2471.23956,
+    "predicted_kwh": 2477.0069900000003,
+    "days": [
+      {
+        "date": "2025-05-07",
+        "actual_kwh": 64.73835,
+        "predicted_kwh": 57.77959,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-08",
+        "actual_kwh": 74.18037,
+        "predicted_kwh": 64.73835,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-09",
+        "actual_kwh": 49.22759,
+        "predicted_kwh": 74.18037,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-10",
+        "actual_kwh": 50.238910000000004,
+        "predicted_kwh": 49.22759,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-11",
+        "actual_kwh": 30.02582,
+        "predicted_kwh": 50.238910000000004,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-12",
+        "actual_kwh": 42.50659,
+        "predicted_kwh": 30.02582,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-13",
+        "actual_kwh": 49.20939,
+        "predicted_kwh": 42.50659,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-14",
+        "actual_kwh": 48.637660000000004,
+        "predicted_kwh": 49.20939,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-15",
+        "actual_kwh": 66.81721,
+        "predicted_kwh": 48.637660000000004,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-16",
+        "actual_kwh": 43.20788,
+        "predicted_kwh": 66.81721,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-17",
+        "actual_kwh": 40.738899999999994,
+        "predicted_kwh": 43.20788,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-18",
+        "actual_kwh": 41.394239999999996,
+        "predicted_kwh": 40.738899999999994,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-19",
+        "actual_kwh": 50.85529,
+        "predicted_kwh": 41.394239999999996,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-20",
+        "actual_kwh": 58.25635,
+        "predicted_kwh": 50.85529,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-21",
+        "actual_kwh": 43.70686,
+        "predicted_kwh": 58.25635,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-22",
+        "actual_kwh": 54.43061,
+        "predicted_kwh": 43.70686,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-23",
+        "actual_kwh": 29.179049999999997,
+        "predicted_kwh": 54.43061,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-24",
+        "actual_kwh": 35.0742,
+        "predicted_kwh": 29.179049999999997,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-25",
+        "actual_kwh": 31.79232,
+        "predicted_kwh": 35.0742,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-26",
+        "actual_kwh": 56.73411,
+        "predicted_kwh": 31.79232,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-27",
+        "actual_kwh": 56.60152,
+        "predicted_kwh": 56.73411,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-28",
+        "actual_kwh": 51.65602,
+        "predicted_kwh": 56.60152,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-29",
+        "actual_kwh": 54.50967,
+        "predicted_kwh": 51.65602,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-30",
+        "actual_kwh": 67.25323,
+        "predicted_kwh": 54.50967,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-05-31",
+        "actual_kwh": 32.15085,
+        "predicted_kwh": 67.25323,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-01",
+        "actual_kwh": 31.42188,
+        "predicted_kwh": 32.15085,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-02",
+        "actual_kwh": 75.14501000000001,
+        "predicted_kwh": 31.42188,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-03",
+        "actual_kwh": 38.846199999999996,
+        "predicted_kwh": 75.14501000000001,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-04",
+        "actual_kwh": 42.09114999999999,
+        "predicted_kwh": 38.846199999999996,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-05",
+        "actual_kwh": 59.318419999999996,
+        "predicted_kwh": 42.09114999999999,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-06",
+        "actual_kwh": 36.83056,
+        "predicted_kwh": 59.318419999999996,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-07",
+        "actual_kwh": 28.075010000000002,
+        "predicted_kwh": 36.83056,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-08",
+        "actual_kwh": 20.301129999999997,
+        "predicted_kwh": 28.075010000000002,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-09",
+        "actual_kwh": 64.49847,
+        "predicted_kwh": 20.301129999999997,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-10",
+        "actual_kwh": 50.60199,
+        "predicted_kwh": 64.49847,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-11",
+        "actual_kwh": 46.617439999999995,
+        "predicted_kwh": 50.60199,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-12",
+        "actual_kwh": 62.60556,
+        "predicted_kwh": 46.617439999999995,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-13",
+        "actual_kwh": 55.06934,
+        "predicted_kwh": 62.60556,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-14",
+        "actual_kwh": 22.771690000000003,
+        "predicted_kwh": 55.06934,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-15",
+        "actual_kwh": 16.32436,
+        "predicted_kwh": 22.771690000000003,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-16",
+        "actual_kwh": 44.86708,
+        "predicted_kwh": 16.32436,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-17",
+        "actual_kwh": 42.714679999999994,
+        "predicted_kwh": 44.86708,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-18",
+        "actual_kwh": 39.80521,
+        "predicted_kwh": 42.714679999999994,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-19",
+        "actual_kwh": 47.13511999999999,
+        "predicted_kwh": 39.80521,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-20",
+        "actual_kwh": 27.57065,
+        "predicted_kwh": 47.13511999999999,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-21",
+        "actual_kwh": 19.52286,
+        "predicted_kwh": 27.57065,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-22",
+        "actual_kwh": 22.93105,
+        "predicted_kwh": 19.52286,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-23",
+        "actual_kwh": 39.03322,
+        "predicted_kwh": 22.93105,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-24",
+        "actual_kwh": 59.751219999999996,
+        "predicted_kwh": 39.03322,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-25",
+        "actual_kwh": 50.09819,
+        "predicted_kwh": 59.751219999999996,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-26",
+        "actual_kwh": 56.682539999999996,
+        "predicted_kwh": 50.09819,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-27",
+        "actual_kwh": 51.53231000000001,
+        "predicted_kwh": 56.682539999999996,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-28",
+        "actual_kwh": 20.74605,
+        "predicted_kwh": 51.53231000000001,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-29",
+        "actual_kwh": 23.19602,
+        "predicted_kwh": 20.74605,
+        "rows": 288,
+        "complete": true
+      },
+      {
+        "date": "2025-06-30",
+        "actual_kwh": 52.01216,
+        "predicted_kwh": 23.19602,
+        "rows": 288,
+        "complete": true
+      }
+    ]
+  },
+  "physical": {
+    "specific_yield": {
+      "status": "blocked",
+      "unit": "kWh/kWp",
+      "value": null,
+      "requirements": [
+        "Confirmar que la producción es energía AC de cada intervalo",
+        "Confirmar cobertura completa y el mismo periodo para energía e irradiación",
+        "Documentar la fuente técnica de los parámetros y las convenciones",
+        "Se necesita energía AC medida válida en kWh",
+        "Potencia DC STC de los módulos verificada en kWp"
+      ],
+      "review_required": false
+    },
+    "performance_ratio": {
+      "status": "blocked",
+      "unit": "%",
+      "value": null,
+      "requirements": [
+        "Confirmar que la producción es energía AC de cada intervalo",
+        "Confirmar cobertura completa y el mismo periodo para energía e irradiación",
+        "Documentar la fuente técnica de los parámetros y las convenciones",
+        "Se necesita energía AC medida válida en kWh",
+        "Potencia DC STC de los módulos verificada en kWp",
+        "Confirmar irradiación en el plano del generador POA",
+        "Se necesita irradiación POA positiva en kWh/m²"
+      ],
+      "review_required": false
+    },
+    "solar_to_ac_efficiency": {
+      "status": "blocked",
+      "unit": "%",
+      "value": null,
+      "requirements": [
+        "Confirmar que la producción es energía AC de cada intervalo",
+        "Confirmar cobertura completa y el mismo periodo para energía e irradiación",
+        "Documentar la fuente técnica de los parámetros y las convenciones",
+        "Se necesita energía AC medida válida en kWh",
+        "Área total de módulos verificada en m²",
+        "Confirmar irradiación en el plano del generador POA",
+        "Se necesita irradiación POA positiva en kWh/m²"
+      ],
+      "review_required": false
+    }
+  },
+  "test_period": {
+    "rows": 15840,
+    "start": "2025-05-07T00:00:00-05:00",
+    "end": "2025-06-30T23:55:00-05:00"
+  },
+  "interval_test_rmse_wh": 65.58974667767325,
+  "evaluation_mode": "observed_weather_conditional_estimation",
+  "energy_semantics": "legacy_interval_assumption_unconfirmed",
+  "technical_metadata": {
+    "central_id": 1,
+    "name": "Edificio Central UTPL",
+    "dc_capacity_kwp": null,
+    "module_area_m2": null,
+    "irradiance_plane": "unconfirmed",
+    "irradiance_sampling": "unconfirmed",
+    "energy_semantics": "unconfirmed",
+    "same_period_complete": false,
+    "source_reference": null,
+    "notes": "Los seis Excel contienen canales y unidades, pero no ficha técnica de módulos ni confirmación de POA o energía de intervalo. No usar los 15 kW del inversor como potencia STC DC."
+  },
+  "physical_inputs": {
+    "energy_ac_kwh": null,
+    "poa_kwh_m2": null,
+    "same_period_complete": false
+  },
+  "limitations": [
+    "La energía diaria conserva la interpretación previa de Wh por intervalo, pendiente de confirmación.",
+    "La meteorología es observada; estos errores no validan un pronóstico futuro.",
+    "El repositorio conserva la hora de origen y no cambia la base Supabase.",
+    "La validación empírica corresponde a una central; el identificador permite otras sin demostrar su desempeño."
+  ]
+}
